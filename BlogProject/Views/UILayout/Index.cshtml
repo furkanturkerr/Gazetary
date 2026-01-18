@@ -1,0 +1,22 @@
+@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="light" lang="tr">
+@await Component.InvokeAsync("_UIHeadComponentPartial")
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white min-h-screen flex flex-col items-center">
+<div class="w-full max-w-[1120px] bg-white dark:bg-[#151a23] min-h-screen shadow-sm border-x border-neutral-200 dark:border-neutral-800 flex flex-col mx-auto">
+    @await Component.InvokeAsync("_UIHeaderComponentPartial")
+    <main class="flex-1 flex flex-col md:flex-row px-8 py-8 gap-10">
+        @RenderBody()
+        @await Component.InvokeAsync("_UINavbarComponentPartial")
+    </main>
+    @await Component.InvokeAsync("_UIFooterComponentPartial")
+</div>
+
+</body>
+</html>

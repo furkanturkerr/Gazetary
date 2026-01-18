@@ -1,0 +1,14 @@
+/Users/furkanturker/RiderProjects/BlogProject/Entities/bin/Debug/net8.0/Entities.deps.json
+/Users/furkanturker/RiderProjects/BlogProject/Entities/bin/Debug/net8.0/Entities.runtimeconfig.json
+/Users/furkanturker/RiderProjects/BlogProject/Entities/bin/Debug/net8.0/Entities.dll
+/Users/furkanturker/RiderProjects/BlogProject/Entities/bin/Debug/net8.0/Entities.pdb
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.csproj.AssemblyReference.cache
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.GeneratedMSBuildEditorConfig.editorconfig
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.AssemblyInfoInputs.cache
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.AssemblyInfo.cs
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.csproj.CoreCompileInputs.cache
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.dll
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/refint/Entities.dll
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.pdb
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.genruntimeconfig.cache
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/ref/Entities.dll
