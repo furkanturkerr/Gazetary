@@ -27,6 +27,7 @@
 
     <ItemGroup>
       <Folder Include="Pages\" />
+      <Folder Include="Post\" />
     </ItemGroup>
 
 </Project>

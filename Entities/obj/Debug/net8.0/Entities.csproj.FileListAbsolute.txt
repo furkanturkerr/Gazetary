@@ -12,3 +12,4 @@
 /Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.pdb
 /Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.genruntimeconfig.cache
 /Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/ref/Entities.dll
+/Users/furkanturker/RiderProjects/BlogProject/Entities/obj/Debug/net8.0/Entities.sourcelink.json

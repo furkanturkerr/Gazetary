@@ -147,3 +147,4 @@
 /Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/Business.pdb
 /Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/DataAccess.pdb
 /Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/Entities.pdb
+/Users/furkanturker/RiderProjects/BlogProject/BlogProject/obj/Debug/net8.0/BlogProject.sourcelink.json

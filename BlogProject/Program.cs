@@ -34,13 +34,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "blogDetail",
-    pattern: "blog/{slug}",
-    defaults: new { controller = "Blog", action = "Detail" });
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Default}/{action=Anasayfa}/{id?}");
+
 
 app.Run();

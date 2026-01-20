@@ -9,4 +9,9 @@ public class UILayoutController : Controller
     {
         return View();
     }
+
+    public IActionResult Home()
+    {
+        return View();
+    }
 }
