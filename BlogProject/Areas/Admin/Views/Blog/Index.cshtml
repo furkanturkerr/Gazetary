@@ -1,0 +1,227 @@
+@model dynamic
+
+@{
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-800 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
+            <p class="text-[#617589] text-sm font-medium">Total Published</p>
+            <span class="material-symbols-outlined text-primary">check_circle</span>
+        </div>
+        <p class="text-3xl font-bold dark:text-white">1,248</p>
+        <p class="text-xs text-green-600 font-medium mt-2 flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">trending_up</span>
+            +12 this week
+        </p>
+    </div>
+    <div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-800 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
+            <p class="text-[#617589] text-sm font-medium">Pending Drafts</p>
+            <span class="material-symbols-outlined text-gray-400">edit_note</span>
+        </div>
+        <p class="text-3xl font-bold dark:text-white">42</p>
+        <p class="text-xs text-[#617589] font-medium mt-2">Requires review</p>
+    </div>
+    <div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-[#dbe0e6] dark:border-gray-800 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
+            <p class="text-[#617589] text-sm font-medium">Scheduled</p>
+            <span class="material-symbols-outlined text-orange-400">schedule</span>
+        </div>
+        <p class="text-3xl font-bold dark:text-white">15</p>
+        <p class="text-xs text-[#617589] font-medium mt-2">To be published today</p>
+    </div>
+</div>
+<div class="bg-white dark:bg-background-dark rounded-xl border border-[#dbe0e6] dark:border-gray-800 shadow-sm overflow-hidden">
+    <div class="p-4 border-b border-[#dbe0e6] dark:border-gray-800 flex flex-wrap gap-3 items-center justify-between">
+        <div class="flex gap-2">
+            <button class="flex h-9 items-center gap-2 rounded-lg bg-background-light dark:bg-gray-800 px-4 text-sm font-medium border border-[#dbe0e6] dark:border-gray-700">
+                <span>All Categories</span>
+                <span class="material-symbols-outlined text-sm">expand_more</span>
+            </button>
+            <button class="flex h-9 items-center gap-2 rounded-lg bg-background-light dark:bg-gray-800 px-4 text-sm font-medium border border-[#dbe0e6] dark:border-gray-700">
+                <span>Status</span>
+                <span class="material-symbols-outlined text-sm">expand_more</span>
+            </button>
+        </div>
+        <div class="text-[#617589] text-sm font-medium">
+            Showing 1-10 of 1,248 posts
+        </div>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+            <tr class="bg-background-light/50 dark:bg-gray-800/50">
+                <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Title</th>
+                <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Category</th>
+                <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Author</th>
+                <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Status</th>
+                <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Publish Date</th>
+                <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800 text-right">Actions</th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-[#dbe0e6] dark:divide-gray-800">
+            <!-- Row 1 -->
+            <tr class="hover:bg-background-light/30 dark:hover:bg-gray-800/30 transition-colors group">
+                <td class="px-6 py-4">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-bold text-[#111418] dark:text-white group-hover:text-primary transition-colors">Global Markets Reach Historic Peaks Amid Tech Surge</span>
+                        <span class="text-xs text-[#617589] mt-1">markets-historic-peaks-2024</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="text-sm text-[#111418] dark:text-gray-300">Finance</span>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="size-6 rounded-full bg-cover bg-center" data-alt="Avatar of author Sarah Chen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBB51F_BQJYQxFgEdZ1Pui2fAoZzYmO0FHeFpPZB_JqbRDh7RkaKzi9L74enBXhwpyxWSiZrM9rwBJgV9esuZXb7EpJHYAZdQzvIYIU7d_0SdR4Inn8YfjPNPkobonhqgby2x4GSa4xd4tEN8hJzO7q4t96cK2j15xk5f_mBgSjbcs38it5QAPftH9UEU-RxZxMKZjyaFm7Bh1s-dJsVOXEPvbm5g1TymNv539W3Ettavi_Qy_lUslARHy5-x6az7d8o56cue4yxJQ");'></div>
+                        <span class="text-sm font-medium dark:text-gray-300">Sarah Chen</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Published</span>
+                </td>
+                <td class="px-6 py-4 text-sm text-[#617589]">Oct 24, 2024</td>
+                <td class="px-6 py-4 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                        <button class="p-1.5 text-[#617589] hover:text-primary transition-colors" title="Edit">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                        <button class="p-1.5 text-[#617589] hover:text-primary transition-colors" title="Preview">
+                            <span class="material-symbols-outlined text-lg">visibility</span>
+                        </button>
+                        <button class="p-1.5 text-[#617589] hover:text-red-500 transition-colors" title="Delete">
+                            <span class="material-symbols-outlined text-lg">delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <!-- Row 2 -->
+            <tr class="hover:bg-background-light/30 dark:hover:bg-gray-800/30 transition-colors group">
+                <td class="px-6 py-4">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-bold text-[#111418] dark:text-white group-hover:text-primary transition-colors">The Future of AI in Modern Journalism</span>
+                        <span class="text-xs text-[#617589] mt-1">ai-modern-journalism-future</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="text-sm text-[#111418] dark:text-gray-300">Technology</span>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="size-6 rounded-full bg-cover bg-center" data-alt="Avatar of author Marcus Thorne" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2pLVP6YngBCLCh7W9z6jl3oBWDyRKQXuNTADQECROi1Vj8Fyw-BSNvhh8MXMTeBmJywEZnJdttgelzwb_KQ5ArvoypYMOAQhRJ0jyCE5eyAGkw6VBuBwdBd952pFpkyFJYXNXhIGERWUZhwhtMDNlp3n5geRw5K45fqBFBTNwryEvjTruwl4LfVQ7fA-3U0bMGUQsjx5sLNIiMduTL637YfVhajNQFM9UfW0zRPEUvZDQjCdHuRlxp1iLMvzUExEu83Z5Xw9iX8I");'></div>
+                        <span class="text-sm font-medium dark:text-gray-300">Marcus Thorne</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">Draft</span>
+                </td>
+                <td class="px-6 py-4 text-sm text-[#617589]">--</td>
+                <td class="px-6 py-4 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                        <button class="p-1.5 text-[#617589] hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                        <button class="p-1.5 text-[#617589] hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">visibility</span>
+                        </button>
+                        <button class="p-1.5 text-[#617589] hover:text-red-500 transition-colors">
+                            <span class="material-symbols-outlined text-lg">delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <!-- Row 3 -->
+            <tr class="hover:bg-background-light/30 dark:hover:bg-gray-800/30 transition-colors group">
+                <td class="px-6 py-4">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-bold text-[#111418] dark:text-white group-hover:text-primary transition-colors">City Council Proposes New Green Space Initiative</span>
+                        <span class="text-xs text-[#617589] mt-1">city-council-green-space</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="text-sm text-[#111418] dark:text-gray-300">Politics</span>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="size-6 rounded-full bg-cover bg-center" data-alt="Avatar of author Elena Rodriguez" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmHStAQhg0fMf1EqOzNhrDZBZ5UGPwNiSmItV2RXCQ6vW4Ihaj__VhMWbCDNCRlC6vtpcv3wsOQix5jBste2FwSidCsw5PLWymFvbA5nw8yjJ8iTMl7bycHrmwTXCi9oW99rORaBwsrbK16o1NVZ2nWMNZxM_EUUawFlb3-IfkYcco-NBvu8YP9wUsZirl8nQHw7yHaOJuYW6Tl56CzvXuD-kEh04VMkF5R4O4AcyVxSQEsM0rCoa9HwP3hyxYK6LHtVhmi-uabNk");'></div>
+                        <span class="text-sm font-medium dark:text-gray-300">Elena Rodriguez</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400">Scheduled</span>
+                </td>
+                <td class="px-6 py-4 text-sm text-[#617589]">Oct 26, 2024</td>
+                <td class="px-6 py-4 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                        <button class="p-1.5 text-[#617589] hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                        <button class="p-1.5 text-[#617589] hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">visibility</span>
+                        </button>
+                        <button class="p-1.5 text-[#617589] hover:text-red-500 transition-colors">
+                            <span class="material-symbols-outlined text-lg">delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <!-- Row 4 -->
+            <tr class="hover:bg-background-light/30 dark:hover:bg-gray-800/30 transition-colors group">
+                <td class="px-6 py-4">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-bold text-[#111418] dark:text-white group-hover:text-primary transition-colors">Culinary Trends: Why Sourdough is Staying</span>
+                        <span class="text-xs text-[#617589] mt-1">culinary-trends-sourdough</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="text-sm text-[#111418] dark:text-gray-300">Culture</span>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="size-6 rounded-full bg-cover bg-center" data-alt="Avatar of author David Wu" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDGkYevcC2nQtXRGlRVbEWM4W0FQ_JXPltVsX_4W8lg0x_bUZCEwUlzZ4M3ViZdLUCaFf8LbVZ9ezCjHin1wIA8HK9L_ssXX8MZoFNId9-HWLR032EClxa3iphWyJTFmC5ITUqLUNviDmx-_NkQbXCq4cIAWEqaBYFu4PXTUTjiTUP_HvQQltG7bEs11e9YCtaK3zYzx0_be0iQu09A2qUqDZskuGqijaDtYkcHPGrW5ypVwBNfV-YT1ySXFukz56dPJrtaM6_9PEk");'></div>
+                        <span class="text-sm font-medium dark:text-gray-300">David Wu</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Published</span>
+                </td>
+                <td class="px-6 py-4 text-sm text-[#617589]">Oct 22, 2024</td>
+                <td class="px-6 py-4 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                        <button class="p-1.5 text-[#617589] hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                        <button class="p-1.5 text-[#617589] hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">visibility</span>
+                        </button>
+                        <button class="p-1.5 text-[#617589] hover:text-red-500 transition-colors">
+                            <span class="material-symbols-outlined text-lg">delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Pagination -->
+    <div class="px-6 py-4 border-t border-[#dbe0e6] dark:border-gray-800 flex items-center justify-between">
+        <button class="text-sm font-bold text-[#617589] hover:text-[#111418] dark:hover:text-white flex items-center gap-1 transition-colors">
+            <span class="material-symbols-outlined text-lg">chevron_left</span>
+            Previous
+        </button>
+        <div class="flex items-center gap-2">
+            <button class="size-8 rounded flex items-center justify-center bg-primary text-white text-sm font-bold">1</button>
+            <button class="size-8 rounded flex items-center justify-center text-[#617589] hover:bg-background-light dark:hover:bg-gray-800 text-sm font-bold">2</button>
+            <button class="size-8 rounded flex items-center justify-center text-[#617589] hover:bg-background-light dark:hover:bg-gray-800 text-sm font-bold">3</button>
+            <span class="text-[#617589]">...</span>
+            <button class="size-8 rounded flex items-center justify-center text-[#617589] hover:bg-background-light dark:hover:bg-gray-800 text-sm font-bold">125</button>
+        </div>
+        <button class="text-sm font-bold text-primary hover:text-primary/80 flex items-center gap-1 transition-colors">
+            Next
+            <span class="material-symbols-outlined text-lg">chevron_right</span>
+        </button>
+    </div>
+</div>
+        
