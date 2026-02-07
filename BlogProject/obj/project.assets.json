@@ -1886,6 +1886,19 @@
           "lib/netcoreapp3.1/Mono.TextTemplating.dll": {}
         }
       },
+      "MvcPages/0.9.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/MvcPages.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net40/MvcPages.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -6005,6 +6018,23 @@
         "readme.md"
       ]
     },
+    "MvcPages/0.9.0": {
+      "sha512": "4S3TTzcEZw3x1zFW+AiXVGxgeX3lmJoX7BD+MUUx8mCMLt1wDIOcosR3OkYxthcDBfzgt9k1oio3Ls4YSjf69g==",
+      "type": "package",
+      "path": "mvcpages/0.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NOTICE.txt",
+        "README.txt",
+        "lib/net40/MvcPages.dll",
+        "lib/net40/MvcPages.pdb",
+        "licenses/ASP.NET-MVC-LICENSE.txt",
+        "licenses/LICENSE.txt",
+        "mvcpages.0.9.0.nupkg.sha512",
+        "mvcpages.nuspec"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -7404,7 +7434,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 8.0.23",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.23",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.23",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.23"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.23",
+      "MvcPages >= 0.9.0"
     ]
   },
   "packageFolders": {
@@ -7482,6 +7513,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[8.0.23, )"
+          },
+          "MvcPages": {
+            "target": "Package",
+            "version": "[0.9.0, )"
           }
         },
         "imports": [
@@ -7506,5 +7541,17 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MvcPages 0.9.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "MvcPages",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

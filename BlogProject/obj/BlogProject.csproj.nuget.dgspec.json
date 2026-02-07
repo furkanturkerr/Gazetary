@@ -76,6 +76,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.23, )"
+            },
+            "MvcPages": {
+              "target": "Package",
+              "version": "[0.9.0, )"
             }
           },
           "imports": [

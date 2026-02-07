@@ -1,0 +1,289 @@
+@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>News Admin Dashboard Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background-color: #137fec;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white antialiased">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 border-r border-[#dbe0e6] dark:border-gray-800 bg-white dark:bg-background-dark flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary size-10 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">newspaper</span>
+</div>
+<div>
+<h1 class="text-[#111418] dark:text-white text-base font-bold leading-none">News Portal</h1>
+<p class="text-[#617589] text-xs font-medium mt-1">Editorial Admin</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg active-nav text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] hover:bg-gray-100 dark:hover:bg-gray-800 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">article</span>
+                    Posts
+                </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] hover:bg-gray-100 dark:hover:bg-gray-800 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">image</span>
+                    Media
+                </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] hover:bg-gray-100 dark:hover:bg-gray-800 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    SEO
+                </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] hover:bg-gray-100 dark:hover:bg-gray-800 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+                    Pages
+                </a>
+</nav>
+<div class="p-4 border-t border-[#dbe0e6] dark:border-gray-800">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#617589] hover:bg-gray-100 dark:hover:bg-gray-800 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto">
+<!-- Top Navbar -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#dbe0e6] dark:border-gray-800 px-8 py-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-6">
+<h2 class="text-xl font-bold tracking-tight">Overview</h2>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#617589] text-sm">search</span>
+<input class="w-full bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary" placeholder="Search articles..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-gray-200 dark:border-gray-800">
+<div class="text-right">
+<p class="text-sm font-bold leading-none">Alex Reed</p>
+<p class="text-[10px] text-[#617589] font-medium uppercase tracking-wider mt-1">Editor in Chief</p>
+</div>
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-primary/20" data-alt="Profile picture of a professional editor" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCk4xPPUNPTODKYXoJp9ie6xwHQEdcY7f7L-x4zvIIbJbkc-9_On1icLra6qJ2v0wHnZC-N1hKf5m07_5M7XHReTJBHQp4P0zoqe3jmoct_v8EI4l28w8Vzo9WjkcGSR_ln7advokzHyx4hSYTqZHHR1FpUCL2c7FqZnVK5rWYRk1aTPkDVG8oMYyW0wNfXsfr1SjSs78193GiJWI98h3GuLNEgHcmjOF_E8V3mIeRiuNcfpalTu2CNu_YpwmJBDUzXjc-h-aAKcQE');"></div>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-7xl mx-auto space-y-6">
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<p class="text-[#617589] text-sm font-medium">Total Posts</p>
+<span class="material-symbols-outlined text-primary text-xl">article</span>
+</div>
+<p class="text-3xl font-bold">1,240</p>
+<p class="text-[#078838] text-sm font-medium mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +12% this month
+                        </p>
+</div>
+<div class="bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<p class="text-[#617589] text-sm font-medium">Drafts</p>
+<span class="material-symbols-outlined text-orange-500 text-xl">edit_document</span>
+</div>
+<p class="text-3xl font-bold">42</p>
+<p class="text-[#e73908] text-sm font-medium mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_down</span> -5% from yesterday
+                        </p>
+</div>
+<div class="bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<p class="text-[#617589] text-sm font-medium">Monthly Views</p>
+<span class="material-symbols-outlined text-purple-500 text-xl">visibility</span>
+</div>
+<p class="text-3xl font-bold">89.5k</p>
+<p class="text-[#078838] text-sm font-medium mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +18.4%
+                        </p>
+</div>
+<div class="bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<p class="text-[#617589] text-sm font-medium">Comments</p>
+<span class="material-symbols-outlined text-blue-400 text-xl">forum</span>
+</div>
+<p class="text-3xl font-bold">1,102</p>
+<p class="text-[#078838] text-sm font-medium mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +2%
+                        </p>
+</div>
+</div>
+<!-- Main Chart -->
+<div class="bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-lg font-bold">Daily Views Traffic</h3>
+<p class="text-sm text-[#617589]">Real-time engagement tracking for the last 30 days</p>
+</div>
+<div class="flex bg-[#f0f2f4] dark:bg-gray-800 p-1 rounded-lg">
+<button class="px-3 py-1 text-xs font-bold rounded-md bg-white dark:bg-gray-700 shadow-sm">Weekly</button>
+<button class="px-3 py-1 text-xs font-medium text-[#617589]">Monthly</button>
+</div>
+</div>
+<div class="h-64 w-full">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 250">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#137fec" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#137fec" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,200 C50,180 100,220 150,140 C200,60 250,100 300,80 C350,60 400,150 450,130 C500,110 550,40 600,60 C650,80 700,180 750,160 C800,140 850,20 900,40 C950,60 1000,100 1000,100 L1000,250 L0,250 Z" fill="url(#chartGradient)"></path>
+<path d="M0,200 C50,180 100,220 150,140 C200,60 250,100 300,80 C350,60 400,150 450,130 C500,110 550,40 600,60 C650,80 700,180 750,160 C800,140 850,20 900,40 C950,60 1000,100 1000,100" fill="none" stroke="#137fec" stroke-width="3"></path>
+</svg>
+</div>
+<div class="flex justify-between mt-4 px-2">
+<span class="text-[11px] font-bold text-[#617589] uppercase tracking-wider">Mon</span>
+<span class="text-[11px] font-bold text-[#617589] uppercase tracking-wider">Tue</span>
+<span class="text-[11px] font-bold text-[#617589] uppercase tracking-wider">Wed</span>
+<span class="text-[11px] font-bold text-[#617589] uppercase tracking-wider">Thu</span>
+<span class="text-[11px] font-bold text-[#617589] uppercase tracking-wider">Fri</span>
+<span class="text-[11px] font-bold text-[#617589] uppercase tracking-wider">Sat</span>
+<span class="text-[11px] font-bold text-[#617589] uppercase tracking-wider">Sun</span>
+</div>
+</div>
+<!-- Bottom Row: Table and Comments -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Latest Posts Table -->
+<div class="lg:col-span-2 bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 rounded-xl shadow-sm overflow-hidden">
+<div class="px-6 py-5 border-b border-[#dbe0e6] dark:border-gray-800 flex justify-between items-center">
+<h3 class="font-bold">Latest Posts</h3>
+<button class="text-primary text-xs font-bold hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-gray-50 dark:bg-gray-800/50 text-[11px] font-bold text-[#617589] uppercase tracking-wider">
+<tr>
+<th class="px-6 py-3">Title</th>
+<th class="px-6 py-3">Status</th>
+<th class="px-6 py-3">Author</th>
+<th class="px-6 py-3">Date</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<p class="text-sm font-semibold text-primary">Global Economy Shifts: 2024 Outlook</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded text-[10px] font-bold bg-green-100 text-green-700 uppercase">Published</span>
+</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Sarah Jenkins</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Oct 12, 2023</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<p class="text-sm font-semibold text-[#111418] dark:text-white">New Tech Hub Opening in Zurich</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded text-[10px] font-bold bg-orange-100 text-orange-700 uppercase">Draft</span>
+</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Marc Weber</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Oct 11, 2023</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4">
+<p class="text-sm font-semibold text-primary">Renewable Energy: The Solar Boom</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded text-[10px] font-bold bg-green-100 text-green-700 uppercase">Published</span>
+</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Elena Rossi</td>
+<td class="px-6 py-4 text-sm text-[#617589]">Oct 10, 2023</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Recent Comments -->
+<div class="bg-white dark:bg-gray-900 border border-[#dbe0e6] dark:border-gray-800 rounded-xl shadow-sm flex flex-col">
+<div class="px-6 py-5 border-b border-[#dbe0e6] dark:border-gray-800 flex justify-between items-center">
+<h3 class="font-bold">Recent Comments</h3>
+<button class="text-[#617589] text-xs font-bold hover:text-primary transition-colors">Moderate</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<div class="flex gap-4">
+<div class="size-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-primary font-bold text-xs">JD</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<p class="text-xs font-bold">John Doe</p>
+<span class="text-[10px] text-[#617589]">2m ago</span>
+</div>
+<p class="text-xs text-[#617589] line-clamp-2 italic">"Great insights on the Zurich project. Looking forward to more..."</p>
+<div class="flex gap-3 mt-2">
+<button class="text-[10px] font-bold text-green-600 hover:underline uppercase tracking-tighter">Approve</button>
+<button class="text-[10px] font-bold text-red-600 hover:underline uppercase tracking-tighter">Delete</button>
+</div>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="size-8 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 text-pink-600 font-bold text-xs">AS</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<p class="text-xs font-bold">Alice Smith</p>
+<span class="text-[10px] text-[#617589]">1h ago</span>
+</div>
+<p class="text-xs text-[#617589] line-clamp-2 italic">"The solar boom article is very timely. The data points about battery tech are..."</p>
+<div class="flex gap-3 mt-2">
+<button class="text-[10px] font-bold text-green-600 hover:underline uppercase tracking-tighter">Approve</button>
+<button class="text-[10px] font-bold text-red-600 hover:underline uppercase tracking-tighter">Delete</button>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-[#dbe0e6] dark:border-gray-800">
+<button class="w-full py-2 text-sm font-bold bg-[#f0f2f4] dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">See all feedback</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
