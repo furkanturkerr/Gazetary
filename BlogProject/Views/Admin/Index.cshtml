@@ -3,23 +3,36 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
-<html class="light" lang="en">
-
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+>
+  
 @await Component.InvokeAsync("_AdminHeadComponentPartial")
-<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white min-h-screen">
-<div class="flex h-screen overflow-hidden">
 
-    @await Component.InvokeAsync("_AdminSidebarComponentPartial")
-
-    <main class="flex-1 flex flex-col overflow-hidden bg-background-light dark:bg-background-dark">
-        @await Component.InvokeAsync("_AdminHeaderComponentPartial")
-        <div class="flex-1 overflow-y-auto p-8">
-            @RenderBody()
+<body>
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        @await Component.InvokeAsync("_AdminSidebarComponentPartial")
+        <div class="layout-page">
+          @await Component.InvokeAsync("_AdminNavbarComponentPartial")
+          <div class="content-wrapper">
+            <div class="container-xxl flex-grow-1 container-p-y">
+             @RenderBody()
+            </div>
+            @await Component.InvokeAsync("_AdminFooterComponentPartial")
+            <div class="content-backdrop fade"></div>
+          </div>
         </div>
-    </main>
-</div>
-</body>
+      </div>
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    @await Component.InvokeAsync("_AdminScriptComponentPartial")
+  </body>
 </html>
+

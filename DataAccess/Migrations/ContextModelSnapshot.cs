@@ -86,6 +86,9 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsStatus")
+                        .HasColumnType("bit");
+
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");

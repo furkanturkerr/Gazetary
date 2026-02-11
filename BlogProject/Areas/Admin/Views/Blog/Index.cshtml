@@ -2,383 +2,59 @@
 
 @{
     Layout = "~/Views/Admin/Index.cshtml";
-    var currentPage = ViewBag.CurrentPage ?? 1;
-    var totalPages = ViewBag.TotalPages ?? 1;
-    var totalItems = ViewBag.TotalItems ?? Model.Count;
-    var pageSize = ViewBag.PageSize ?? 10;
 }
 
-<div class="bg-white dark:bg-background-dark rounded-xl border border-[#dbe0e6] dark:border-gray-800 shadow-sm overflow-hidden">
-    <!-- Header with Filters -->
-    <div class="p-4 border-b border-[#dbe0e6] dark:border-gray-800">
-        <div class="flex flex-wrap gap-3 items-center justify-between mb-4">
-            <h2 class="text-xl font-bold text-[#111418] dark:text-white">Blog Yazıları</h2>
-            <a href="/Admin/BlogPost/Create" class="flex h-9 items-center gap-2 rounded-lg bg-primary hover:bg-primary/90 px-4 text-sm font-medium text-white transition-colors">
-                <span class="material-symbols-outlined text-lg">add</span>
-                Yeni Yazı
-            </a>
-        </div>
-        
-        <!-- Filters -->
-        <div class="flex flex-wrap gap-3 items-center justify-between">
-            <div class="flex gap-2 flex-wrap">
-                <!-- Category Filter -->
-                <div class="relative">
-                    <select id="categoryFilter" class="h-9 rounded-lg bg-background-light dark:bg-gray-800 px-4 pr-10 text-sm font-medium border border-[#dbe0e6] dark:border-gray-700 text-[#111418] dark:text-white appearance-none cursor-pointer hover:border-primary transition-colors">
-                        <option value="">Tüm Kategoriler</option>
-                        <option value="finans">Finans</option>
-                        <option value="teknoloji">Teknoloji</option>
-                        <option value="sağlık">Sağlık</option>
-                        <option value="yaşam">Yaşam</option>
-                        <option value="iş dünyası">İş Dünyası</option>
-                    </select>
-                    <span class="material-symbols-outlined text-sm absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#617589]">expand_more</span>
-                </div>
-
-                <!-- Status Filter -->
-                <div class="relative">
-                    <select id="statusFilter" class="h-9 rounded-lg bg-background-light dark:bg-gray-800 px-4 pr-10 text-sm font-medium border border-[#dbe0e6] dark:border-gray-700 text-[#111418] dark:text-white appearance-none cursor-pointer hover:border-primary transition-colors">
-                        <option value="">Tüm Durumlar</option>
-                        <option value="active">Aktif</option>
-                        <option value="inactive">Pasif</option>
-                    </select>
-                    <span class="material-symbols-outlined text-sm absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#617589]">expand_more</span>
-                </div>
-
-                <!-- Search -->
-                <div class="relative">
-                    <input type="text" id="searchInput" placeholder="Başlık ara..." class="h-9 rounded-lg bg-background-light dark:bg-gray-800 pl-10 pr-4 text-sm border border-[#dbe0e6] dark:border-gray-700 text-[#111418] dark:text-white placeholder:text-[#617589] focus:border-primary focus:outline-none transition-colors min-w-[200px]">
-                    <span class="material-symbols-outlined text-sm absolute left-3 top-1/2 -translate-y-1/2 text-[#617589]">search</span>
-                </div>
-            </div>
-            
-            <div class="text-[#617589] text-sm font-medium">
-                <span id="resultCount">@Model.Count</span> yazı gösteriliyor
-            </div>
-        </div>
-    </div>
-
-    <!-- Table -->
-    <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse">
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blog/</span> Blog Yazıları</h4>
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
             <thead>
-                <tr class="bg-background-light/50 dark:bg-gray-800/50">
-                    <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Başlık</th>
-                    <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Kategori</th>
-                    <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Durum</th>
-                    <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Tarih</th>
-                    <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800 text-right">İşlemler</th>
-                </tr>
+            <tr>
+                <th>Başlık</th>
+                <th>Kategori</th>
+                <th>Durum</th>
+                <th style="width: 180px;">İşlemler</th>
+            </tr>
             </thead>
-            <tbody class="divide-y divide-[#dbe0e6] dark:divide-gray-800" id="blogTableBody">
-                @if (Model != null && Model.Any())
-                {
-                    @foreach (var item in Model)
-                    {
-                        <tr class="hover:bg-background-light/30 dark:hover:bg-gray-800/30 transition-colors group" 
-                            data-category="@item.Category?.CategoryName?.ToLower()" 
-                            data-status="@(item.Status ? "active" : "inactive")">
-                            <td class="px-6 py-4">
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-bold text-[#111418] dark:text-white group-hover:text-primary transition-colors">@item.Title</span>
-                                    <span class="text-xs text-[#617589] mt-1">@item.Slug</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
-                                    @item.Category?.CategoryId
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                @if (item.Status)
-                                {
-                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
-                                        <span class="size-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
-                                        Aktif
-                                    </span>
-                                }
-                                else
-                                {
-                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400">
-                                        <span class="size-1.5 rounded-full bg-gray-600 dark:bg-gray-400"></span>
-                                        Pasif
-                                    </span>
-                                }
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-sm text-[#617589]">@item.CreatedDate.ToString("dd MMM yyyy")</span>
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <div class="flex items-center justify-end gap-1">
-                                    <!-- Toggle Active/Inactive -->
-                                    <button onclick="toggleStatus(@item.BlogPostId, @item.Status.ToString().ToLower())" 
-                                            class="p-1.5 text-[#617589] hover:text-primary transition-colors" 
-                                            title="@(item.Status ? "Pasif Yap" : "Aktif Yap")">
-                                        <span class="material-symbols-outlined text-lg">@(item.Status ? "toggle_on" : "toggle_off")</span>
-                                    </button>
-                                    
-                                    <a href="/Admin/BlogPost/Edit/@item.BlogPostId" 
-                                       class="p-1.5 text-[#617589] hover:text-primary transition-colors" 
-                                       title="Düzenle">
-                                        <span class="material-symbols-outlined text-lg">edit</span>
-                                    </a>
-                                    
-                                    <a href="/Blog/Post/@item.Slug" 
-                                       target="_blank" 
-                                       class="p-1.5 text-[#617589] hover:text-primary transition-colors" 
-                                       title="Önizle">
-                                        <span class="material-symbols-outlined text-lg">visibility</span>
-                                    </a>
-                                    
-                                    <button onclick="deletePost(@item.BlogPostId)" 
-                                            class="p-1.5 text-[#617589] hover:text-red-500 transition-colors" 
-                                            title="Sil">
-                                        <span class="material-symbols-outlined text-lg">delete</span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="5" class="px-6 py-12 text-center text-[#617589]">
-                            <div class="flex flex-col items-center gap-3">
-                                <span class="material-symbols-outlined text-5xl text-[#617589]/30">article</span>
-                                <p class="text-sm font-medium">Henüz blog yazısı bulunmuyor</p>
-                                <a href="/Admin/BlogPost/Create" class="text-sm text-primary hover:text-primary/80 font-medium">
-                                    İlk yazıyı oluştur →
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                }
+            <tbody class="table-border-bottom-0">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.Title</strong></td>
+                    <td>@item.Category.CategoryName</td>
+                    <td>
+                        @if (@item.Status == true)
+                        {
+                            <span class="badge bg-label-success me-1">Yayında</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-label-warning me-1">Taslak</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary me-1" title="Güncelle">
+                            <i class="bx bx-edit-alt"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger me-1" title="Sil">
+                            <i class="bx bx-trash"></i>
+                        </a>
+                        @if (@item.Status == true)
+                        {
+                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-secondary" title="Taslağa Al">
+                                <i class="bx bx-archive"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-success" title="Yayınla">
+                                <i class="bx bx-check-circle"></i>
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
             </tbody>
         </table>
     </div>
-
-    <!-- Pagination -->
-    @if (Model != null && Model.Any() && totalPages > 1)
-    {
-        <div class="px-6 py-4 border-t border-[#dbe0e6] dark:border-gray-800 flex flex-wrap items-center justify-between gap-4">
-            <!-- Previous Button -->
-            @if (currentPage > 1)
-            {
-                <a href="?page=@(currentPage - 1)" 
-                   class="text-sm font-bold text-[#617589] hover:text-[#111418] dark:hover:text-white flex items-center gap-1 transition-colors">
-                    <span class="material-symbols-outlined text-lg">chevron_left</span>
-                    Önceki
-                </a>
-            }
-            else
-            {
-                <button disabled class="text-sm font-bold text-[#617589] flex items-center gap-1 opacity-50 cursor-not-allowed">
-                    <span class="material-symbols-outlined text-lg">chevron_left</span>
-                    Önceki
-                </button>
-            }
-
-            <!-- Page Numbers -->
-            <div class="flex items-center gap-2">
-                @{
-                    var startPage = Math.Max(1, currentPage - 2);
-                    var endPage = Math.Min(totalPages, currentPage + 2);
-                }
-
-                @if (startPage > 1)
-                {
-                    <a href="?page=1" class="size-8 rounded flex items-center justify-center text-[#617589] hover:bg-background-light dark:hover:bg-gray-800 text-sm font-bold transition-colors">1</a>
-                    @if (startPage > 2)
-                    {
-                        <span class="text-[#617589] px-1">...</span>
-                    }
-                }
-
-                @for (int i = startPage; i <= endPage; i++)
-                {
-                    if (i == currentPage)
-                    {
-                        <button class="size-8 rounded flex items-center justify-center bg-primary text-white text-sm font-bold">@i</button>
-                    }
-                    else
-                    {
-                        <a href="?page=@i" class="size-8 rounded flex items-center justify-center text-[#617589] hover:bg-background-light dark:hover:bg-gray-800 text-sm font-bold transition-colors">@i</a>
-                    }
-                }
-
-                @if (endPage < totalPages)
-                {
-                    @if (endPage < totalPages - 1)
-                    {
-                        <span class="text-[#617589] px-1">...</span>
-                    }
-                    <a href="?page=@totalPages" class="size-8 rounded flex items-center justify-center text-[#617589] hover:bg-background-light dark:hover:bg-gray-800 text-sm font-bold transition-colors">@totalPages</a>
-                }
-            </div>
-
-            <!-- Next Button -->
-            @if (currentPage < totalPages)
-            {
-                <a href="?page=@(currentPage + 1)" 
-                   class="text-sm font-bold text-primary hover:text-primary/80 flex items-center gap-1 transition-colors">
-                    Sonraki
-                    <span class="material-symbols-outlined text-lg">chevron_right</span>
-                </a>
-            }
-            else
-            {
-                <button disabled class="text-sm font-bold text-[#617589] flex items-center gap-1 opacity-50 cursor-not-allowed">
-                    Sonraki
-                    <span class="material-symbols-outlined text-lg">chevron_right</span>
-                </button>
-            }
-        </div>
-
-        <!-- Pagination Info -->
-        <div class="px-6 py-3 border-t border-[#dbe0e6] dark:border-gray-800 text-center">
-            <p class="text-sm text-[#617589]">
-                Toplam <span class="font-medium text-[#111418] dark:text-white">@totalItems</span> yazı, 
-                <span class="font-medium text-[#111418] dark:text-white">@totalPages</span> sayfada gösteriliyor 
-                (Sayfa <span class="font-medium text-primary">@currentPage</span>)
-            </p>
-        </div>
-    }
 </div>
-
-<!-- Delete Confirmation Modal -->
-<div id="deleteModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-background-dark rounded-xl max-w-md w-full p-6 shadow-xl">
-        <div class="flex items-start gap-4">
-            <div class="size-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
-                <span class="material-symbols-outlined text-red-600 dark:text-red-400 text-2xl">warning</span>
-            </div>
-            <div class="flex-1">
-                <h3 class="text-lg font-bold text-[#111418] dark:text-white mb-2">Yazıyı Sil</h3>
-                <p class="text-sm text-[#617589] mb-6">Bu yazıyı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</p>
-                <div class="flex gap-3 justify-end">
-                    <button onclick="closeDeleteModal()" class="px-4 py-2 rounded-lg text-sm font-medium text-[#617589] hover:bg-background-light dark:hover:bg-gray-800 transition-colors">
-                        İptal
-                    </button>
-                    <button id="confirmDeleteBtn" class="px-4 py-2 rounded-lg text-sm font-medium bg-red-600 hover:bg-red-700 text-white transition-colors">
-                        Sil
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Filtering functionality
-    const categoryFilter = document.getElementById('categoryFilter');
-    const statusFilter = document.getElementById('statusFilter');
-    const searchInput = document.getElementById('searchInput');
-    const tableBody = document.getElementById('blogTableBody');
-    const resultCount = document.getElementById('resultCount');
-
-    function filterTable() {
-        const categoryValue = categoryFilter.value.toLowerCase();
-        const statusValue = statusFilter.value.toLowerCase();
-        const searchValue = searchInput.value.toLowerCase();
-        const rows = tableBody.getElementsByTagName('tr');
-        let visibleCount = 0;
-
-        Array.from(rows).forEach(row => {
-            const category = row.getAttribute('data-category') || '';
-            const status = row.getAttribute('data-status') || '';
-            const title = row.querySelector('td:first-child span:first-child')?.textContent.toLowerCase() || '';
-
-            const categoryMatch = !categoryValue || category.includes(categoryValue);
-            const statusMatch = !statusValue || status === statusValue;
-            const searchMatch = !searchValue || title.includes(searchValue);
-
-            if (categoryMatch && statusMatch && searchMatch) {
-                row.style.display = '';
-                visibleCount++;
-            } else {
-                row.style.display = 'none';
-            }
-        });
-
-        resultCount.textContent = visibleCount;
-    }
-
-    categoryFilter.addEventListener('change', filterTable);
-    statusFilter.addEventListener('change', filterTable);
-    searchInput.addEventListener('input', filterTable);
-
-    // Toggle status function
-    function toggleStatus(id, currentStatus) {
-        if (confirm(currentStatus ? 'Bu yazıyı pasif yapmak istediğinizden emin misiniz?' : 'Bu yazıyı aktif yapmak istediğinizden emin misiniz?')) {
-            fetch(`/Admin/BlogPost/ToggleStatus/${id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('İşlem başarısız oldu.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Bir hata oluştu.');
-            });
-        }
-    }
-
-    // Delete post functions
-    let postIdToDelete = null;
-
-    function deletePost(id) {
-        postIdToDelete = id;
-        document.getElementById('deleteModal').classList.remove('hidden');
-    }
-
-    function closeDeleteModal() {
-        document.getElementById('deleteModal').classList.add('hidden');
-        postIdToDelete = null;
-    }
-
-    document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
-        if (postIdToDelete) {
-            fetch(`/Admin/BlogPost/Delete/${postIdToDelete}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('Silme işlemi başarısız oldu.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Bir hata oluştu.');
-            });
-        }
-    });
-
-    // Close modal on outside click
-    document.getElementById('deleteModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeDeleteModal();
-        }
-    });
-
-    // Close modal on ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeDeleteModal();
-        }
-    });
-</script>

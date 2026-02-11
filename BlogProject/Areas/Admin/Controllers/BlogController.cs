@@ -13,23 +13,9 @@ public class BlogController : Controller
         _blogPostService = blogPostService;
     }
 
-    public IActionResult Index(int page = 1, int pageSize = 10)
+    public IActionResult Index()
     {
-        var allPosts = _blogPostService.GetAll();
-        
-        var totalItems = allPosts.Count;
-        var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
-        
-        var posts = allPosts
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToList();
-
-        ViewBag.CurrentPage = page;
-        ViewBag.TotalPages = totalPages;
-        ViewBag.TotalItems = totalItems;
-        ViewBag.PageSize = pageSize;
-
-        return View(posts);
+        var allPosts = _blogPostService.TGetCategoryWithBlogPosts();
+        return View(allPosts);
     }
 }

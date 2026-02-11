@@ -4,131 +4,57 @@
     Layout = "~/Views/Admin/Index.cshtml";
 }
 
-<div class="bg-white dark:bg-background-dark rounded-xl border border-[#dbe0e6] dark:border-gray-800 shadow-sm overflow-hidden">
-    <div class="p-4 border-b border-[#dbe0e6] dark:border-gray-800">
-        <div class="flex flex-wrap gap-3 items-center justify-between mb-4">
-            <div>
-                <h2 class="text-xl font-bold text-[#111418] dark:text-white">Kategoriler</h2>
-                <p class="text-sm text-[#617589] mt-1">Blog kategorilerini yönetin</p>
-            </div>
-            <a href="~/Admin/Category/CreateCategory" class="flex h-9 items-center gap-2 rounded-lg bg-primary hover:bg-primary/90 px-4 text-sm font-medium text-white transition-colors">
-                <span class="material-symbols-outlined text-lg">add</span>
-                Yeni Kategori
-            </a>
-        </div>
-        
-        <div class="flex gap-3 items-center">
-            <div class="relative flex-1 max-w-md">
-                <input type="text" id="searchInput" placeholder="Kategori ara..." class="w-full h-9 rounded-lg bg-background-light dark:bg-gray-800 pl-10 pr-4 text-sm border border-[#dbe0e6] dark:border-gray-700 text-[#111418] dark:text-white placeholder:text-[#617589] focus:border-primary focus:outline-none transition-colors">
-                <span class="material-symbols-outlined text-sm absolute left-3 top-1/2 -translate-y-1/2 text-[#617589]">search</span>
-            </div>
-            
-            <div class="text-[#617589] text-sm font-medium">
-                <span id="resultCount">@Model.Count</span> kategori gösteriliyor
-            </div>
-        </div>
-    </div>
-    <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse">
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blog/</span> Kategoriler</h4>
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
             <thead>
-                <tr class="bg-background-light/50 dark:bg-gray-800/50">
-                    <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Kategori Adı</th>
-                    <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Slug</th>
-                    <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800">Yazı Sayısı</th>
-                    <th class="px-6 py-4 text-xs font-bold text-[#617589] uppercase tracking-wider border-b border-[#dbe0e6] dark:border-gray-800 text-right">İşlemler</th>
-                </tr>
+            <tr>
+                <th>Kategori</th>
+                <th>Kısa Ad</th>
+                <th>Durum</th>
+                <th style="width: 180px;">İşlemler</th>
+            </tr>
             </thead>
-            <tbody class="divide-y divide-[#dbe0e6] dark:divide-gray-800" id="categoryTableBody">
-                @if (Model != null && Model.Any())
-                {
-                    @foreach (var item in Model)
-                    {
-                        <tr class="hover:bg-background-light/30 dark:hover:bg-gray-800/30 transition-colors group" data-category-name="@item.CategoryName?.ToLower()">
-                            <td class="px-6 py-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="size-10 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-primary text-xl">folder</span>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="text-sm font-bold text-[#111418] dark:text-white group-hover:text-primary transition-colors">@item.CategoryName</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-sm text-[#617589] font-mono">@item.CategorySlug</span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
-                                    @(item.BlogPosts?.Count ?? 0) yazı
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <div class="flex items-center justify-end gap-1">
-                                    <button
-                                            class="p-1.5 text-[#617589] hover:text-primary transition-colors" 
-                                            title="Düzenle">
-                                        <span class="material-symbols-outlined text-lg">edit</span>
-                                    </button>
-                                    
-                                    <a href="/Blog/Category/@item.CategorySlug" 
-                                       target="_blank" 
-                                       class="p-1.5 text-[#617589] hover:text-primary transition-colors" 
-                                       title="Önizle">
-                                        <span class="material-symbols-outlined text-lg">visibility</span>
-                                    </a>
-                                    
-                                    <button 
-                                            class="p-1.5 text-[#617589] hover:text-red-500 transition-colors" 
-                                            title="Sil">
-                                        <span class="material-symbols-outlined text-lg">delete</span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="4" class="px-6 py-12 text-center text-[#617589]">
-                            <div class="flex flex-col items-center gap-3">
-                                <span class="material-symbols-outlined text-5xl text-[#617589]/30">folder_off</span>
-                                <p class="text-sm font-medium">Henüz kategori bulunmuyor</p>
-                                <button class="text-sm text-primary hover:text-primary/80 font-medium">
-                                    İlk kategoriyi oluştur →
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                }
+            <tbody class="table-border-bottom-0">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.CategoryName</strong></td>
+                    <td>@item.CategorySlug</td>
+                    <td>
+                        @if (@item.IsStatus == true)
+                        {
+                            <span class="badge bg-label-success me-1">Yayında</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-label-warning me-1">Taslak</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary me-1" title="Güncelle">
+                            <i class="bx bx-edit-alt"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger me-1" title="Sil">
+                            <i class="bx bx-trash"></i>
+                        </a>
+                        @if (@item.IsStatus == true)
+                        {
+                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-secondary" title="Taslağa Al">
+                                <i class="bx bx-archive"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-success" title="Yayınla">
+                                <i class="bx bx-check-circle"></i>
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
             </tbody>
         </table>
     </div>
 </div>
-
-<script>
-    // Search functionality
-    const searchInput = document.getElementById('searchInput');
-    const tableBody = document.getElementById('categoryTableBody');
-    const resultCount = document.getElementById('resultCount');
-
-    searchInput.addEventListener('input', function() {
-        const searchValue = this.value.toLowerCase();
-        const rows = tableBody.getElementsByTagName('tr');
-        let visibleCount = 0;
-
-        Array.from(rows).forEach(row => {
-            const categoryName = row.getAttribute('data-category-name') || '';
-            
-            if (categoryName.includes(searchValue)) {
-                row.style.display = '';
-                visibleCount++;
-            } else {
-                row.style.display = 'none';
-            }
-        });
-
-        resultCount.textContent = visibleCount;
-    });
-    
-</script>

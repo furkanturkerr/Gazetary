@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.ViewComponents.Admin;
 
-public class _AdminHeaderComponentPartial : ViewComponent
+public class _AdminFooterComponentPartial : ViewComponent
 {
     public IViewComponentResult Invoke()
     {
