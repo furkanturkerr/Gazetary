@@ -4,7 +4,14 @@
     Layout = "~/Views/Admin/Index.cshtml";
 }
 
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blog/</span> Kategoriler</h4>
+<div class="row">
+    <div class="col-md-6">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Kategoriler/</span> Kategori Listesi</h4>
+    </div>
+    <div class="col-md-6">
+        <a href="/Admin/Category/CreateCategory" class="btn btn-primary float-end">Yeni Kategori Ekle</a>
+    </div>
+</div>
 <div class="card">
     <div class="table-responsive text-nowrap">
         <table class="table table-hover">
@@ -33,10 +40,10 @@
                         }
                     </td>
                     <td>
-                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary me-1" title="Güncelle">
+                        <a href="~/Admin/Category/Editcategory/@item.CategoryId" class="btn btn-sm btn-outline-primary me-1" title="Güncelle">
                             <i class="bx bx-edit-alt"></i>
                         </a>
-                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger me-1" title="Sil">
+                        <a href="~/Admin/Category/DeleteCategory/@item.CategoryId" class="btn btn-sm btn-outline-danger me-1" title="Sil">
                             <i class="bx bx-trash"></i>
                         </a>
                         @if (@item.IsStatus == true)

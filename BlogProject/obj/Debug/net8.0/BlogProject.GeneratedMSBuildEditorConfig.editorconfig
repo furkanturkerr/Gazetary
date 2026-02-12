@@ -26,6 +26,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/furkanturker/RiderProjects/BlogProject/BlogProject
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/furkanturker/RiderProjects/BlogProject/BlogProject/Areas/Admin/Views/Blog/CreateBlog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQmxvZy9DcmVhdGVCbG9nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/furkanturker/RiderProjects/BlogProject/BlogProject/Areas/Admin/Views/Blog/EditBlog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQmxvZy9FZGl0QmxvZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/furkanturker/RiderProjects/BlogProject/BlogProject/Areas/Admin/Views/Blog/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQmxvZy9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

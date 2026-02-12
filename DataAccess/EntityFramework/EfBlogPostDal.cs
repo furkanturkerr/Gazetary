@@ -20,4 +20,19 @@ public class EfBlogPostDal : GenericRepository<BlogPost>, IBlogPostDal
         // Kategorileri getirirken her bir kategorinin BlogPosts listesini de doldurur
         return _context.BlogPosts.Include(x => x.Category).ToList();
     }
+
+    public void ChangeStatus(int id)
+    {
+        var value = _context.BlogPosts.Find(id);
+        if (value.Status == true)
+        {
+            value.Status = false;
+            _context.SaveChanges();
+        }
+        else
+        {
+            value.Status = true;
+            _context.SaveChanges();
+        }
+    }
 }

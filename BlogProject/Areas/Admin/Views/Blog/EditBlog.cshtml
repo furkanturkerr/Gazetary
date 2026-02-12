@@ -1,0 +1,57 @@
+@model Entities.Concrate.BlogPost
+
+@{
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blog/</span>Blog Düzenle</h4>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-body">
+                <div>
+                    <form method="post">
+                        <input type="hidden" asp-for="BlogPostId">
+                        <input type="hidden" asp-for="CreatedDate">
+                        <input type="hidden" asp-for="Status">
+                        <label class="form-label">Başlık</label>
+                        <input asp-for="Title" type="text" class="form-control"/>
+                        <br/>
+                        <label class="form-label">Blog Yazısı</label>
+                        <textarea id="editor"
+                                  asp-for="Content"
+                                  rows="80"></textarea>
+                        <br/>
+                        <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control">
+                            <option>Kategori</option>
+                        </select>
+                        <br/>
+                        <label>Görsel Yolu</label>
+                        <input asp-for="ImageUrl" type="text" class="form-control"/>
+                        <br/>
+                        <label>Görsel Açıklaması</label>
+                        <input asp-for="ImageDescription" type="text" class="form-control"/>
+                        <br/>
+                        <label>Blog Kısa Açıkla</label>
+                        <input asp-for="Description" type="text" class="form-control"/>
+                        <br/>
+                        <label>Yazı Kısa Adı</label>
+                        <input asp-for="Slug" type="text" class="form-control"/>
+                        <br/>
+                        <button class="btn btn-dark">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor', {
+        height: 1200,
+        removeButtons: 'About',
+        enterMode: CKEDITOR.ENTER_P,
+        shiftEnterMode: CKEDITOR.ENTER_BR
+    });
+</script>

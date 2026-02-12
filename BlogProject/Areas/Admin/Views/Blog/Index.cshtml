@@ -4,7 +4,14 @@
     Layout = "~/Views/Admin/Index.cshtml";
 }
 
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blog/</span> Blog Yazıları</h4>
+<div class="row">
+    <div class="col-md-6">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blog/</span> Blog Yazıları</h4>
+    </div>
+    <div class="col-md-6">
+        <a href="/Admin/Blog/CreateBlog" class="btn btn-primary float-end">Yeni Blog Ekle</a>
+    </div>
+</div>
 <div class="card">
     <div class="table-responsive text-nowrap">
         <table class="table table-hover">
@@ -12,6 +19,7 @@
             <tr>
                 <th>Başlık</th>
                 <th>Kategori</th>
+                <th>Yayınlanma Tarihi</th>
                 <th>Durum</th>
                 <th style="width: 180px;">İşlemler</th>
             </tr>
@@ -22,6 +30,7 @@
                 <tr>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.Title</strong></td>
                     <td>@item.Category.CategoryName</td>
+                    <td>@item.CreatedDate.ToString("dd-MM-yyyy") - Saat: @item.CreatedDate.ToString("T")</td>
                     <td>
                         @if (@item.Status == true)
                         {
@@ -33,21 +42,21 @@
                         }
                     </td>
                     <td>
-                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary me-1" title="Güncelle">
+                        <a href="~/Admin/Blog/EditBlog/@item.BlogPostId" class="btn btn-sm btn-outline-primary me-1" title="Güncelle">
                             <i class="bx bx-edit-alt"></i>
                         </a>
-                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger me-1" title="Sil">
+                        <a href="~/Admin/Blog/Delete/@item.BlogPostId" class="btn btn-sm btn-outline-danger me-1" title="Sil">
                             <i class="bx bx-trash"></i>
                         </a>
                         @if (@item.Status == true)
                         {
-                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-secondary" title="Taslağa Al">
+                            <a href="~/Admin/Blog/ChangeStatus/@item.BlogPostId" class="btn btn-sm btn-outline-secondary" title="Taslağa Al">
                                 <i class="bx bx-archive"></i>
                             </a>
                         }
                         else
                         {
-                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-success" title="Yayınla">
+                            <a href="/Admin/Blog/ChangeStatus/@item.BlogPostId" class="btn btn-sm btn-outline-success" title="Yayınla">
                                 <i class="bx bx-check-circle"></i>
                             </a>
                         }

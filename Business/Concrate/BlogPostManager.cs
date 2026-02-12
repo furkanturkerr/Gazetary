@@ -15,17 +15,17 @@ public class BlogPostManager : IBlogPostService
 
     public void Insert(BlogPost t)
     {
-        throw new NotImplementedException();
+        _blogPostDal.Insert(t);
     }
 
     public void Update(BlogPost t)
     {
-        throw new NotImplementedException();
+        _blogPostDal.Update(t);
     }
 
     public void Delete(BlogPost t)
     {
-        throw new NotImplementedException();
+        _blogPostDal.Delete(t);
     }
 
     public List<BlogPost> GetAll()
@@ -35,11 +35,16 @@ public class BlogPostManager : IBlogPostService
 
     public BlogPost GetById(int id)
     {
-        throw new NotImplementedException();
+        return _blogPostDal.GetById(id);
     }
 
     public List<BlogPost> TGetCategoryWithBlogPosts()
     {
         return _blogPostDal.GetBlogsWithCategory();
+    }
+
+    public void ChangeStatus(int id)
+    {
+        _blogPostDal.ChangeStatus(id);
     }
 }
