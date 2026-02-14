@@ -14,4 +14,19 @@ public class EfCategoryDal : GenericRepository<Category>, ICategoryDal
     {
         _context = context;
     }
+
+    public void ChangeStatus(int id)
+    {
+        var value = _context.Categories.Find(id);
+        if (value.IsStatus == true)
+        {
+            value.IsStatus = false;
+            _context.SaveChanges();
+        }
+        else
+        {
+            value.IsStatus = true;
+            _context.SaveChanges();
+        }
+    }
 }

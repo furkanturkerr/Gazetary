@@ -48,13 +48,13 @@
                         </a>
                         @if (@item.IsStatus == true)
                         {
-                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-secondary" title="Taslağa Al">
+                            <a href="~/Admin/Category/ChangeStatus/@item.CategoryId" class="btn btn-sm btn-outline-secondary" title="Taslağa Al">
                                 <i class="bx bx-archive"></i>
                             </a>
                         }
                         else
                         {
-                            <a href="javascript:void(0);" class="btn btn-sm btn-outline-success" title="Yayınla">
+                            <a href="~/Admin/Category/ChangeStatus/@item.CategoryId" class="btn btn-sm btn-outline-success" title="Yayınla">
                                 <i class="bx bx-check-circle"></i>
                             </a>
                         }

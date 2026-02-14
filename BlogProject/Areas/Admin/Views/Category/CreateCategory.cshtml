@@ -13,9 +13,11 @@
           <form method="post">
             <label class="form-label">Kategori Adı</label>
             <input asp-for="CategoryName" type="text" class="form-control"/>
+            <span asp-validation-for="CategoryName" class="text-danger"></span>
             <br/>
             <label class="form-label">Kategori Kısa Adı</label>
             <input asp-for="CategorySlug" type="text" class="form-control"/>
+            <span asp-validation-for="CategorySlug" class="text-danger"></span>
             <br/>
             <button class="btn btn-dark">Kaydet</button>
           </form>

@@ -42,5 +42,12 @@ public class CategoryController : Controller
         return View(posts);
     }
 
+    [HttpGet("kategoriler")]
+    public IActionResult kategoriler()
+    {
+        var value = _categoryService.GetAll().Where(x=>x.IsStatus == true).ToList();
+        return View(value);
+    }
+
 
 }

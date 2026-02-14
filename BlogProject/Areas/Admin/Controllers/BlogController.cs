@@ -1,5 +1,7 @@
 using Business.Abstract;
+using Business.ValidationsRules;
 using Entities.Concrate;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -33,10 +35,23 @@ public class BlogController : Controller
     [HttpPost]
     public IActionResult CreateBlog(BlogPost blogPost)
     {
-        blogPost.Status = true;
-        blogPost.CreatedDate = DateTime.Now;
-        _blogPostService.Insert(blogPost);
-        return RedirectToAction("Index", "Blog", new { area = "Admin" });
+        BlogValidation blogValidation = new BlogValidation();
+        ValidationResult resultvalidation = blogValidation.Validate(blogPost);
+        if (resultvalidation.IsValid)
+        {
+            blogPost.Status = true;
+            blogPost.CreatedDate = DateTime.Now;
+            _blogPostService.Insert(blogPost);
+            return RedirectToAction("Index", "Blog", new { area = "Admin" });
+        }
+        else
+        {
+            foreach (var error in resultvalidation.Errors)
+            {
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
+        }
+        return View(blogPost);
     }
 
     public IActionResult Delete(int id)
@@ -56,8 +71,22 @@ public class BlogController : Controller
     [HttpPost]
     public IActionResult EditBlog(BlogPost blogPost)
     {
-        _blogPostService.Update(blogPost);
-        return RedirectToAction("Index", "Blog", new { area = "Admin" });
+        BlogValidation blogValidation = new BlogValidation();
+        ValidationResult resultvalidation = blogValidation.Validate(blogPost);
+        if (resultvalidation.IsValid)
+        {
+            _blogPostService.Update(blogPost);
+            return RedirectToAction("Index", "Blog", new { area = "Admin" });
+        }
+        else
+        {
+            foreach (var error in resultvalidation.Errors)
+            {
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
+        }
+        return View(blogPost);
+        
     }
 
     public IActionResult ChangeStatus(int id)

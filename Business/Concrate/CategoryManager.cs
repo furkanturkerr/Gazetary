@@ -37,4 +37,9 @@ public class CategoryManager : ICategoryService
     {
         return _categoryDal.GetById(id);
     }
+
+    public void TChangeStatus(int id)
+    {
+        _categoryDal.ChangeStatus(id);
+    }
 }
