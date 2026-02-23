@@ -258,3 +258,11 @@
 /Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Scripting.resources.dll
 /Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/MvcPages.dll
 /Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/FluentValidation.dll
+/Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+/Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/Microsoft.Extensions.Hosting.Abstractions.dll
+/Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/Microsoft.Extensions.ObjectPool.dll
+/Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/Microsoft.Extensions.WebEncoders.dll
+/Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/System.Security.Cryptography.Pkcs.dll
+/Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/System.Security.Cryptography.Xml.dll
+/Users/furkanturker/RiderProjects/BlogProject/BlogProject/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll

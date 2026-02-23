@@ -1,9 +1,10 @@
 using Entities.Concrate;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrate;
 
-public class Context : DbContext
+public class Context : IdentityDbContext<AppUser>
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -12,4 +13,5 @@ public class Context : DbContext
     
     public DbSet<BlogPost> BlogPosts { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<Comment> Comments { get; set; }
 }

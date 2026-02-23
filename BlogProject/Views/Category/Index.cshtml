@@ -26,7 +26,7 @@
                                 <span>•</span>
                                 <span>DHA</span>
                                 <span>•</span>
-                                <span>30 dk önce</span>
+                                <span>@item.CreatedDate.ToString("hh:mm - dd/MMM/yyyy")</span>
                             </div>
                             <h4 class="text-xl font-bold text-[#111318] dark:text-white leading-snug group-hover:text-primary transition-colors">
                                 @item.Title
@@ -36,6 +36,39 @@
                             </p>
                         </div>
                     </a>
+                }
+                
+                
+                @if (ViewBag.Pagesize >= 5)
+                {
+                    <div class="flex items-center gap-2 mt-6">
+                        @if (ViewBag.CurrentPage > 1)
+                        {
+                            <a href="/@ViewBag.CategorySlug?page=@(ViewBag.CurrentPage - 1)"
+                               class="px-4 py-2 rounded border border-neutral-200 dark:border-neutral-700 text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition">
+                                ← Önceki
+                            </a>
+                        }
+
+                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            <a href="/@ViewBag.CategorySlug?page=@i"
+                               class="px-4 py-2 rounded border text-sm font-semibold transition
+                  @(i == ViewBag.CurrentPage
+                      ? "bg-primary text-white border-primary"
+                      : "border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800")">
+                                @i
+                            </a>
+                        }
+
+                        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                        {
+                            <a href="/@ViewBag.CategorySlug?page=@(ViewBag.CurrentPage + 1)"
+                               class="px-4 py-2 rounded border border-neutral-200 dark:border-neutral-700 text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition">
+                                Sonraki →
+                            </a>
+                        }
+                    </div>
                 }
             </div>
         </div>

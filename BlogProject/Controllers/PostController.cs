@@ -1,4 +1,5 @@
 using Business.Abstract;
+using BlogProject.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.Controllers;
@@ -7,10 +8,12 @@ namespace BlogProject.Controllers;
 public class PostController : Controller
 {
     private readonly IBlogPostService _blogPostService;
+    private readonly ICommentService _commentService;
 
-    public PostController(IBlogPostService blogPostService)
+    public PostController(IBlogPostService blogPostService, ICommentService commentService)
     {
         _blogPostService = blogPostService;
+        _commentService = commentService;
     }
 
     // /oyun/gta-6
@@ -27,6 +30,17 @@ public class PostController : Controller
         if (post == null)
             return NotFound();
 
-        return View(post);
+        var comments = _commentService.GetAll()
+            .Where(c => c.BlogPostId == post.BlogPostId)
+            .ToList();
+
+        var model = new BlogDetailViewModel
+        {
+            BlogPost = post,
+            Comments = comments,
+            NewComment = new()
+        };
+
+        return View(model);
     }
 }

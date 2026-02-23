@@ -15,6 +15,8 @@ builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<IBlogPostDal, EfBlogPostDal>();
 builder.Services.AddScoped<IBlogPostService, BlogPostManager>();
+builder.Services.AddScoped<ICommentDal, EfCommentDal>();
+builder.Services.AddScoped<ICommentService, CommentManager>();
 
 
 var app = builder.Build();
@@ -38,8 +40,6 @@ app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller}/{action}/{id?}"
 );
-
-
 
 app.MapControllerRoute(
     name: "default",
