@@ -1,3 +1,4 @@
+using BlogProject.Dtos;
 using BlogProject.Models;
 using Entities.Concrate;
 using Microsoft.AspNetCore.Identity;
@@ -22,18 +23,33 @@ public class UserRegisterController : Controller
     }
     
     [Route("[action]")]
-    public async Task<IActionResult> Register(RegisterModel registerModel)
+    [HttpPost]
+    public async Task<IActionResult> Register(RegisterDto registerDto)
     {
+        if (registerDto.ConfirmPassword != registerDto.Password)
+        {ModelState.AddModelError("ConfirmPassword", "Şifreler uyuşmuyor.");
+            return View(registerDto);
+        }
+        
+        if (!ModelState.IsValid)
+            return View(registerDto);
+        
         var appUser = new AppUser()
         {
-            NameSurname = registerModel.NameSurname,
-            Email = registerModel.Email,
+            NameSurname = registerDto.NameSurname,
+            Email = registerDto.Email,
+            UserName = registerDto.Email
         };
-        var result = await _userManager.CreateAsync(appUser, registerModel.Password);
+        
+        var result = await _userManager.CreateAsync(appUser, registerDto.Password);
         if (result.Succeeded)
         {
             return RedirectToAction("Login", "UserLogin");
         }
+        
+        foreach (var error in result.Errors)
+            ModelState.AddModelError(string.Empty, error.Description);
+        
         return View();
     }
 }

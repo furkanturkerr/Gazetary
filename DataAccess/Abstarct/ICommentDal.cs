@@ -6,4 +6,5 @@ namespace DataAccess.Abstarct;
 public interface ICommentDal : IGenericDal<Comment>
 {
     List<Comment> GetCommentsWithBlogPost(int id);
+    List<Comment> GetCommentsWithBlogPost();
 }

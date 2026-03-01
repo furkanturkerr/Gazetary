@@ -1,4 +1,4 @@
-@model dynamic
+@model BlogProject.Dtos.RegisterDto
 
 @{
     Layout = "~/Views/UILayout/Index.cshtml";
@@ -6,32 +6,53 @@
 
 <main class="flex-grow flex flex-col items-center py-16 px-4 sm:px-6">
     <div class="w-full max-w-[420px] flex flex-col">
-        <!-- Login Headline -->
+        <!-- Register Headline -->
         <div class="text-center mb-10">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#111318] dark:text-white tracking-tight leading-tight mb-3">Oturum Açın</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-[#111318] dark:text-white tracking-tight leading-tight mb-3">Kayıt Olun</h2>
             <p class="text-[17px] leading-normal text-gray-600 dark:text-gray-400 font-display">
-                Türkiye'nin en güvenilir haber kaynağına erişmek için giriş yapın.
+                Türkiye'nin en güvenilir haber kaynağına üye olun.
             </p>
         </div>
-        <form class="flex flex-col gap-6">
+        <form method="post" class="flex flex-col gap-6">
+            <!-- Ad Soyad -->
+            <div class="space-y-1.5">
+                <label class="block text-sm font-bold text-[#111318] dark:text-gray-200 font-sans tracking-wide uppercase" for="namesurname">Ad Soyad</label>
+                <input required asp-for="NameSurname" class="block w-full h-12 px-4 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-base text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-black dark:focus:border-white focus:ring-1 focus:ring-black dark:focus:ring-white transition-all outline-none font-sans" id="namesurname" placeholder="Adınız Soyadınız" type="text"/>
+                <span asp-validation-for="NameSurname" class="text-red-500 text-sm font-sans"></span>
+            </div>
+            <!-- E-posta -->
             <div class="space-y-1.5">
                 <label class="block text-sm font-bold text-[#111318] dark:text-gray-200 font-sans tracking-wide uppercase" for="email">E-posta Adresi</label>
-                <input class="block w-full h-12 px-4 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-base text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-black dark:focus:border-white focus:ring-1 focus:ring-black dark:focus:ring-white transition-all outline-none font-sans" id="email" placeholder="ornek@eposta.com" type="email"/>
+                <input required asp-for="Email" class="block w-full h-12 px-4 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-base text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-black dark:focus:border-white focus:ring-1 focus:ring-black dark:focus:ring-white transition-all outline-none font-sans" id="email" placeholder="ornek@eposta.com" type="email"/>
+                <span asp-validation-for="Email" class="text-red-500 text-sm font-sans"></span>
             </div>
+            <!-- Şifre -->
             <div class="space-y-1.5">
-                <div class="flex justify-between items-center">
-                    <label class="block text-sm font-bold text-[#111318] dark:text-gray-200 font-sans tracking-wide uppercase" for="password">Şifre</label>
-                    <a class="text-sm text-gray-500 hover:text-primary dark:text-gray-400 transition-colors font-sans font-medium" href="#">Şifremi Unuttum</a>
-                </div>
+                <label class="block text-sm font-bold text-[#111318] dark:text-gray-200 font-sans tracking-wide uppercase" for="password">Şifre</label>
                 <div class="relative">
-                    <input class="block w-full h-12 px-4 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-base text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-black dark:focus:border-white focus:ring-1 focus:ring-black dark:focus:ring-white transition-all outline-none font-sans" id="password" placeholder="••••••••" type="password"/>
-                    <button class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black dark:hover:text-white transition-colors" type="button">
+                    <input required asp-for="Password" class="block w-full h-12 px-4 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-base text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-black dark:focus:border-white focus:ring-1 focus:ring-black dark:focus:ring-white transition-all outline-none font-sans" id="password" placeholder="••••••••" type="password"/>
+                    <button class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black dark:hover:text-white transition-colors" type="button" onclick="togglePassword('password', this)">
                         <span class="material-symbols-outlined text-[20px] select-none">visibility</span>
                     </button>
                 </div>
+                <span asp-validation-for="Password" class="text-red-500 text-sm font-sans"></span>
             </div>
+            <!-- Şifre Tekrar -->
+            <div class="space-y-1.5">
+                <label class="block text-sm font-bold text-[#111318] dark:text-gray-200 font-sans tracking-wide uppercase" for="confirmPassword">Şifre Tekrar</label>
+                <div class="relative">
+                    <input required  asp-for="ConfirmPassword" class="block w-full h-12 px-4 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-base text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-black dark:focus:border-white focus:ring-1 focus:ring-black dark:focus:ring-white transition-all outline-none font-sans" id="confirmPassword" placeholder="••••••••" type="password"/>
+                    <button class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black dark:hover:text-white transition-colors" type="button" onclick="togglePassword('confirmPassword', this)">
+                        <span class="material-symbols-outlined text-[20px] select-none">visibility</span>
+                    </button>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-red-500 text-sm font-sans"></span>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-red-500 text-sm font-sans" })
+
             <button class="group mt-2 w-full h-12 bg-black dark:bg-white text-white dark:text-black rounded text-sm font-bold tracking-widest uppercase hover:bg-gray-800 dark:hover:bg-gray-200 transition-all font-sans flex items-center justify-center gap-2" type="submit">
-                <span>Giriş Yap</span>
+                <span>Kayıt Ol</span>
                 <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </button>
         </form>
@@ -46,20 +67,25 @@
         </div>
         <div class="p-4 bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 rounded text-center">
             <p class="text-base text-gray-800 dark:text-gray-200 font-display">
-                Henüz hesabınız yok mu?
+                Zaten hesabınız var mı?
                 <br class="sm:hidden"/>
-                <a class="text-primary font-bold hover:underline decoration-2 underline-offset-2 ml-1" href="#">Abone Olun ve Kayıt Yapın</a>
+                <a class="text-primary font-bold hover:underline decoration-2 underline-offset-2 ml-1" href="#">Giriş Yapın</a>
             </p>
         </div>
     </div>
 </main>
 
 
-@* <div class="grid grid-cols-2 gap-3 mb-8"> *@
-@*     <button class="flex items-center justify-center h-11 px-4 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"> *@
-@*         <span class="text-sm font-bold text-gray-700 dark:text-gray-200 font-sans">Google</span> *@
-@*     </button> *@
-@*     <button class="flex items-center justify-center h-11 px-4 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"> *@
-@*         <span class="text-sm font-bold text-gray-700 dark:text-gray-200 font-sans">Apple</span> *@
-@*     </button> *@
-@* </div> *@
+    <script>
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('.material-symbols-outlined');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility_off';
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility';
+            }
+        }
+    </script>

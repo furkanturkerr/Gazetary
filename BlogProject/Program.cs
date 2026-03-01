@@ -3,6 +3,8 @@ using Business.Concrate;
 using DataAccess.Abstarct;
 using DataAccess.Concrate;
 using DataAccess.EntityFramework;
+using Entities.Concrate;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,10 @@ builder.Services.AddScoped<IBlogPostDal, EfBlogPostDal>();
 builder.Services.AddScoped<IBlogPostService, BlogPostManager>();
 builder.Services.AddScoped<ICommentDal, EfCommentDal>();
 builder.Services.AddScoped<ICommentService, CommentManager>();
+
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<Context>()
+    .AddDefaultTokenProviders();
 
 
 var app = builder.Build();

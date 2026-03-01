@@ -42,4 +42,9 @@ public class CommentManager : ICommentService
     {
         return _commentDal.GetCommentsWithBlogPost(id);
     }
+
+    public List<Comment> GetCommentsWithBlogPost()
+    {
+        return _commentDal.GetCommentsWithBlogPost();
+    }
 }

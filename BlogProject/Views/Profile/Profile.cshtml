@@ -1,0 +1,230 @@
+@model BlogProject.Dtos.ProfileDto
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="light" lang="tr"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Profilim - Gazete</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Newsreader", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f9f9f9;}.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-display text-[#111318] antialiased">
+<div class="w-full max-w-[1120px] mx-auto bg-white min-h-screen shadow-sm border-x border-[#e5e7eb] flex flex-col relative">
+    <header class="border-b border-[#f0f2f4] px-8 py-5 relative">
+        <div class="flex items-center justify-between h-12">
+            <div class="flex items-center gap-6 z-10">
+                <div class="md:hidden">
+                    <span class="material-symbols-outlined cursor-pointer text-2xl">menu</span>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a class="text-[#111318] text-sm font-bold font-sans hover:text-primary transition-colors uppercase tracking-tight" href="#">Gündem</a>
+                    <a class="text-[#111318] text-sm font-bold font-sans hover:text-primary transition-colors uppercase tracking-tight" href="#">Dünya</a>
+                    <a class="text-[#111318] text-sm font-bold font-sans hover:text-primary transition-colors uppercase tracking-tight" href="#">Ekonomi</a>
+                    <a class="text-[#111318] text-sm font-bold font-sans hover:text-primary transition-colors uppercase tracking-tight hidden lg:block" href="#">Teknoloji</a>
+                </nav>
+            </div>
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center z-0">
+                <a class="flex items-center gap-3 text-[#111318] group" href="#">
+                    <div class="size-8 flex items-center justify-center border-2 border-black rounded-sm group-hover:bg-black group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-2xl">newsmode</span>
+                    </div>
+                    <h1 class="text-4xl font-black tracking-tighter">Gazete</h1>
+                </a>
+            </div>
+            <div class="flex items-center gap-5 z-10">
+                <div class="hidden lg:flex items-center border-b border-gray-300 hover:border-black transition-colors px-1 pb-1 w-48">
+                    <span class="material-symbols-outlined text-[#616f89] text-[20px]">search</span>
+                    <input class="bg-transparent border-none p-0 px-2 focus:ring-0 text-sm w-full font-sans placeholder-[#616f89]" placeholder="Haber ara..." type="text"/>
+                </div>
+                <button class="lg:hidden text-[#111318]">
+                    <span class="material-symbols-outlined text-2xl">search</span>
+                </button>
+                <button class="flex items-center gap-2 pl-2">
+                    <div class="size-9 rounded-full bg-cover bg-center border border-gray-200" data-alt="User profile picture thumbnail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAb9wMyACgRSdA2tiPdB4z11L6tEBxrysIEGI0a_HgqtviTdHi_TCrFonFKDW0UjKKhjs8MrNT4KLF5Zq7ou1EGHujs48uNRwGLb5WhtVFEKaUeqLiyJ_67nQAgL076ZQSJZ7ywUV71s71LVIko8F2Y1OfqQFFLhSbUBTXtQPekzAclrcG1zL6PcybzQm04xUq6A0rC2Q_-P1nk8hpaLVh8j4WX92M8s-48fgqA8mX9HmGqidlOPRwWdJCYGColBRg7Ozqr-24_aLM");'></div>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="px-8 border-b border-[#e5e7eb] sticky top-0 bg-white/95 backdrop-blur-sm z-30">
+        <nav class="flex items-center gap-8 overflow-x-auto no-scrollbar">
+            <a class="relative py-4 text-sm font-sans font-bold text-[#111318] border-b-2 border-[#111318]" href="#">
+                Profilim
+            </a>
+            <a class="relative py-4 text-sm font-sans font-medium text-[#616f89] hover:text-[#111318] transition-colors border-b-2 border-transparent hover:border-gray-200 whitespace-nowrap" href="#">
+                Yorumlarım
+                <span class="ml-1.5 align-middle bg-gray-100 text-gray-600 text-[10px] font-bold px-1.5 py-0.5 rounded-full">5</span>
+            </a>
+            <a class="relative py-4 text-sm font-sans font-medium text-[#616f89] hover:text-[#111318] transition-colors border-b-2 border-transparent hover:border-gray-200 whitespace-nowrap" href="#">
+                Kaydedilen Haberler
+                <span class="ml-1.5 align-middle bg-gray-100 text-gray-600 text-[10px] font-bold px-1.5 py-0.5 rounded-full">18</span>
+            </a>
+            <a class="relative py-4 text-sm font-sans font-medium text-[#616f89] hover:text-[#111318] transition-colors border-b-2 border-transparent hover:border-gray-200 whitespace-nowrap" href="#">
+                Hesap Ayarları
+            </a>
+        </nav>
+    </div>
+    <main class="flex-1 flex flex-col px-8 py-10 w-full">
+        <div class="mb-10 pb-4 border-b border-black">
+            <h2 class="text-5xl font-black tracking-tight text-[#111318]">Profilim</h2>
+        </div>
+        <div class="flex flex-col md:flex-row gap-8 mb-12">
+            <div class="md:w-1/3 flex flex-col items-center md:items-start text-center md:text-left">
+                <div class="relative mb-4 group cursor-pointer">
+                    <div class="h-32 w-32 rounded-full bg-cover bg-center border border-gray-200 shadow-sm" data-alt="Close up of a middle aged man with a beard smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgyL_VH5xnSEuJaBQzW8N3oJndOpKKvo3PTubIatoowRih6RBr622lLW_KN-hlJwxM9UP_59q3lHUSuOqm7xEvMxOCOOT55duNePElAXG00-zSMH10aelvshUpfHYONwUzgwdvSGRvG2YBfF5nqDb355q_MSaUYzKB4qmf4UVyqkZyBLPPf8U8u-ZIq6YAhzaErYqYj8zo4ljHh69gneVWijeOBHAOqIZRLrCnZ_mZhM-MPKv7avuUM8hriSgIzvID1bau7zuizDg");'></div>
+                    <div class="absolute inset-0 bg-black/10 hover:bg-black/20 rounded-full transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <span class="material-symbols-outlined text-white">photo_camera</span>
+                    </div>
+                </div>
+                <h3 class="text-3xl font-bold text-[#111318] font-display mb-1">@Model.NameSurname</h3>
+                <p class="text-[#616f89] font-sans text-sm mb-4">ahmet.yilmaz@email.com</p>
+                <button class="w-full md:w-auto px-6 py-2.5 border border-[#111318] hover:bg-[#111318] hover:text-white text-[#111318] text-xs uppercase font-sans font-bold tracking-wider rounded-sm flex items-center justify-center gap-2 transition-all">
+                    <span>Profili Düzenle</span>
+                </button>
+            </div>
+            <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-200 border-t sm:border-t-0 border-gray-200 pt-6 sm:pt-0">
+                <div class="flex flex-col justify-center items-center sm:items-start px-4 py-4 sm:py-0">
+                    <span class="text-[#616f89] text-xs font-sans font-bold uppercase tracking-widest mb-2">Okunan Haber</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-display font-medium text-[#111318]">142</span>
+                        <span class="text-xs text-green-600 font-sans font-medium flex items-center">
+                            <span class="material-symbols-outlined text-sm">arrow_upward</span> %12
+                        </span>
+                    </div>
+                    <p class="text-[11px] text-[#9ca3af] font-sans mt-1">Bu ay okuma aktivitesi</p>
+                </div>
+                <div class="flex flex-col justify-center items-center sm:items-start px-4 py-4 sm:py-0">
+                    <span class="text-[#616f89] text-xs font-sans font-bold uppercase tracking-widest mb-2">Kaydedilenler</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-display font-medium text-[#111318]">18</span>
+                    </div>
+                    <p class="text-[11px] text-[#9ca3af] font-sans mt-1">Daha sonra oku listesi</p>
+                </div>
+                <div class="flex flex-col justify-center items-center sm:items-start px-4 py-4 sm:py-0">
+                    <span class="text-[#616f89] text-xs font-sans font-bold uppercase tracking-widest mb-2">Yorumlar</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-display font-medium text-[#111318]">5</span>
+                    </div>
+                    <p class="text-[11px] text-[#9ca3af] font-sans mt-1">Okuyucu etkileşimi</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-px bg-gray-200 mb-10"></div>
+        <div class="flex flex-col">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold font-sans uppercase tracking-tight text-[#111318]">Son Okuduklarım</h3>
+                <a class="text-[#111318] hover:text-primary text-xs font-sans font-bold uppercase tracking-wider border-b border-gray-300 hover:border-primary pb-0.5 transition-all" href="#">Tüm Geçmişi Gör</a>
+            </div>
+            <div class="flex flex-col divide-y divide-[#e5e7eb] border-t border-black">
+                <article class="flex flex-col sm:flex-row gap-6 py-6 group cursor-pointer hover:bg-gray-50 transition-colors px-2 -mx-2">
+                    <div class="w-full sm:w-48 h-32 shrink-0 bg-gray-100 relative border border-gray-200">
+                        <div class="absolute inset-0 bg-cover bg-center" data-alt="Graphs and charts on a blue digital screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAc_W5x0TvKlR_QJVtHer43sXJ5JNmuJ85I7OoeUckJ7ROy7qnyv2czS2PjlM7aNqFf1BPCP-PTxwkTJpAvedk1N8etpvuVXLpbOjLOqVTecCXHMC3h_MNgghxzquC0_-HNIKZ8hC_69z8KM5MJy7qSQn0RhMpZSPSqwP5MmZCPfyTdc429xqNKvxlU6vB54E1QpUSvV5cQn4ICPv6a80OYdKd9LoT0ZfeRJON2sFKqOpw1ec0IZnHFBj7l3-GzDBCLYBGNZuVn-J4");'></div>
+                    </div>
+                    <div class="flex flex-col justify-center flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-primary text-[11px] font-bold font-sans uppercase tracking-wider">Ekonomi</span>
+                            <span class="text-gray-300 text-[10px]">•</span>
+                            <span class="text-[#616f89] text-[11px] font-sans font-medium uppercase tracking-wide">
+                                2 saat önce
+                            </span>
+                        </div>
+                        <h4 class="text-xl md:text-2xl font-bold text-[#111318] leading-tight group-hover:underline decoration-2 underline-offset-4 transition-all font-display">Küresel Piyasalar Haftaya Merkez Bankaları Odaklı Başladı</h4>
+                        <p class="text-[#4b5563] text-sm md:text-base mt-2 line-clamp-2 font-display leading-relaxed serif">
+                            Fed'in faiz kararı öncesinde piyasalarda dalgalı seyir devam ederken, yatırımcılar Avrupa Merkez Bankası'nın açıklamalarına odaklandı.
+                        </p>
+                    </div>
+                </article>
+                <article class="flex flex-col sm:flex-row gap-6 py-6 group cursor-pointer hover:bg-gray-50 transition-colors px-2 -mx-2">
+                    <div class="w-full sm:w-48 h-32 shrink-0 bg-gray-100 relative border border-gray-200">
+                        <div class="absolute inset-0 bg-cover bg-center" data-alt="Modern office building architecture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCOH2q7ElTMOIw1p97ZzDfzjtvlj_OE2Lj55BTDAMMdY3GZDix_WfLl34XayNEEnfUs1CIzT2uis5lwP5F2pfPcNyR7IFK8Ti_iWb1V-HPvF2L637cC1J1Mln9WBTI6ngToRo82S_xwN59blGruEx0OAWj1zk0PGYiewLK1_O-PgWpSGnSx9NcONVIfhmZVGh08r-FyIbPTO1nxjujZgDxmu7LZiloppHOrfjq3Bp_FNqpveMDI8C-TnvKaQKiXR_5ElhnJ9Xl3Bak");'></div>
+                    </div>
+                    <div class="flex flex-col justify-center flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-[#111318] text-[11px] font-bold font-sans uppercase tracking-wider">Gündem</span>
+                            <span class="text-gray-300 text-[10px]">•</span>
+                            <span class="text-[#616f89] text-[11px] font-sans font-medium uppercase tracking-wide">
+                                Dün
+                            </span>
+                        </div>
+                        <h4 class="text-xl md:text-2xl font-bold text-[#111318] leading-tight group-hover:underline decoration-2 underline-offset-4 transition-all font-display">İstanbul'da Yeni Metro Hattı İçin İmzalar Atıldı</h4>
+                        <p class="text-[#4b5563] text-sm md:text-base mt-2 line-clamp-2 font-display leading-relaxed serif">
+                            Şehrin ulaşım sorununa çözüm olması beklenen yeni hat projesi, iki yakayı 15 dakikada birbirine bağlamayı hedefliyor.
+                        </p>
+                    </div>
+                </article>
+                <article class="flex flex-col sm:flex-row gap-6 py-6 group cursor-pointer hover:bg-gray-50 transition-colors px-2 -mx-2">
+                    <div class="w-full sm:w-48 h-32 shrink-0 bg-gray-100 relative border border-gray-200">
+                        <div class="absolute inset-0 bg-cover bg-center" data-alt="Close up of a film camera lens" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAyPK7BAZnbm13-clOM5MHX6xZZ0Lwr6I3VldqTAQqyz9vm64Iqtz1kluiFoTASWE08if3YWu3BclIgUvoK_SD1fmNSSF5CS-9ZSUJPP0OHGU7tocsJkM5j9ajNvLiOtrZ3UfyKan-YYUpjbk85-1KEoj6938zRHgGz1tCox5E-XhUoTD94JUOIa-Fbnu2byFCsQ9t3ecsUs_N1lUAvftHVaMvx8Dn7hpeOCKjrekd6Fxq64PAN9jsszbflKzt5TtFBMrMzedMCBjY");'></div>
+                    </div>
+                    <div class="flex flex-col justify-center flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-[#111318] text-[11px] font-bold font-sans uppercase tracking-wider">Kültür Sanat</span>
+                            <span class="text-gray-300 text-[10px]">•</span>
+                            <span class="text-[#616f89] text-[11px] font-sans font-medium uppercase tracking-wide">
+                                3 gün önce
+                            </span>
+                        </div>
+                        <h4 class="text-xl md:text-2xl font-bold text-[#111318] leading-tight group-hover:underline decoration-2 underline-offset-4 transition-all font-display">Venedik Film Festivali'nin Kazananları Belli Oldu</h4>
+                        <p class="text-[#4b5563] text-sm md:text-base mt-2 line-clamp-2 font-display leading-relaxed serif">
+                            Bu yıl 80.'si düzenlenen festivalde Altın Aslan ödülü sürpriz bir yapımın oldu. İşte gecenin tüm detayları.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+    <footer class="border-t border-[#f0f2f4] py-10 px-8 mt-auto bg-white">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-3xl">newsmode</span>
+                <span class="font-black text-xl font-display">Gazete</span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8 text-sm font-sans font-medium text-[#616f89]">
+                <a class="hover:text-[#111318] transition-colors" href="#">Hakkımızda</a>
+                <a class="hover:text-[#111318] transition-colors" href="#">Künye</a>
+                <a class="hover:text-[#111318] transition-colors" href="#">İletişim</a>
+                <a class="hover:text-[#111318] transition-colors" href="#">Gizlilik Politikası</a>
+                <a class="hover:text-[#111318] transition-colors" href="#">Kullanım Şartları</a>
+            </div>
+            <div class="text-sm font-sans text-[#9ca3af]">
+                © 2023 Gazete. Tüm hakları saklıdır.
+            </div>
+        </div>
+    </footer>
+</div>
+</body></html>

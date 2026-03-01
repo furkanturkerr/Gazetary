@@ -1,3 +1,4 @@
+@model Entities.Concrate.AppUser
 <header class="flex flex-col border-b border-[#e5e7eb] dark:border-neutral-700">
     <!-- Üst bilgi çubuğu -->
     <div class="flex items-center justify-between px-4 md:px-8 py-2 border-b border-[#f3f4f6] dark:border-neutral-800">
@@ -18,9 +19,26 @@
                 <span class="hidden md:inline">İstanbul</span> 18°C
             </span>
         </div>
+        
         <div class="flex items-center gap-2 md:gap-4">
-            <a class="text-[10px] md:text-xs font-bold text-neutral-900 dark:text-white hover:text-primary transition-colors hidden sm:inline" href="~/UserLogin/Login">Giriş Yap</a>
-            <a class="bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-1.5 font-bold tracking-wide uppercase" href="~/UserRegister/Register">Kayıt Ol</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="/Profile/@Model.Id" 
+                   class="text-[10px] md:text-xs font-bold text-neutral-900 dark:text-white hover:text-primary transition-colors hidden sm:inline">
+                    @Model.NameSurname
+                </a>
+                <a asp-controller="UserLogin" asp-action="UserLogout"
+                   class="bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-1.5 font-bold tracking-wide uppercase">
+                    Çıkış
+                </a>
+            }
+            else
+            {
+                <a class="text-[10px] md:text-xs font-bold text-neutral-900 dark:text-white hover:text-primary transition-colors hidden sm:inline" 
+                   href="/UserLogin/Login">Giriş Yap</a>
+                <a class="bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-1.5 font-bold tracking-wide uppercase" 
+                   href="/UserRegister/Register">Kayıt Ol</a>
+            }
         </div>
     </div>
 
