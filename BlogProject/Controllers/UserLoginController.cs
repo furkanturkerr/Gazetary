@@ -27,6 +27,11 @@ public class UserLoginController : Controller
     {
         if (!ModelState.IsValid)
             return View(loginDto);
+        
+        var result1 = await _signInManager.PasswordSignInAsync(
+            loginDto.Email, loginDto.Password,
+            isPersistent: true,       
+            lockoutOnFailure: false);
 
         var result = await _signInManager.PasswordSignInAsync(
             loginDto.Email,

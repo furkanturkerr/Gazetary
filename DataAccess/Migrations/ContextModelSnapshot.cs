@@ -173,6 +173,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("BlogPostId")
                         .HasColumnType("int");
 
@@ -190,11 +193,42 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ParentCommentId")
+                        .HasColumnType("int");
+
                     b.HasKey("CommentId");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("BlogPostId");
 
+                    b.HasIndex("ParentCommentId");
+
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Entities.Concrate.CommentLike", b =>
+                {
+                    b.Property<int>("CommentLikeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentLikeId"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CommentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CommentLikeId");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("CommentId");
+
+                    b.ToTable("CommentLikes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -343,13 +377,44 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrate.Comment", b =>
                 {
+                    b.HasOne("Entities.Concrate.AppUser", "AppUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("AppUserId");
+
                     b.HasOne("Entities.Concrate.BlogPost", "BlogPost")
                         .WithMany("Comments")
                         .HasForeignKey("BlogPostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Concrate.Comment", "ParentComment")
+                        .WithMany("Replies")
+                        .HasForeignKey("ParentCommentId");
+
+                    b.Navigation("AppUser");
+
                     b.Navigation("BlogPost");
+
+                    b.Navigation("ParentComment");
+                });
+
+            modelBuilder.Entity("Entities.Concrate.CommentLike", b =>
+                {
+                    b.HasOne("Entities.Concrate.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Concrate.Comment", "Comment")
+                        .WithMany("Likes")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Comment");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -403,6 +468,11 @@ namespace DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Entities.Concrate.AppUser", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
             modelBuilder.Entity("Entities.Concrate.BlogPost", b =>
                 {
                     b.Navigation("Comments");
@@ -411,6 +481,13 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concrate.Category", b =>
                 {
                     b.Navigation("BlogPosts");
+                });
+
+            modelBuilder.Entity("Entities.Concrate.Comment", b =>
+                {
+                    b.Navigation("Likes");
+
+                    b.Navigation("Replies");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,6 +20,6 @@ public class _UIHeaderComponentPartial : ViewComponent
             var user = await _userManager.GetUserAsync(HttpContext.User);
             return View(user);
         }
-        return View();
+        return View((AppUser)null); 
     }
 }

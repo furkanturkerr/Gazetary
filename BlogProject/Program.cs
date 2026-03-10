@@ -1,6 +1,7 @@
 using Business.Abstract;
 using Business.Concrate;
 using DataAccess.Abstarct;
+using DataAccess.Abstract;
 using DataAccess.Concrate;
 using DataAccess.EntityFramework;
 using Entities.Concrate;
@@ -19,10 +20,19 @@ builder.Services.AddScoped<IBlogPostDal, EfBlogPostDal>();
 builder.Services.AddScoped<IBlogPostService, BlogPostManager>();
 builder.Services.AddScoped<ICommentDal, EfCommentDal>();
 builder.Services.AddScoped<ICommentService, CommentManager>();
+builder.Services.AddScoped<ICommentLikeService, CommentLikeManager>();
+builder.Services.AddScoped<ICommentLikeDal, EfCommentLikeDal>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<Context>()
     .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+    options.SlidingExpiration = true;
+    options.LoginPath = "/UserLogin/Login";
+});
 
 
 var app = builder.Build();

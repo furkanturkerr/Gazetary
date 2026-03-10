@@ -13,5 +13,7 @@ public class Context : IdentityDbContext<AppUser>
     
     public DbSet<BlogPost> BlogPosts { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<CommentLike> CommentLikes { get; set; }
     public DbSet<Comment> Comments { get; set; }
+    
 }
