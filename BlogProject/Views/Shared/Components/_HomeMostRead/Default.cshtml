@@ -1,0 +1,54 @@
+@model BlogProject.Models.HomeMostReadViewModel
+
+<aside class="col-span-12 lg:col-span-3 flex flex-col gap-0 relative border-l border-gray-200 dark:border-gray-800 pl-6">
+    <div class="sticky top-20 flex flex-col gap-8">
+
+        <div class="border-t-2 border-black dark:border-white pt-4">
+            <h3 class="text-sm font-black uppercase tracking-widest mb-4 font-sans">Çok Okunanlar</h3>
+            <div class="flex flex-col gap-0">
+                @for (int i = 0; i < Model.MostReadPosts.Count; i++)
+                {
+                    <a href="/@Model.MostReadPosts[i].Category.CategorySlug/@Model.MostReadPosts[i].Slug"
+                       class="flex gap-3 py-3 border-b border-gray-100 dark:border-gray-800 group cursor-pointer first:pt-0">
+                        <span class="text-2xl font-black text-gray-200 dark:text-gray-700 font-sans leading-none mt-0.5 w-6 shrink-0">
+                            @(i + 1)
+                        </span>
+                        <div class="flex flex-col gap-1">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-primary font-sans">
+                                @Model.MostReadPosts[i].Category.CategoryName
+                            </span>
+                            <h4 class="text-sm font-bold leading-snug group-hover:text-primary transition-colors">
+                                @Model.MostReadPosts[i].Title
+                            </h4>
+                            <span class="text-[11px] text-gray-400 font-sans">
+                                @Model.MostReadPosts[i].ViewCount görüntülenme
+                            </span>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+
+        <div class="border-t-2 border-black dark:border-white pt-4">
+            <h3 class="text-sm font-black uppercase tracking-widest mb-4 font-sans">Kategoriler</h3>
+            <div class="flex flex-col gap-0">
+                @foreach (var category in Model.Categories)
+                {
+                    <a href="/@category.CategorySlug"
+                       class="group flex items-center justify-between py-3 border-b border-gray-100 dark:border-gray-800 cursor-pointer last:border-0">
+                        <div class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+                            <span class="text-sm font-bold group-hover:text-primary transition-colors">
+                                @category.CategoryName
+                            </span>
+                        </div>
+                        <span class="text-[11px] font-bold text-gray-400 font-sans group-hover:text-primary transition-colors">
+                            @category.BlogCount yazı
+                        </span>
+                    </a>
+                }
+            </div>
+        </div>
+
+    </div>
+</aside>

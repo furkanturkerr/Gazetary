@@ -16,6 +16,7 @@ public class BlogPost
     public int CategoryId { get; set; }
     public Category Category { get; set; }
     public bool Status { get; set; }
+    public int ViewCount { get; set; }
     public DateTime CreatedDate { get; set; }
     
     public List<Comment> Comments { get; set; }

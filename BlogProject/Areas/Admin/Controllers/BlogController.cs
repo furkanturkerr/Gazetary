@@ -50,6 +50,7 @@ public class BlogController : Controller
             {
                 ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
             }
+            ViewBag.Categories = new SelectList(_categoryService.GetAll(), "CategoryId", "CategoryName");
         }
         return View(blogPost);
     }

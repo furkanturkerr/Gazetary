@@ -1,0 +1,39 @@
+@model List<Entities.Concrate.BlogPost>
+
+<section class="hc-section">
+    <div class="hc-header">
+        <h2 class="hc-title">Tarih</h2>
+        <a href="/tarih" class="hc-more">Tümünü Görüntüle &rsaquo;</a>
+    </div>
+
+    <div class="hc-tarih-grid">
+        @if (Model.Any())
+        {
+            var featured = Model[0];
+            <a href="/tarih/@featured.Slug" class="hc-tarih-featured">
+                <div class="hc-tarih-featured-img-wrap">
+                    <img src="@featured.ImageUrl" alt="@featured.Title" class="hc-tarih-featured-img" />
+                </div>
+                <div class="hc-tarih-featured-body">
+                    <span class="hc-kicker">@featured.Category.CategoryName</span>
+                    <h3 class="hc-hed-lg">@featured.Title</h3>
+                    <p class="hc-summary hc-summary--feature">@featured.Description</p>
+                    <span class="hc-byline">@featured.CreatedDate.ToString("dd MMM yyyy")</span>
+                </div>
+            </a>
+
+            <div class="hc-tarih-cards">
+                @for (int i = 1; i < Model.Count && i < 5; i++)
+                {
+                    <a href="/tarih/@Model[i].Slug" class="hc-tarih-card">
+                        <div class="hc-tarih-card-img-wrap">
+                            <img src="@Model[i].ImageUrl" alt="@Model[i].Title" class="hc-tarih-card-img" />
+                        </div>
+                        <h4 class="hc-hed-xs">@Model[i].Title</h4>
+                        <span class="hc-byline">@Model[i].CreatedDate.ToString("dd MMM yyyy")</span>
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</section>

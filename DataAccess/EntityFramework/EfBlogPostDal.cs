@@ -35,4 +35,40 @@ public class EfBlogPostDal : GenericRepository<BlogPost>, IBlogPostDal
             _context.SaveChanges();
         }
     }
+
+    public async Task<List<BlogPost>> GetBlogsWithCategoryByNameAsync(string categoryName)
+    {
+        return await _context.BlogPosts.Include(x => x.Category).Where(x => x.Category.CategoryName == categoryName).ToListAsync();
+    }
+    
+    public async Task<List<BlogPost>> GetMostViewedBlogsAsync(int count)
+    {
+        var weekAgo = DateTime.Today.AddDays(-7);
+        return await _context.BlogPosts
+            .Include(x => x.Category)
+            .Where(x => x.CreatedDate >= weekAgo)
+            .OrderByDescending(x => x.ViewCount)
+            .Take(count)
+            .ToListAsync();
+    }
+
+    public async Task<List<BlogPost>> GetTodaysBlogsAsync()
+    {
+        var today = DateTime.Today;
+        return await _context.BlogPosts
+            .Include(x => x.Category)
+            .Where(x => x.CreatedDate.Date == today)
+            .OrderByDescending(x => x.CreatedDate)
+            .ToListAsync();
+    }
+
+    public async Task<List<BlogPost>> GetLatestBlogsByCategoryAsync(string categoryName, int count)
+    {
+        return await _context.BlogPosts
+            .Include(x => x.Category)
+            .Where(x => x.Category.CategoryName == categoryName)
+            .OrderByDescending(x => x.CreatedDate)
+            .Take(count)
+            .ToListAsync();
+    }
 }

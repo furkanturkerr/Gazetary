@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets/BlogProject.bundle.scp.css"
     },
     {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/css/home-categories.css",
+      "PackagePath": "staticwebassets/css/home-categories.css"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/css/home-editorPick.css",
+      "PackagePath": "staticwebassets/css/home-editorPick.css"
+    },
+    {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
@@ -15,6 +23,10 @@
     {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/images/1493549.jpeg",
       "PackagePath": "staticwebassets/images/1493549.jpeg"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/js/home-editorPick.js",
+      "PackagePath": "staticwebassets/js/home-editorPick.js"
     },
     {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/js/site.js",

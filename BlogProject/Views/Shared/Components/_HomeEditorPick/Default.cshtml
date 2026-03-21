@@ -1,0 +1,157 @@
+@model BlogProject.Models.HomeEditorPickViewModel
+
+
+<section class="editor-pick-section">
+
+    <div class="ep-grid">
+        <div class="ep-slider-col">
+            <div class="ep-slider" id="epSlider">
+
+                @if (Model.TodaySliderPosts != null && Model.TodaySliderPosts.Any())
+                {
+                    @for (int i = 0; i < Model.TodaySliderPosts.Count; i++)
+                    {
+                        var post = Model.TodaySliderPosts[i];
+                        <div class="ep-slide @(i == 0 ? "ep-slide--active" : "")" data-index="@i">
+                            <a href="/@post.Category.CategorySlug/@post.Slug" class="ep-slide-link">
+                                <div class="ep-slide-img-wrap">
+                                    <img src="@post.ImageUrl"
+                                         alt="@post.Title"
+                                         class="ep-slide-img" />
+                                    <div class="ep-slide-overlay"></div>
+                                </div>
+                                <div class="ep-slide-body">
+                                    <span class="ep-kicker">@post.Category.CategoryName</span>
+                                    <h2 class="ep-slide-hed">@post.Title</h2>
+                                    <p class="ep-slide-summary">@post.Description</p>
+                                    <div class="ep-slide-meta">
+                                        <span>@post.CreatedDate.ToString("dd MMMM yyyy")</span>
+                                        <span class="ep-meta-dot">·</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+
+                    <!-- DOTS -->
+                    <div class="ep-dots" id="epDots">
+                        @for (int i = 0; i < Model.TodaySliderPosts.Count; i++)
+                        {
+                            <button class="ep-dot @(i == 0 ? "ep-dot--active" : "")"
+                                    data-slide="@i"
+                                    aria-label="Slayt @(i+1)"></button>
+                        }
+                    </div>
+
+                    <button class="ep-arrow ep-arrow--prev" id="epPrev" aria-label="Önceki">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <button class="ep-arrow ep-arrow--next" id="epNext" aria-label="Sonraki">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+
+                    <div class="ep-progress-wrap">
+                        <div class="ep-progress-bar" id="epProgress"></div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="ep-sidebar">
+
+            @if (Model.Category1?.Posts != null && Model.Category1.Posts.Any())
+            {
+                var post = Model.Category1.Posts.First();
+                var hoursAgo = (int)(DateTime.Now - post.CreatedDate).TotalHours;
+                <article class="ep-card">
+                    <a href="/@post.Category.CategorySlug/@post.Slug" class="ep-card-link">
+                        <div class="ep-card-img-wrap">
+                            <img src="@post.ImageUrl" alt="@post.Title" class="ep-card-img" />
+                            <span class="ep-card-kicker">@Model.Category1.CategoryName</span>
+                        </div>
+                        <div class="ep-card-body">
+                            <h3 class="ep-card-hed">@post.Title</h3>
+                            <p class="ep-card-summary">@post.Description</p>
+                            <div class="ep-card-meta">
+                                <span>@(hoursAgo == 0 ? "Az önce" : hoursAgo + " saat önce")</span>
+                                <span class="ep-meta-dot">·</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            }
+
+            @if (Model.Category2?.Posts != null && Model.Category2.Posts.Any())
+            {
+                var post = Model.Category2.Posts.First();
+                var hoursAgo = (int)(DateTime.Now - post.CreatedDate).TotalHours;
+                <article class="ep-card">
+                    <a href="/@post.Category.CategorySlug/@post.Slug" class="ep-card-link">
+                        <div class="ep-card-img-wrap">
+                            <img src="@post.ImageUrl" alt="@post.Title" class="ep-card-img" />
+                            <span class="ep-card-kicker">@Model.Category2.CategoryName</span>
+                        </div>
+                        <div class="ep-card-body">
+                            <h3 class="ep-card-hed">@post.Title</h3>
+                            <p class="ep-card-summary">@post.Description</p>
+                            <div class="ep-card-meta">
+                                <span>@(hoursAgo == 0 ? "Az önce" : hoursAgo + " saat önce")</span>
+                                <span class="ep-meta-dot">·</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            }
+
+            @if (Model.Category3?.Posts != null && Model.Category3.Posts.Any())
+            {
+                var post = Model.Category3.Posts.First();
+                var hoursAgo = (int)(DateTime.Now - post.CreatedDate).TotalHours;
+                <article class="ep-card">
+                    <a href="/@post.Category.CategorySlug/@post.Slug" class="ep-card-link">
+                        <div class="ep-card-img-wrap">
+                            <img src="@post.ImageUrl" alt="@post.Title" class="ep-card-img" />
+                            <span class="ep-card-kicker">@Model.Category3.CategoryName</span>
+                        </div>
+                        <div class="ep-card-body">
+                            <h3 class="ep-card-hed">@post.Title</h3>
+                            <p class="ep-card-summary">@post.Description</p>
+                            <div class="ep-card-meta">
+                                <span>@(hoursAgo == 0 ? "Az önce" : hoursAgo + " saat önce")</span>
+                                <span class="ep-meta-dot">·</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            }
+
+            @if (Model.Category4?.Posts != null && Model.Category4.Posts.Any())
+            {
+                var post = Model.Category4.Posts.First();
+                var hoursAgo = (int)(DateTime.Now - post.CreatedDate).TotalHours;
+                <article class="ep-card ep-card--last">
+                    <a href="/@post.Category.CategorySlug/@post.Slug" class="ep-card-link">
+                        <div class="ep-card-img-wrap">
+                            <img src="@post.ImageUrl" alt="@post.Title" class="ep-card-img" />
+                            <span class="ep-card-kicker">@Model.Category4.CategoryName</span>
+                        </div>
+                        <div class="ep-card-body">
+                            <h3 class="ep-card-hed">@post.Title</h3>
+                            <p class="ep-card-summary">@post.Description</p>
+                            <div class="ep-card-meta">
+                                <span>@(hoursAgo == 0 ? "Az önce" : hoursAgo + " saat önce")</span>
+                                <span class="ep-meta-dot">·</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            }
+
+        </div>
+    </div>
+</section>
+

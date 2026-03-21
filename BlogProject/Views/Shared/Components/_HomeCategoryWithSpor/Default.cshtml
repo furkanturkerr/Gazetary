@@ -1,0 +1,47 @@
+@model CategoryBlogsViewModel
+
+<section class="hc-section hc-section--spor">
+    <div class="hc-header hc-header--blue">
+        <h2 class="hc-title hc-title--blue">Spor</h2>
+        <a href="/spor" class="hc-more">Tümünü Görüntüle &rsaquo;</a>
+    </div>
+
+    <div class="hc-spor-grid">
+        @if (Model.LatestPost != null)
+        {
+            <a href="/spor/@Model.LatestPost.Slug" class="hc-spor-hero">
+                <div class="hc-spor-hero-img-wrap">
+                    <img src="@Model.LatestPost.ImageUrl" alt="@Model.LatestPost.Title" class="hc-spor-hero-img" />
+                    <span class="hc-spor-hero-kicker">@Model.LatestPost.Category.CategoryName</span>
+                </div>
+                <div class="hc-spor-hero-body">
+                    <h3 class="hc-hed-lg">@Model.LatestPost.Title</h3>
+                    <p class="hc-summary hc-summary--feature">@Model.LatestPost.Description</p>
+                    <span class="hc-byline">@Model.LatestPost.CreatedDate.ToString("dd MMM yyyy")</span>
+                </div>
+            </a>
+        }
+
+        <div class="hc-spor-sidebar">
+            @if (Model.OtherPosts != null)
+            {
+                @for (int i = 0; i < Model.OtherPosts.Count; i++)
+                {
+                    <a href="/spor/@Model.OtherPosts[i].Slug" class="hc-spor-item @(i < Model.OtherPosts.Count - 1 ? "hc-spor-item--bordered" : "")">
+                        <div class="hc-spor-item-body">
+                            <span class="hc-kicker">@Model.OtherPosts[i].Category.CategoryName</span>
+                            <h4 class="hc-hed-sm">@Model.OtherPosts[i].Title</h4>
+                            <p class="hc-summary">@Model.OtherPosts[i].Description</p>
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.OtherPosts[i].ImageUrl))
+                        {
+                            <div class="hc-spor-item-img-wrap">
+                                <img src="@Model.OtherPosts[i].ImageUrl" alt="@Model.OtherPosts[i].Title" class="hc-spor-item-img" />
+                            </div>
+                        }
+                    </a>
+                }
+            }
+        </div>
+    </div>
+</section>

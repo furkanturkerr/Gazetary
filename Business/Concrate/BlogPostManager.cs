@@ -47,4 +47,34 @@ public class BlogPostManager : IBlogPostService
     {
         _blogPostDal.ChangeStatus(id);
     }
+
+    public async Task<List<BlogPost>> TGetBlogsWithCategoryByNameAsync(string categoryName)
+    {
+        return await _blogPostDal.GetBlogsWithCategoryByNameAsync(categoryName);
+    }
+    
+    public void IncrementViewCountAsync(int blogPostId)
+    {
+        var blog = _blogPostDal.GetById(blogPostId);
+        if (blog != null)
+        {
+            blog.ViewCount++;
+            _blogPostDal.Update(blog);
+        }
+    }
+    
+    public async Task<List<BlogPost>> TGetMostViewedBlogsAsync(int count)
+    {
+        return await _blogPostDal.GetMostViewedBlogsAsync(count);
+    }
+
+    public async Task<List<BlogPost>> TGetTodaysBlogsAsync()
+    {
+        return await _blogPostDal.GetTodaysBlogsAsync();
+    }
+
+    public async Task<List<BlogPost>> TGetLatestBlogsByCategoryAsync(string categoryName, int count)
+    {
+        return await _blogPostDal.GetLatestBlogsByCategoryAsync(categoryName, count);
+    }
 }

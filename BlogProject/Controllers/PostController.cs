@@ -38,6 +38,8 @@ public class PostController : Controller
         if (post == null)
             return NotFound();
 
+        _blogPostService.IncrementViewCountAsync(post.BlogPostId);
+
         var comments = _commentService.GetAll()
             .Where(c => c.BlogPostId == post.BlogPostId)
             .OrderByDescending(c => c.CreatedDate)

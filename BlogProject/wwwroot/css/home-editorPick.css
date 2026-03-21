@@ -1,0 +1,312 @@
+.editor-pick-section {
+    --ep-blue:       var(--blue,      #326891);
+    --ep-blue-dk:    var(--blue-dk,   #1a4a6e);
+    --ep-ink:        var(--ink,       #121212);
+    --ep-ink-2:      var(--ink-2,     #333);
+    --ep-ink-3:      var(--ink-3,     #666);
+    --ep-rule:       var(--rule,      #e2e2e2);
+    --ep-bg:         var(--bg,        #fff);
+    --ep-radius:     0px; /* editorial — no rounding */
+    border-bottom: 1px solid var(--ep-rule);
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+}
+
+/* ── Grid ── */
+.ep-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 28px;
+    align-items: stretch;
+}
+@media (max-width: 900px) {
+    .ep-grid { grid-template-columns: 1fr; }
+}
+
+/* ══ SLIDER ══ */
+.ep-slider-col { min-width: 0; }
+
+.ep-slider {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+    background: #1a1a1a;
+}
+
+.ep-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .55s ease-in-out;
+    pointer-events: none;
+}
+.ep-slide--active {
+    opacity: 1;
+    pointer-events: auto;
+    position: absolute; /* all same stack */
+}
+
+.ep-slide-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.ep-slide-img-wrap {
+    position: absolute;
+    inset: 0;
+}
+.ep-slide-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .7s ease;
+}
+.ep-slide--active .ep-slide-img { transform: scale(1.03); }
+.ep-slide:not(.ep-slide--active) .ep-slide-img { transform: scale(1); }
+
+.ep-slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            to top,
+            rgba(0,0,0,.88) 0%,
+            rgba(0,0,0,.45) 45%,
+            rgba(0,0,0,.08) 100%
+    );
+}
+
+/* Caption */
+.ep-slide-body {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 52px 32px 56px;
+    color: #fff;
+}
+
+.ep-kicker {
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    background: var(--ep-blue);
+    color: #fff;
+    padding: 3px 8px;
+    margin-bottom: 10px;
+}
+
+.ep-slide-hed {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 700;
+    font-size: 2.15rem;
+    line-height: 1.12;
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 6px rgba(0,0,0,.35);
+}
+.ep-slide-link:hover .ep-slide-hed { text-decoration: underline; text-decoration-thickness: 1px; }
+
+.ep-slide-summary {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: .95rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,.82);
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ep-slide-meta {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.ep-meta-dot { opacity: .5; }
+
+/* Dots */
+.ep-dots {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 10;
+}
+.ep-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.35);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background .2s, width .2s;
+}
+.ep-dot--active {
+    background: #fff;
+    width: 22px;
+    border-radius: 4px;
+}
+
+/* Arrows */
+.ep-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.25);
+    color: #fff;
+    width: 40px; height: 40px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s, border-color .15s;
+    backdrop-filter: blur(4px);
+}
+.ep-arrow:hover { background: rgba(255,255,255,.3); border-color: rgba(255,255,255,.5); }
+.ep-arrow--prev { left: 14px; }
+.ep-arrow--next { right: 14px; }
+
+/* Progress bar */
+.ep-progress-wrap {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: rgba(255,255,255,.15);
+    z-index: 10;
+}
+.ep-progress-bar {
+    height: 100%;
+    background: var(--ep-blue);
+    width: 0%;
+    transition: width .1s linear;
+}
+
+/* ══ SIDEBAR CARDS ══ */
+.ep-sidebar {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--ep-rule);
+    padding-left: 28px;
+    gap: 0;
+}
+
+.ep-card {
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--ep-rule);
+}
+.ep-card--last {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.ep-card-link {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px;
+    align-items: start;
+    text-decoration: none;
+    color: inherit;
+}
+
+.ep-card-img-wrap {
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+}
+.ep-card-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(25%);
+    transition: filter .35s, transform .45s;
+}
+.ep-card-link:hover .ep-card-img {
+    filter: grayscale(0%);
+    transform: scale(1.04);
+}
+
+.ep-card-kicker {
+    position: absolute;
+    top: 0; left: 0;
+    font-family: 'Lato', sans-serif;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    background: var(--ep-blue);
+    color: #fff;
+    padding: 2px 6px;
+}
+
+.ep-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ep-card-hed {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.25;
+    color: var(--ep-ink);
+}
+.ep-card-link:hover .ep-card-hed { text-decoration: underline; text-decoration-thickness: 1px; }
+
+.ep-card-summary {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: .88rem;
+    color: var(--ep-ink-2);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ep-card-meta {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    color: var(--ep-ink-3);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+}
+
+/* ── Dark mode overrides ── */
+html.dark .ep-card-img { filter: grayscale(40%); }
+html.dark .ep-card-link:hover .ep-card-img { filter: grayscale(5%); }
+html.dark .ep-sidebar { border-left-color: var(--ep-rule); }
+html.dark .ep-card { border-bottom-color: var(--ep-rule); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .ep-sidebar {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--ep-rule);
+        padding-top: 20px;
+    }
+    .ep-slider { height: 360px; }
+    .ep-slide-hed { font-size: 1.6rem; }
+    .ep-slide-body { padding: 32px 20px 44px; }
+}
+@media (max-width: 560px) {
+    .ep-card-link { grid-template-columns: 90px 1fr; gap: 10px; }
+    .ep-slider { height: 280px; }
+    .ep-slide-summary { display: none; }
+}

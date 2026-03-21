@@ -1,29 +1,44 @@
 @model Entities.Concrate.AppUser
+@{
+    var currentPath = Context.Request.Path.Value?.ToLower().TrimEnd('/') ?? "";
+
+    string NavClass(string path) =>
+        currentPath == path.ToLower() || (path != "/" && currentPath.StartsWith(path.ToLower()))
+            ? "text-[#1152d4] text-sm font-bold uppercase tracking-wider border-b-2 border-[#1152d4] pb-0.5"
+            : "text-neutral-600 dark:text-neutral-300 hover:text-[#111318] dark:hover:text-white text-sm font-bold uppercase tracking-wider transition-colors";
+
+    string MobileNavClass(string path) =>
+        currentPath == path.ToLower() || (path != "/" && currentPath.StartsWith(path.ToLower()))
+            ? "px-6 py-3 text-[#1152d4] font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 bg-blue-50 dark:bg-blue-950"
+            : "px-6 py-3 text-neutral-700 dark:text-neutral-300 font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors";
+
+    bool IsHome = currentPath == "" || currentPath == "/";
+}
+
 <header class="flex flex-col border-b border-[#e5e7eb] dark:border-neutral-700">
-    <!-- Üst bilgi çubuğu -->
+
     <div class="flex items-center justify-between px-4 md:px-8 py-2 border-b border-[#f3f4f6] dark:border-neutral-800">
         <div class="text-[10px] md:text-xs font-sans text-neutral-500 dark:text-neutral-400 font-medium">
             @DateTime.Now.ToString("dd MMMM yyyy, dddd")
         </div>
         <div class="hidden sm:flex items-center gap-2 md:gap-4 text-[10px] md:text-xs font-sans font-medium text-neutral-600 dark:text-neutral-400">
             <span class="flex items-center gap-1">
-                <span class="text-green-600 material-symbols-outlined text-[14px] md:text-[16px]">trending_up</span> 
+                <span class="text-green-600 material-symbols-outlined text-[14px] md:text-[16px]">trending_up</span>
                 <span class="hidden md:inline">USD:</span> 28.14
             </span>
             <span class="flex items-center gap-1">
-                <span class="text-red-600 material-symbols-outlined text-[14px] md:text-[16px]">trending_down</span> 
+                <span class="text-red-600 material-symbols-outlined text-[14px] md:text-[16px]">trending_down</span>
                 <span class="hidden md:inline">EUR:</span> 29.82
             </span>
             <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-[14px] md:text-[16px]">wb_sunny</span> 
+                <span class="material-symbols-outlined text-[14px] md:text-[16px]">wb_sunny</span>
                 <span class="hidden md:inline">İstanbul</span> 18°C
             </span>
         </div>
-        
         <div class="flex items-center gap-2 md:gap-4">
             @if (User.Identity.IsAuthenticated)
             {
-                <a href="/Profil/@Model.Id" 
+                <a href="/Profil/@Model.Id"
                    class="text-[10px] md:text-xs font-bold text-neutral-900 dark:text-white hover:text-primary transition-colors hidden sm:inline">
                     @Model.NameSurname
                 </a>
@@ -34,15 +49,14 @@
             }
             else
             {
-                <a class="text-[10px] md:text-xs font-bold text-neutral-900 dark:text-white hover:text-primary transition-colors hidden sm:inline" 
+                <a class="text-[10px] md:text-xs font-bold text-neutral-900 dark:text-white hover:text-primary transition-colors hidden sm:inline"
                    href="/UserLogin/Login">Giriş Yap</a>
-                <a class="bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-1.5 font-bold tracking-wide uppercase" 
+                <a class="bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-[10px] md:text-xs px-2 md:px-3 py-1 md:py-1.5 font-bold tracking-wide uppercase"
                    href="/UserRegister/Register">Kayıt Ol</a>
             }
         </div>
     </div>
 
-    <!-- Logo ve menü çubuğu -->
     <div class="flex items-center justify-between py-4 md:py-6 relative px-4 md:px-8">
         <button id="menuToggle" class="p-2 text-neutral-900 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded transition-colors">
             <span class="material-symbols-outlined">menu</span>
@@ -53,50 +67,58 @@
         </button>
     </div>
 
-    <!-- Arama kutusu (gizli) -->
     <div id="searchBox" class="hidden px-4 md:px-8 pb-4 border-b border-neutral-200 dark:border-neutral-700">
         <div class="relative">
-            <input type="text" 
-                   placeholder="Haber, yazar veya kategori ara..." 
-                   class="w-full px-4 py-3 pr-12 border border-neutral-300 dark:border-neutral-600 rounded bg-white dark:bg-neutral-900 focus:outline-none focus:border-primary text-sm md:text-base">
+            <input type="text"
+                   placeholder="Haber, yazar veya kategori ara..."
+                   class="w-full px-4 py-3 pr-12 border border-neutral-300 dark:border-neutral-600 rounded bg-white dark:bg-neutral-900 focus:outline-none focus:border-primary text-sm md:text-base" />
             <button class="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-primary">
                 <span class="material-symbols-outlined">search</span>
             </button>
         </div>
     </div>
 
-    <!-- Masaüstü navigasyon -->
     <nav class="hidden md:flex items-center justify-center gap-6 lg:gap-8 py-3 border-t border-black dark:border-white border-double border-b-0 border-t-[3px]">
-        <a asp-controller="Default" asp-action="Anasayfa" class="text-[#1152d4] text-sm font-bold uppercase tracking-wider border-b-2 border-[#1152d4] pb-0.5">Anasayfa</a>
-        <a class="text-neutral-600 dark:text-neutral-300 hover:text-[#111318] dark:hover:text-white text-sm font-bold uppercase tracking-wider transition-colors" href="~/yazilim">Yazılım</a>
-        <a class="text-neutral-600 dark:text-neutral-300 hover:text-[#111318] dark:hover:text-white text-sm font-bold uppercase tracking-wider transition-colors" href="~/oyun">Oyun</a>
-        <a class="text-neutral-600 dark:text-neutral-300 hover:text-[#111318] dark:hover:text-white text-sm font-bold uppercase tracking-wider transition-colors" href="~/spor">Spor</a>
-        <a class="text-neutral-600 dark:text-neutral-300 hover:text-[#111318] dark:hover:text-white text-sm font-bold uppercase tracking-wider transition-colors" href="~/turkiye">Türkiye</a>
-        <a class="text-neutral-600 dark:text-neutral-300 hover:text-[#111318] dark:hover:text-white text-sm font-bold uppercase tracking-wider transition-colors" href="~/tarih">Tarih</a>
-        <a class="text-neutral-600 dark:text-neutral-300 hover:text-[#111318] dark:hover:text-white text-sm font-bold uppercase tracking-wider transition-colors" href="~/kategoriler">Tüm Kategoriler</a>
+        <a asp-controller="Default" asp-action="Anasayfa"
+           class="@(IsHome ? "text-[#1152d4] text-sm font-bold uppercase tracking-wider border-b-2 border-[#1152d4] pb-0.5" : "text-neutral-600 dark:text-neutral-300 hover:text-[#111318] dark:hover:text-white text-sm font-bold uppercase tracking-wider transition-colors")">
+            Anasayfa
+        </a>
+        <a href="/turkiye"    class="@NavClass("/turkiye")">Türkiye</a>
+        <a href="/ekonomi"   class="@NavClass("/ekonomi")">Ekonomi</a>
+        <a href="/spor"      class="@NavClass("/spor")">Spor</a>
+        <a href="/teknoloji" class="@NavClass("/teknoloji")">Teknoloji</a>
+        <a href="/yazilim"   class="@NavClass("/yazilim")">Yazılım</a>
+        <a href="/oyun"      class="@NavClass("/oyun")">Oyun</a>
+        <a href="/tarih"     class="@NavClass("/tarih")">Tarih</a>
+        <a href="/kategoriler" class="@NavClass("/kategoriler")">Tüm Kategoriler</a>
     </nav>
 
-    <!-- Mobil menü (gizli) -->
     <div id="mobileMenu" class="hidden md:hidden border-t border-neutral-200 dark:border-neutral-700">
         <nav class="flex flex-col">
-            <a asp-controller="Default" asp-action="Anasayfa" class="px-6 py-3 text-[#1152d4] font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 bg-blue-50 dark:bg-blue-950">Anasayfa</a>
-            <a class="px-6 py-3 text-neutral-700 dark:text-neutral-300 font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors" href="~/yazilim">Yazılım</a>
-            <a class="px-6 py-3 text-neutral-700 dark:text-neutral-300 font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors" href="~/teknoloji">Teknoloji</a>
-            <a class="px-6 py-3 text-neutral-700 dark:text-neutral-300 font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors" href="~/oyun">Oyun</a>
-            <a class="px-6 py-3 text-neutral-700 dark:text-neutral-300 font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors" href="~/spor">Spor</a>
-            <a class="px-6 py-3 text-neutral-700 dark:text-neutral-300 font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors" href="~/tarih">Tarih</a>
-            <a class="px-6 py-3 text-neutral-700 dark:text-neutral-300 font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors" href="~/turkiye">Tüm Kategoriler</a>
-            <a class="px-6 py-3 text-neutral-700 dark:text-neutral-300 font-bold border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors flex items-center gap-2" href="~/UserLogin/Login">
+            <a asp-controller="Default" asp-action="Anasayfa"
+               class="@(IsHome ? "px-6 py-3 text-[#1152d4] font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 bg-blue-50 dark:bg-blue-950" : "px-6 py-3 text-neutral-700 dark:text-neutral-300 font-bold uppercase tracking-wider border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors")">
+                Anasayfa
+            </a>
+            <a href="/turkiye"     class="@MobileNavClass("/turkiye")">Türkiye</a>
+            <a href="/ekonomi"    class="@MobileNavClass("/ekonomi")">Ekonomi</a>
+            <a href="/spor"       class="@MobileNavClass("/spor")">Spor</a>
+            <a href="/teknoloji"  class="@MobileNavClass("/teknoloji")">Teknoloji</a>
+            <a href="/yazilim"    class="@MobileNavClass("/yazilim")">Yazılım</a>
+            <a href="/oyun"       class="@MobileNavClass("/oyun")">Oyun</a>
+            <a href="/tarih"      class="@MobileNavClass("/tarih")">Tarih</a>
+            <a href="/kategoriler" class="@MobileNavClass("/kategoriler")">Tüm Kategoriler</a>
+            <a class="px-6 py-3 text-neutral-700 dark:text-neutral-300 font-bold border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors flex items-center gap-2"
+               href="/UserLogin/Login">
                 <span class="material-symbols-outlined text-[20px]">login</span>
                 Giriş Yap
             </a>
         </nav>
     </div>
+
 </header>
 
 <script>
-    // Arama toggle
-    document.getElementById('searchToggle').addEventListener('click', function() {
+    document.getElementById('searchToggle').addEventListener('click', function () {
         const searchBox = document.getElementById('searchBox');
         searchBox.classList.toggle('hidden');
         if (!searchBox.classList.contains('hidden')) {
@@ -104,8 +126,7 @@
         }
     });
 
-    // Menü toggle
-    document.getElementById('menuToggle').addEventListener('click', function() {
+    document.getElementById('menuToggle').addEventListener('click', function () {
         document.getElementById('mobileMenu').classList.toggle('hidden');
     });
 </script>

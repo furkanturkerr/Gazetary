@@ -1,0 +1,454 @@
+/* ============================================================
+   HOME CATEGORY COMPONENTS — Shared Styles
+   Depends on: --blue, --blue-dk, --ink, --ink-2, --ink-3,
+               --rule, --bg  (defined in root or :root)
+   ============================================================ */
+
+/* ── Fallback variables (safe if global vars not set) ── */
+:root {
+    --blue:    #326891;
+    --blue-dk: #1a4a6e;
+    --ink:     #121212;
+    --ink-2:   #333333;
+    --ink-3:   #666666;
+    --rule:    #e2e2e2;
+    --bg:      #ffffff;
+}
+
+/* ════════════════════════════
+   SHARED BASE
+════════════════════════════ */
+.hc-section {
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--rule);
+}
+.hc-section:last-child {
+    border-bottom: none;
+}
+
+.hc-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-top: 3px solid var(--ink);
+    padding-top: 7px;
+    margin-bottom: 20px;
+}
+.hc-header--blue {
+    border-top-color: var(--blue);
+}
+
+.hc-title {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+.hc-title--blue {
+    color: var(--blue);
+}
+
+.hc-more {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue);
+    text-decoration: none;
+    letter-spacing: .04em;
+}
+.hc-more:hover { text-decoration: underline; }
+
+.hc-kicker {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 5px;
+}
+
+.hc-hed-lg {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.55rem;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 8px;
+}
+.hc-hed-sm {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.22;
+    color: var(--ink);
+    margin-bottom: 5px;
+}
+.hc-hed-xs {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 700;
+    font-size: .9rem;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 4px;
+}
+
+.hc-summary {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: .88rem;
+    color: var(--ink-2);
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 7px;
+}
+.hc-summary--feature {
+    -webkit-line-clamp: 3;
+    font-size: .95rem;
+}
+
+.hc-byline {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: .03em;
+    display: block;
+}
+
+/* link reset + hover */
+.hc-tech-card,
+.hc-feature-link,
+.hc-turkiye-featured,
+.hc-turkiye-card,
+.hc-spor-hero,
+.hc-spor-item,
+.hc-tarih-featured,
+.hc-tarih-card,
+.hc-yazilim-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.hc-tech-card:hover .hc-hed-lg,
+.hc-tech-card:hover .hc-hed-sm,
+.hc-tech-card:hover .hc-hed-xs,
+.hc-feature-link:hover .hc-hed-lg,
+.hc-feature-link:hover .hc-hed-sm,
+.hc-turkiye-featured:hover .hc-hed-lg,
+.hc-turkiye-card:hover .hc-hed-xs,
+.hc-spor-hero:hover .hc-hed-lg,
+.hc-spor-item:hover .hc-hed-sm,
+.hc-tarih-featured:hover .hc-hed-lg,
+.hc-tarih-card:hover .hc-hed-xs,
+.hc-yazilim-card:hover .hc-hed-sm {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+/* image zoom */
+.hc-tech-img-wrap,
+.hc-feature-img-wrap,
+.hc-turkiye-featured-img-wrap,
+.hc-turkiye-card-img-wrap,
+.hc-spor-hero-img-wrap,
+.hc-spor-item-img-wrap,
+.hc-tarih-featured-img-wrap,
+.hc-tarih-card-img-wrap,
+.hc-yazilim-img-wrap {
+    overflow: hidden;
+}
+
+.hc-tech-img,
+.hc-feature-img,
+.hc-turkiye-featured-img,
+.hc-turkiye-card-img,
+.hc-spor-hero-img,
+.hc-spor-item-img,
+.hc-tarih-featured-img,
+.hc-tarih-card-img,
+.hc-yazilim-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s cubic-bezier(.25,.46,.45,.94), filter .35s;
+}
+
+.hc-tech-card:hover .hc-tech-img,
+.hc-feature-link:hover .hc-feature-img,
+.hc-turkiye-featured:hover .hc-turkiye-featured-img,
+.hc-turkiye-card:hover .hc-turkiye-card-img,
+.hc-spor-hero:hover .hc-spor-hero-img,
+.hc-tarih-featured:hover .hc-tarih-featured-img,
+.hc-tarih-card:hover .hc-tarih-card-img,
+.hc-yazilim-card:hover .hc-yazilim-img { transform: scale(1.04); }
+
+
+/* ════════════════════════════
+   TEKNOLOJİ
+════════════════════════════ */
+.hc-tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-bottom: 24px;
+}
+
+.hc-tech-card {
+    padding-right: 20px;
+}
+.hc-tech-card--bordered {
+    padding-left: 20px;
+    padding-right: 0;
+    border-left: 1px solid var(--rule);
+}
+.hc-tech-card:nth-child(2) {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.hc-tech-img-wrap {
+    aspect-ratio: 4/3;
+    margin-bottom: 10px;
+}
+
+.hc-tech-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.hc-tech-feature {
+    border-top: 1px solid var(--rule);
+    padding-top: 20px;
+}
+.hc-feature-link {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+.hc-feature-img-wrap {
+    width: 260px;
+    flex-shrink: 0;
+    aspect-ratio: 3/2;
+}
+.hc-feature-body {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .hc-tech-grid { grid-template-columns: 1fr; gap: 20px; }
+    .hc-tech-card, .hc-tech-card--bordered { padding: 0; border: none; }
+    .hc-feature-link { flex-direction: column; }
+    .hc-feature-img-wrap { width: 100%; }
+}
+
+
+/* ════════════════════════════
+   TÜRKİYE
+════════════════════════════ */
+.hc-turkiye-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.hc-turkiye-featured-img-wrap {
+    aspect-ratio: 4/3;
+    margin-bottom: 10px;
+}
+
+.hc-turkiye-featured-body {}
+
+.hc-turkiye-secondary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-content: start;
+}
+
+.hc-turkiye-card {
+    display: block;
+}
+.hc-turkiye-card-img-wrap {
+    aspect-ratio: 1/1;
+    margin-bottom: 6px;
+}
+.hc-turkiye-card-body {}
+
+@media (max-width: 900px) {
+    .hc-turkiye-grid { grid-template-columns: 1fr; }
+    .hc-turkiye-secondary { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+    .hc-turkiye-secondary { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* ════════════════════════════
+   SPOR
+════════════════════════════ */
+.hc-section--spor .hc-header {
+    margin-bottom: 20px;
+}
+
+.hc-spor-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 28px;
+    align-items: start;
+}
+
+.hc-spor-hero-img-wrap {
+    aspect-ratio: 16/9;
+    margin-bottom: 12px;
+    position: relative;
+}
+.hc-spor-hero-img {
+    filter: grayscale(20%);
+}
+.hc-spor-hero:hover .hc-spor-hero-img { filter: grayscale(0); }
+
+.hc-spor-hero-kicker {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    background: var(--blue);
+    color: #fff;
+    padding: 3px 8px;
+}
+
+.hc-spor-hero-body {}
+
+.hc-spor-sidebar {
+    border-left: 1px solid var(--rule);
+    padding-left: 28px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hc-spor-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 0;
+}
+.hc-spor-item--bordered {
+    border-bottom: 1px solid var(--rule);
+}
+
+.hc-spor-item-body { flex: 1; }
+
+.hc-spor-item-img-wrap {
+    width: 80px;
+    height: 60px;
+    flex-shrink: 0;
+}
+.hc-spor-item-img { filter: grayscale(30%); }
+.hc-spor-item:hover .hc-spor-item-img { filter: grayscale(0); transform: none; }
+
+@media (max-width: 900px) {
+    .hc-spor-grid { grid-template-columns: 1fr; }
+    .hc-spor-sidebar { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 4px; }
+}
+
+
+/* ════════════════════════════
+   TARİH
+════════════════════════════ */
+.hc-tarih-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.hc-tarih-featured-img-wrap {
+    aspect-ratio: 4/3;
+    margin-bottom: 10px;
+}
+.hc-tarih-featured-img { filter: sepia(15%); }
+.hc-tarih-featured:hover .hc-tarih-featured-img { filter: sepia(0); }
+
+.hc-tarih-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    align-content: start;
+}
+
+.hc-tarih-card { display: flex; flex-direction: column; gap: 6px; }
+
+.hc-tarih-card-img-wrap {
+    aspect-ratio: 3/2;
+    margin-bottom: 2px;
+}
+.hc-tarih-card-img { filter: sepia(10%); }
+.hc-tarih-card:hover .hc-tarih-card-img { filter: sepia(0); }
+
+@media (max-width: 900px) {
+    .hc-tarih-grid { grid-template-columns: 1fr; }
+    .hc-tarih-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+/* ════════════════════════════
+   YAZILIM
+════════════════════════════ */
+.hc-yazilim-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
+.hc-yazilim-card {
+    padding-right: 20px;
+}
+.hc-yazilim-card--bordered {
+    padding-left: 20px;
+    padding-right: 0;
+    border-left: 1px solid var(--rule);
+}
+.hc-yazilim-card:nth-child(2) {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.hc-yazilim-img-wrap {
+    aspect-ratio: 3/2;
+    margin-bottom: 10px;
+}
+
+.hc-yazilim-body { display: flex; flex-direction: column; }
+
+.hc-yazilim-img { filter: grayscale(15%); }
+.hc-yazilim-card:hover .hc-yazilim-img { filter: grayscale(0); }
+
+@media (max-width: 768px) {
+    .hc-yazilim-grid { grid-template-columns: 1fr; gap: 20px; }
+    .hc-yazilim-card, .hc-yazilim-card--bordered { padding: 0; border: none; }
+}
+
+
+/* ════════════════════════════
+   DARK MODE
+════════════════════════════ */
+html.dark .hc-tech-card--bordered,
+html.dark .hc-spor-sidebar,
+html.dark .hc-spor-item--bordered,
+html.dark .hc-yazilim-card--bordered,
+html.dark .hc-turkiye-secondary,
+html.dark .hc-tarih-cards {
+    border-color: var(--rule);
+}
