@@ -1,0 +1,13 @@
+@model BlogProject.Areas.Admin.Models.RoleViewModel
+
+@{
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<form method="post" class="form-control">
+    @Html.AntiForgeryToken()
+    <label>Role Adı</label>
+    <input type="text" asp-for="Name" class="form-control"/>
+    <br/>
+    <button type="submit" class="btn btn-primary">Oluştur</button>
+</form>

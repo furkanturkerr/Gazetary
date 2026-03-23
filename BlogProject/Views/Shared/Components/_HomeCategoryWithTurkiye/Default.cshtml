@@ -2,41 +2,41 @@
 
 <section class="hc-section">
     <div class="hc-header">
-        <h2 class="hc-title">Türkiye</h2>
+        <h2 class="hc-title">Son Dakika</h2>
         <a href="/turkiye" class="hc-more">Tümünü Görüntüle &rsaquo;</a>
     </div>
 
-    <div class="hc-turkiye-grid">
-        @if (Model.Any())
+    <div class="hc-tech-grid">
+        @for (int i = 0; i < Model.Count && i < 3; i++)
         {
-            var featured = Model[0];
-            <a href="/turkiye/@featured.Slug" class="hc-turkiye-featured">
-                <div class="hc-turkiye-featured-img-wrap">
-                    <img src="@featured.ImageUrl" alt="@featured.Title" class="hc-turkiye-featured-img" />
+            <a href="/turkiye/@Model[i].Slug" class="hc-tech-card @(i > 0 ? "hc-tech-card--bordered" : "")">
+                <div class="hc-tech-img-wrap">
+                    <img src="@Model[i].ImageUrl" alt="@Model[i].Title" class="hc-tech-img" />
                 </div>
-                <div class="hc-turkiye-featured-body">
-                    <span class="hc-kicker">@featured.Category.CategoryName</span>
-                    <h3 class="hc-hed-lg">@featured.Title</h3>
-                    <p class="hc-summary hc-summary--feature">@featured.Description</p>
-                    <span class="hc-byline">@featured.CreatedDate.ToString("dd MMM yyyy")</span>
+                <div class="hc-tech-body">
+                    <span class="hc-kicker">@Model[i].Category.CategoryName</span>
+                    <h3 class="hc-hed-sm">@Model[i].Title</h3>
+                    <p class="hc-summary">@Model[i].Description</p>
+                    <span class="hc-byline">@Model[i].CreatedDate.ToString("dd MMM yyyy")</span>
                 </div>
             </a>
-
-            <div class="hc-turkiye-secondary">
-                @for (int i = 1; i < Model.Count && i < 7; i++)
-                {
-                    <a href="/turkiye/@Model[i].Slug" class="hc-turkiye-card">
-                        <div class="hc-turkiye-card-img-wrap">
-                            <img src="@Model[i].ImageUrl" alt="@Model[i].Title" class="hc-turkiye-card-img" />
-                        </div>
-                        <div class="hc-turkiye-card-body">
-                            <span class="hc-kicker">@Model[i].Category.CategoryName</span>
-                            <h4 class="hc-hed-xs">@Model[i].Title</h4>
-                            <span class="hc-byline">@Model[i].CreatedDate.ToString("dd MMM yyyy")</span>
-                        </div>
-                    </a>
-                }
-            </div>
         }
     </div>
+
+    @if (Model.Count > 3)
+    {
+        <div class="hc-tech-feature">
+            <a href="/teknoloji/@Model[3].Slug" class="hc-feature-link">
+                <div class="hc-feature-img-wrap">
+                    <img src="@Model[3].ImageUrl" alt="@Model[3].Title" class="hc-feature-img" />
+                </div>
+                <div class="hc-feature-body">
+                    <span class="hc-kicker">@Model[3].Category.CategoryName</span>
+                    <h3 class="hc-hed-lg">@Model[3].Title</h3>
+                    <p class="hc-summary hc-summary--feature">@Model[3].Description</p>
+                    <span class="hc-byline">@Model[3].CreatedDate.ToString("dd MMM yyyy")</span>
+                </div>
+            </a>
+        </div>
+    }
 </section>

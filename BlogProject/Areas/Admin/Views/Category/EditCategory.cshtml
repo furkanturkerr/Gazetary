@@ -11,6 +11,7 @@
             <div class="card-body">
                 <div>
                     <form method="post">
+                        @Html.AntiForgeryToken()
                         <input type="hidden" asp-for="CategoryId"/>
                         <label class="form-label">Kategori Adı</label>
                         <input asp-for="CategoryName" type="text" class="form-control"/>

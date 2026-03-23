@@ -20,8 +20,23 @@ public class CommentLikeManager : ICommentLikeService
     public void Insert(CommentLike like)
         => _commentLikeDal.Insert(like);
 
+    public void Update(CommentLike t)
+    {
+        throw new NotImplementedException();
+    }
+
     public void Delete(CommentLike like)
         => _commentLikeDal.Delete(like);
+
+    public List<CommentLike> GetAll()
+    {
+        return _commentLikeDal.GetAll();
+    }
+
+    public CommentLike GetById(int id)
+    {
+        throw new NotImplementedException();
+    }
 
     public int GetLikeCount(int commentId)
         => _commentLikeDal.GetAll()

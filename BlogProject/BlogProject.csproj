@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="MailKit" Version="4.15.1" />
       <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.9" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.23" />
@@ -31,7 +32,6 @@
 
     <ItemGroup>
       <Folder Include="Areas\Admin\Data\" />
-      <Folder Include="Areas\Admin\Models\" />
       <Folder Include="Areas\Admin\Pages\" />
       <Folder Include="Pages\" />
       <Folder Include="Post\" />

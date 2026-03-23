@@ -1,0 +1,112 @@
+@model BlogProject.Areas.Admin.Models.RegisterViewModel
+
+@{
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <h4 class="fw-bold mb-0"><span class="text-muted fw-light">Kullanıcılar / </span>Admin Oluştur</h4>
+    <a href="/Admin/Account/Users" class="btn btn-outline-secondary btn-sm">
+        <i class="bx bx-arrow-back me-1"></i> Listeye Dön
+    </a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-xl-5 col-lg-6 col-md-8">
+        <div class="card">
+
+            <div class="card-body p-5">
+
+                <div class="text-center mb-5">
+                    <div class="avatar avatar-lg mb-3 mx-auto" style="width:64px;height:64px;background:#f0f4ff;border-radius:50%;display:flex;align-items:center;justify-content:center">
+                        <i class="bx bx-user-plus text-primary" style="font-size:28px"></i>
+                    </div>
+                    <h5 class="fw-bold mb-1">Yeni Admin Oluştur</h5>
+                    <p class="text-muted small mb-0">Oluşturulan kullanıcı Admin rolüne atanacak.</p>
+                </div>
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger d-flex gap-2 align-items-center mb-4 py-2">
+                        <i class="bx bx-error-circle"></i>
+                        <span class="small">@TempData["Error"]</span>
+                    </div>
+                }
+
+                <form method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold">Ad Soyad</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bx bx-user"></i></span>
+                            <input asp-for="NameSurname"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Ad Soyad" />
+                        </div>
+                        <span asp-validation-for="NameSurname" class="text-danger" style="font-size:11px"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold">E-posta</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                            <input asp-for="Email"
+                                   type="email"
+                                   class="form-control"
+                                   placeholder="ornek@gazetary.com" />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger" style="font-size:11px"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold">Şifre</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bx bx-lock"></i></span>
+                            <input asp-for="Password"
+                                   id="passwordInput"
+                                   type="password"
+                                   class="form-control"
+                                   placeholder="En az 6 karakter" />
+                            <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">
+                                <i class="bx bx-show" id="eyeIcon"></i>
+                            </button>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger" style="font-size:11px"></span>
+                    </div>
+
+                    <div class="alert alert-primary d-flex align-items-center gap-2 py-2 mb-4">
+                        <i class="bx bx-shield-check"></i>
+                        <span class="small">Bu kullanıcı otomatik olarak <strong>Admin</strong> rolüne atanacak.</span>
+                    </div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger small mb-3" })
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bx bx-user-plus me-1"></i> Kullanıcı Oluştur
+                        </button>
+                        <a href="/Admin/Account/Users" class="btn btn-outline-secondary">
+                            İptal
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePassword() {
+        const input = document.getElementById('passwordInput');
+        const icon  = document.getElementById('eyeIcon');
+        if (input.type === 'password') {
+            input.type    = 'text';
+            icon.className = 'bx bx-hide';
+        } else {
+            input.type    = 'password';
+            icon.className = 'bx bx-show';
+        }
+    }
+</script>

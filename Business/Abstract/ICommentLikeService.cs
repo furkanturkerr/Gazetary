@@ -2,7 +2,7 @@ using Entities.Concrate;
 
 namespace Business.Abstract;
 
-public interface ICommentLikeService
+public interface ICommentLikeService : IGenericService<CommentLike>
 {
     CommentLike? GetByCommentAndUser(int commentId, string userId);
     void Insert(CommentLike like);

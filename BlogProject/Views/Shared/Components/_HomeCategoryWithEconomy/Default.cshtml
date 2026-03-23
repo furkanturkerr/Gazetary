@@ -1,0 +1,45 @@
+@model List<Entities.Concrate.BlogPost>
+
+<section class="hc-section">
+    <div class="hc-header">
+        <h2 class="hc-title">Ekonomi</h2>
+        <a href="/ekonomi" class="hc-more">Tümünü Görüntüle &rsaquo;</a>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="hc-ekonomi-grid">
+
+            <a href="/ekonomi/@Model[0].Slug" class="hc-ekonomi-featured">
+                <div class="hc-ekonomi-featured-img">
+                    <img src="@Model[0].ImageUrl" alt="@Model[0].Title" />
+                </div>
+                <div class="hc-ekonomi-featured-body">
+                    <span class="hc-kicker">@Model[0].Category.CategoryName</span>
+                    <h3 class="hc-hed-xl">@Model[0].Title</h3>
+                    <p class="hc-summary hc-summary--feature">@Model[0].Description</p>
+                    <span class="hc-byline">@Model[0].CreatedDate.ToString("dd MMM yyyy")</span>
+                </div>
+            </a>
+
+            <div class="hc-ekonomi-sidebar">
+                @for (int i = 1; i < Model.Count && i < 5; i++)
+                {
+                    <a href="/ekonomi/@Model[i].Slug" class="hc-ekonomi-card @(i == 4 ? "hc-ekonomi-card--last" : "")">
+                        <div class="hc-ekonomi-card-img">
+                            <img src="@Model[i].ImageUrl" alt="@Model[i].Title" />
+                        </div>
+                        <div class="hc-ekonomi-card-body">
+                            <span class="hc-kicker">@Model[i].Category.CategoryName</span>
+                            <h4 class="hc-hed-sm">@Model[i].Title</h4>
+                            <span class="hc-byline">@Model[i].CreatedDate.ToString("dd MMM yyyy")</span>
+                        </div>
+                    </a>
+                }
+            </div>
+
+        </div>
+    }
+</section>
+
+

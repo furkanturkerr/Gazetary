@@ -1,69 +1,208 @@
-@model List<Entities.Concrate.BlogPost>
+@model BlogProject.Areas.Admin.Models.AdminBlogListViewModel
 
 @{
     Layout = "~/Views/Admin/Index.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-6">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blog/</span> Blog Yazıları</h4>
-    </div>
-    <div class="col-md-6">
-        <a href="/Admin/Blog/CreateBlog" class="btn btn-primary float-end">Yeni Blog Ekle</a>
-    </div>
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <h4 class="fw-bold mb-0"><span class="text-muted fw-light">Blog / </span>Blog Yazıları</h4>
+    <a href="/Admin/Blog/CreateBlog" class="btn btn-primary">
+        <i class="bx bx-plus me-1"></i> Yeni Blog Ekle
+    </a>
 </div>
+
 <div class="card">
+    <div class="card-header d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 py-3">
+        <div class="d-flex gap-2 flex-wrap">
+            <a href="?status=all&page=1&q=@Model.SearchQuery&category=@Model.CategoryFilter"
+               class="btn btn-sm @(Model.StatusFilter == "all" ? "btn-dark" : "btn-outline-secondary")">
+                Tümü <span class="badge @(Model.StatusFilter == "all" ? "bg-secondary" : "bg-light text-dark") ms-1">@Model.TotalCount</span>
+            </a>
+            <a href="?status=published&page=1&q=@Model.SearchQuery&category=@Model.CategoryFilter"
+               class="btn btn-sm @(Model.StatusFilter == "published" ? "btn-dark" : "btn-outline-secondary")">
+                Yayında <span class="badge @(Model.StatusFilter == "published" ? "bg-secondary" : "bg-light text-dark") ms-1">@Model.PublishedCount</span>
+            </a>
+            <a href="?status=draft&page=1&q=@Model.SearchQuery&category=@Model.CategoryFilter"
+               class="btn btn-sm @(Model.StatusFilter == "draft" ? "btn-dark" : "btn-outline-secondary")">
+                Taslak <span class="badge @(Model.StatusFilter == "draft" ? "bg-secondary" : "bg-light text-dark") ms-1">@Model.DraftCount</span>
+            </a>
+        </div>
+
+        <form method="get" class="d-flex gap-2 flex-wrap">
+            <input type="hidden" name="status" value="@Model.StatusFilter" />
+            <input type="hidden" name="page" value="1" />
+            <select name="category" class="form-select form-select-sm" style="width:160px" onchange="this.form.submit()">
+                @if (Model.CategoryFilter == 0)
+                {
+                    <option value="0" selected>Tüm Kategoriler</option>
+                }
+                else
+                {
+                    <option value="0">Tüm Kategoriler</option>
+                }
+                @foreach (var cat in Model.Categories)
+                {
+                    if (Model.CategoryFilter == cat.CategoryId)
+                    {
+                        <option value="@cat.CategoryId" selected>@cat.CategoryName</option>
+                    }
+                    else
+                    {
+                        <option value="@cat.CategoryId">@cat.CategoryName</option>
+                    }
+                }
+            </select>
+            <div class="input-group input-group-sm" style="width:240px">
+                <input type="text"
+                       name="q"
+                       value="@Model.SearchQuery"
+                       placeholder="Başlık ara..."
+                       class="form-control" />
+                <button type="submit" class="btn btn-outline-secondary">
+                    <i class="bx bx-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
     <div class="table-responsive text-nowrap">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Başlık</th>
-                <th>Kategori</th>
-                <th>Yayınlanma Tarihi</th>
-                <th>Durum</th>
-                <th style="width: 180px;">İşlemler</th>
-            </tr>
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th style="width:40%">Başlık</th>
+                    <th>Kategori</th>
+                    <th>Tarih</th>
+                    <th>Görüntülenme</th>
+                    <th>Durum</th>
+                    <th style="width:140px" class="text-end">İşlemler</th>
+                </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.Title</strong></td>
-                    <td>@item.Category.CategoryName</td>
-                    <td>@item.CreatedDate.ToString("dd-MM-yyyy") - Saat: @item.CreatedDate.ToString("T")</td>
-                    <td>
-                        @if (@item.Status == true)
-                        {
-                            <span class="badge bg-label-success me-1">Yayında</span>
-                        }
-                        else
-                        {
-                            <span class="badge bg-label-warning me-1">Taslak</span>
-                        }
-                    </td>
-                    <td>
-                        <a href="~/Admin/Blog/EditBlog/@item.BlogPostId" class="btn btn-sm btn-outline-primary me-1" title="Güncelle">
-                            <i class="bx bx-edit-alt"></i>
-                        </a>
-                        <a href="~/Admin/Blog/Delete/@item.BlogPostId" class="btn btn-sm btn-outline-danger me-1" title="Sil">
-                            <i class="bx bx-trash"></i>
-                        </a>
-                        @if (@item.Status == true)
-                        {
-                            <a href="~/Admin/Blog/ChangeStatus/@item.BlogPostId" class="btn btn-sm btn-outline-secondary" title="Taslağa Al">
-                                <i class="bx bx-archive"></i>
-                            </a>
-                        }
-                        else
-                        {
-                            <a href="/Admin/Blog/ChangeStatus/@item.BlogPostId" class="btn btn-sm btn-outline-success" title="Yayınla">
-                                <i class="bx bx-check-circle"></i>
-                            </a>
-                        }
-                    </td>
-                </tr>
-            }
+                @foreach (var item in Model.Posts)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-3">
+                                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                {
+                                    <img src="@item.ImageUrl"
+                                         alt="@item.Title"
+                                         style="width:40px;height:40px;object-fit:cover;flex-shrink:0" />
+                                }
+                                <a href="/Admin/Blog/EditBlog/@item.BlogPostId"
+                                   class="text-body fw-semibold text-truncate d-block"
+                                   style="max-width:320px;text-decoration:none">
+                                    @item.Title
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge bg-label-primary">@item.Category.CategoryName</span>
+                        </td>
+                        <td>
+                            <span class="d-block">@item.CreatedDate.ToString("dd MMM yyyy")</span>
+                            <small class="text-muted">@item.CreatedDate.ToString("HH:mm")</small>
+                        </td>
+                        <td>
+                            <span class="text-muted"><i class="bx bx-show me-1"></i>@item.ViewCount</span>
+                        </td>
+                        <td>
+                            @if (item.Status)
+                            {
+                                <span class="badge bg-label-success">Yayında</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-label-warning">Taslak</span>
+                            }
+                        </td>
+                        <td class="text-end">
+                            <div class="d-flex justify-content-end gap-1">
+                                <a href="/@item.Category.CategorySlug/@item.Slug"
+                                   target="_blank"
+                                   class="btn btn-sm btn-icon btn-outline-secondary"
+                                   title="Görüntüle">
+                                    <i class="bx bx-link-external"></i>
+                                </a>
+                                <a href="/Admin/Blog/EditBlog/@item.BlogPostId"
+                                   class="btn btn-sm btn-icon btn-outline-primary"
+                                   title="Düzenle">
+                                    <i class="bx bx-edit-alt"></i>
+                                </a>
+                                @if (item.Status)
+                                {
+                                    <a href="/Admin/Blog/ChangeStatus/@item.BlogPostId"
+                                       class="btn btn-sm btn-icon btn-outline-warning"
+                                       title="Taslağa Al">
+                                        <i class="bx bx-archive"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Admin/Blog/ChangeStatus/@item.BlogPostId"
+                                       class="btn btn-sm btn-icon btn-outline-success"
+                                       title="Yayınla">
+                                        <i class="bx bx-check-circle"></i>
+                                    </a>
+                                }
+                                <form asp-action="Delete" asp-route-id="@item.BlogPostId" method="post" style="display:inline">
+                                    @Html.AntiForgeryToken()
+                                    <button
+                                        type="submit"
+                                        class="btn btn-sm btn-icon btn-outline-danger"
+                                        title="Sil"
+                                        onclick="return confirm('Bu yazıyı silmek istediğinizden emin misiniz?')">
+                                        <i class="bx bx-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+                @if (!Model.Posts.Any())
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-5">
+                            <i class="bx bx-file fs-2 d-block mb-2 opacity-50"></i>
+                            Hiç yazı bulunamadı.
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
+
+    @if (Model.TotalPages > 1)
+    {
+        <div class="card-footer d-flex align-items-center justify-content-between py-3">
+            <small class="text-muted">
+                Toplam <strong>@Model.TotalCount</strong> yazıdan
+                <strong>@((Model.CurrentPage - 1) * Model.PageSize + 1)</strong>–<strong>@(Math.Min(Model.CurrentPage * Model.PageSize, Model.TotalCount))</strong> gösteriliyor
+            </small>
+
+            <nav>
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                        <a class="page-link" href="?page=@(Model.CurrentPage - 1)&status=@Model.StatusFilter&q=@Model.SearchQuery&category=@Model.CategoryFilter">
+                            <i class="bx bx-chevron-left"></i>
+                        </a>
+                    </li>
+
+                    @for (int p = Math.Max(1, Model.CurrentPage - 2); p <= Math.Min(Model.TotalPages, Model.CurrentPage + 2); p++)
+                    {
+                        <li class="page-item @(p == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="?page=@p&status=@Model.StatusFilter&q=@Model.SearchQuery&category=@Model.CategoryFilter">@p</a>
+                        </li>
+                    }
+
+                    <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                        <a class="page-link" href="?page=@(Model.CurrentPage + 1)&status=@Model.StatusFilter&q=@Model.SearchQuery&category=@Model.CategoryFilter">
+                            <i class="bx bx-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }
 </div>

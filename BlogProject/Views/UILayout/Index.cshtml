@@ -12,11 +12,14 @@
 <div class="w-full max-w-[1120px] bg-white dark:bg-[#151a23] min-h-screen shadow-sm border-x border-neutral-200 dark:border-neutral-800 flex flex-col mx-auto">
     @await Component.InvokeAsync("_UIHeaderComponentPartial")
     <main class="flex-1 flex flex-col md:flex-row px-8 py-8 gap-10">
-        @RenderBody()
-        @await Component.InvokeAsync("_UINavbarComponentPartial")
+        <div class="flex-1 min-w-0">
+            @RenderBody()
+        </div>
+        <div class="w-full md:w-[240px] shrink-0">
+            @await Component.InvokeAsync("_UINavbarComponentPartial")
+        </div>
     </main>
     @await Component.InvokeAsync("_UIFooterComponentPartial")
 </div>
-
 </body>
 </html>

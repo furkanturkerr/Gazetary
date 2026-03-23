@@ -248,6 +248,81 @@
     .hc-feature-img-wrap { width: 100%; }
 }
 
+ .hc-ekonomi-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 32px;
+     align-items: start;
+ }
+
+.hc-ekonomi-featured {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.hc-ekonomi-featured-img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+.hc-ekonomi-featured-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+.hc-ekonomi-featured:hover .hc-ekonomi-featured-img img { transform: scale(1.03); }
+.hc-ekonomi-featured:hover .hc-hed-xl { text-decoration: underline; text-decoration-thickness: 1px; }
+
+.hc-hed-xl {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    line-height: 1.1;
+    color: var(--ink, #121212);
+    margin-bottom: 10px;
+}
+
+.hc-ekonomi-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-content: start;
+}
+
+.hc-ekonomi-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.hc-ekonomi-card-img {
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+.hc-ekonomi-card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+.hc-ekonomi-card:hover .hc-ekonomi-card-img img { transform: scale(1.03); }
+.hc-ekonomi-card:hover .hc-hed-sm { text-decoration: underline; text-decoration-thickness: 1px; }
+
+.hc-ekonomi-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+@media (max-width: 900px) {
+    .hc-ekonomi-grid { grid-template-columns: 1fr; gap: 24px; }
+    .hc-ekonomi-sidebar { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+    .hc-ekonomi-sidebar { grid-template-columns: 1fr; }
+}
+
 
 /* ════════════════════════════
    TÜRKİYE

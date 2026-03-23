@@ -12,50 +12,20 @@
         <h2 class="text-5xl font-black text-[#111318] dark:text-white leading-[1.1] tracking-tight mb-4">
             @Model.BlogPost.Title
         </h2>
-        <div class="flex items-center justify-between py-4 border-y border-neutral-100 dark:border-neutral-800">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-neutral-200 overflow-hidden">
-                    <img alt="Author" class="w-full h-full object-cover"
-                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoJ4_wEi2CNQrxaT0ku90ZuCrpxUkADERqCT2i655wCzFcnAZeKyiaoijqWkitzrEcGCSU27bXMKGSAtj9JuXrQb7PTkcEuD4PPFShkNrWeYk34MWHJt8xZXB9eV4cgDw-anEJOCTaP0HEJGXzKa_GQYmkRkMDsjsfNHQsBei_cSxCj81kLSH09dLg4BokjXWYLf_QwV55mpDakvKz29G2wP9asIiayw0EXiJIKjT-E5YONhMmp-8xRnl8mvfpzFjMgAPVlmXj9Co"/>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-sans font-bold text-sm text-[#111318] dark:text-white uppercase">Ahmet Yılmaz</span>
-                    <span class="font-sans text-xs text-neutral-500 dark:text-neutral-400">24 Ekim 2023, 14:30</span>
-                </div>
-            </div>
-            <div class="flex gap-4 text-neutral-400">
-                <span class="material-symbols-outlined cursor-pointer hover:text-primary">share</span>
-                <span class="material-symbols-outlined cursor-pointer hover:text-primary">bookmark</span>
-                <span class="material-symbols-outlined cursor-pointer hover:text-primary">print</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="w-full h-[90px] bg-neutral-50 dark:bg-neutral-800 flex items-center justify-center border border-neutral-100 dark:border-neutral-700 mb-8 relative">
-        <span class="absolute top-1 right-2 text-[9px] text-neutral-400 font-sans">REKLAM</span>
-        <p class="text-xs text-neutral-400 uppercase tracking-widest font-sans">728 x 90 Banner Alanı</p>
     </div>
 
     <figure class="mb-8">
         <div class="w-full aspect-video overflow-hidden rounded bg-neutral-100">
-            <img alt="Turkish Parliament" class="w-full h-full object-cover"
-                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPDr6f_4MKYhjvD9odEoRqQgBliL9a6Lxy463dmyqd3nxGUYCQOB889Loq7DqP37cNi99vr5A3nyyzUDq3xAP0tjWRVVdNuj4b4lo2uQw7Lo3anvT-xr8IltSj_tV0RC2Ld-syP31d5KprLUSfD1eWc8EleKehSuJG2niuAS3TFIgt9XPNT-SgmxaFsOfuDSP3gRcZ2Zj-LSCW6okzCp08gbEOqtTHP2CQobZxaaR1PNm_Ig9WSc3OerqYI1qAYC-tqVqcuZLXMpk"/>
+            <img alt="@Model.BlogPost.Title" class="w-full h-full object-cover"
+                 src="@Model.BlogPost.ImageUrl"/>
         </div>
         <figcaption class="mt-3 text-sm text-neutral-500 font-sans border-l-2 border-neutral-200 pl-3 italic">
-            Ankara'da Türkiye Büyük Millet Meclisi önünde bugün yoğun güvenlik önlemleri alındı. Fotoğraf: AA
+            @Model.BlogPost.ImageDescription
         </figcaption>
     </figure>
 
     <div class="article-content font-sans text-lg">
         <p>@Html.Raw(Model.BlogPost.Content)</p>
-    </div>
-
-    <div class="flex flex-wrap gap-2 py-8 border-b border-neutral-200 dark:border-neutral-800">
-        <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Etiketler:</span>
-        <a class="text-xs font-bold uppercase border border-neutral-200 px-2 py-1 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" href="#">Anayasa</a>
-        <a class="text-xs font-bold uppercase border border-neutral-200 px-2 py-1 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" href="#">TBMM</a>
-        <a class="text-xs font-bold uppercase border border-neutral-200 px-2 py-1 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" href="#">Siyaset</a>
-        <a class="text-xs font-bold uppercase border border-neutral-200 px-2 py-1 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" href="#">Ankara</a>
     </div>
 
     <section class="mt-12 mb-20 font-sans">
@@ -92,12 +62,11 @@
             </form>
         </div>
 
-        <!-- YORUM LİSTESİ -->
         <div class="flex flex-col gap-8" id="commentList">
-            @foreach (var comment in Model.Comments.Where(x => x.ParentCommentId == null).OrderByDescending(x => x.CreatedDate))
+            @foreach (var comment in Model.Comments.OrderByDescending(x => x.CreatedDate))
             {
                 var likeCount = Model.LikeCounts.GetValueOrDefault(comment.CommentId, 0);
-                var isLiked = Model.LikedCommentIds.Contains(comment.CommentId);
+                var isLiked   = Model.LikedCommentIds.Contains(comment.CommentId);
 
                 <div class="pb-8 border-b border-neutral-200 dark:border-neutral-800" id="comment-@comment.CommentId">
                     <div class="flex justify-between items-center mb-2">
@@ -116,7 +85,6 @@
 
                     <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-3">@comment.Content</p>
 
-                    <!-- BEĞENİ VE YANITLA -->
                     <div class="flex items-center gap-4 mt-2">
                         <button onclick="toggleLike(@comment.CommentId, this)"
                                 class="flex items-center gap-1 text-xs font-bold uppercase transition-colors @(isLiked ? "text-primary" : "text-neutral-400 hover:text-primary")"
@@ -124,64 +92,6 @@
                             <span class="material-symbols-outlined text-base">thumb_up</span>
                             <span class="like-count">@likeCount</span>
                         </button>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <button onclick="showReplyForm(@comment.CommentId)"
-                                    class="flex items-center gap-1 text-xs font-bold uppercase text-neutral-400 hover:text-primary transition-colors">
-                                <span class="material-symbols-outlined text-base">reply</span>
-                                Yanıtla
-                            </button>
-                        }
-                    </div>
-
-                    <!-- YANITLA FORMU -->
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <div id="replyForm-@comment.CommentId" class="hidden mt-4 ml-4 pl-4 border-l-2 border-neutral-200">
-                            <form onsubmit="submitReply(event, @comment.CommentId)">
-                                <input type="hidden" name="BlogPostId" value="@Model.BlogPost.BlogPostId"/>
-                                <input type="hidden" name="ParentCommentId" value="@comment.CommentId"/>
-                                <textarea name="Content"
-                                          class="w-full h-16 p-3 border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm focus:outline-none focus:border-primary mb-2"
-                                          placeholder="Yanıtınızı yazın..."></textarea>
-                                <div class="flex gap-2 justify-end">
-                                    <button type="button" onclick="hideReplyForm(@comment.CommentId)"
-                                            class="text-xs uppercase font-bold text-neutral-400 hover:text-neutral-600 px-3 py-1">
-                                        İptal
-                                    </button>
-                                    <button type="submit"
-                                            class="bg-[#111318] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest hover:opacity-90">
-                                        Gönder
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    }
-
-                    <!-- YANITLAR -->
-                    @{
-                        var replies = comment.Replies?.OrderByDescending(x => x.CreatedDate).ToList() ?? new();
-                    }
-                    <div class="mt-4 ml-4 pl-4 border-l-2 border-neutral-200 flex-col gap-4 @(replies.Any() ? "flex" : "hidden")" id="replies-@comment.CommentId">
-                        @foreach (var reply in replies)
-                        {
-                            <div class="pb-4 border-b border-neutral-100 dark:border-neutral-800" id="comment-@reply.CommentId">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="font-bold text-xs text-[#111318] dark:text-white uppercase">@reply.Name</span>
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-xs text-neutral-400">@reply.CreatedDate.ToString("dd.MM.yyyy HH:mm")</span>
-                                        @if (User.Identity.IsAuthenticated && reply.AppUserId == currentUserId)
-                                        {
-                                            <button onclick="deleteComment(@reply.CommentId)"
-                                                    class="text-xs text-red-400 hover:text-red-600 uppercase font-bold">
-                                                Sil
-                                            </button>
-                                        }
-                                    </div>
-                                </div>
-                                <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">@reply.Content</p>
-                            </div>
-                        }
                     </div>
                 </div>
             }
@@ -192,9 +102,8 @@
 
 <script>
     const currentUserId = '@currentUserId';
-    const blogPostId = '@Model.BlogPost.BlogPostId';
+    const blogPostId    = '@Model.BlogPost.BlogPostId';
 
-    // Beğeni
     function toggleLike(commentId, btn) {
         fetch('/Comment/ToggleLike', {
             method: 'POST',
@@ -217,59 +126,6 @@
         });
     }
 
-    // Yanıt formu
-    function showReplyForm(commentId) {
-        document.getElementById(`replyForm-${commentId}`).classList.remove('hidden');
-    }
-    function hideReplyForm(commentId) {
-        document.getElementById(`replyForm-${commentId}`).classList.add('hidden');
-    }
-
-    // Yanıt gönder
-    function submitReply(e, parentCommentId) {
-        e.preventDefault();
-        const form = e.target;
-        const textarea = form.querySelector('textarea[name="Content"]');
-        if (!textarea.value.trim()) { textarea.focus(); return; }
-
-        const formData = new FormData(form);
-
-        fetch('/Comment/AddComment', {
-            method: 'POST',
-            body: formData
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                const repliesContainer = document.getElementById(`replies-${parentCommentId}`);
-                repliesContainer.classList.remove('hidden');
-                repliesContainer.classList.add('flex');
-
-                const deleteBtn = data.userId === currentUserId
-                    ? `<button onclick="deleteComment(${data.commentId})" class="text-xs text-red-400 hover:text-red-600 uppercase font-bold">Sil</button>`
-                    : '';
-
-                const newReply = `
-                    <div class="pb-4 border-b border-neutral-100 dark:border-neutral-800" id="comment-${data.commentId}">
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="font-bold text-xs text-[#111318] dark:text-white uppercase">${data.name}</span>
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs text-neutral-400">${data.date}</span>
-                                ${deleteBtn}
-                            </div>
-                        </div>
-                        <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">${data.content}</p>
-                    </div>`;
-
-                repliesContainer.insertAdjacentHTML('afterbegin', newReply);
-                hideReplyForm(parentCommentId);
-                form.reset();
-            }
-        })
-        .catch(() => alert('Bir hata oluştu.'));
-    }
-
-    // Yorum sil
     function deleteComment(commentId) {
         if (!confirm('Yorumu silmek istediğinize emin misiniz?')) return;
 
@@ -291,27 +147,30 @@
     }
 
     function updateCommentCount(delta) {
-        const el = document.getElementById('commentCount');
+        const el      = document.getElementById('commentCount');
         const current = parseInt(el.textContent.replace(/\D/g, '')) || 0;
         el.textContent = `(${current + delta})`;
     }
 
-    // Ana yorum gönder
     document.getElementById("commentForm").addEventListener("submit", function (e) {
         e.preventDefault();
-        const form = this;
-        const textarea = form.querySelector('textarea[name="Content"]');
+        const form      = this;
+        const textarea  = form.querySelector('textarea[name="Content"]');
         if (!textarea.value.trim()) { textarea.focus(); return; }
 
         const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
+        submitBtn.disabled    = true;
         submitBtn.textContent = 'Gönderiliyor...';
 
         fetch(form.action, { method: "POST", body: new FormData(form) })
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                const deleteBtn = `<button onclick="deleteComment(${data.commentId})" class="text-xs text-red-400 hover:text-red-600 uppercase font-bold transition-colors">Sil</button>`;
+                const deleteBtn = `
+                    <button onclick="deleteComment(${data.commentId})"
+                            class="text-xs text-red-400 hover:text-red-600 uppercase font-bold transition-colors">
+                        Sil
+                    </button>`;
 
                 const newComment = `
                     <div class="pb-8 border-b border-neutral-200 dark:border-neutral-800" id="comment-${data.commentId}">
@@ -330,24 +189,7 @@
                                 <span class="material-symbols-outlined text-base">thumb_up</span>
                                 <span class="like-count">0</span>
                             </button>
-                            <button onclick="showReplyForm(${data.commentId})"
-                                    class="flex items-center gap-1 text-xs font-bold uppercase text-neutral-400 hover:text-primary transition-colors">
-                                <span class="material-symbols-outlined text-base">reply</span>
-                                Yanıtla
-                            </button>
                         </div>
-                        <div id="replyForm-${data.commentId}" class="hidden mt-4 ml-4 pl-4 border-l-2 border-neutral-200">
-                            <form onsubmit="submitReply(event, ${data.commentId})">
-                                <input type="hidden" name="BlogPostId" value="${blogPostId}"/>
-                                <input type="hidden" name="ParentCommentId" value="${data.commentId}"/>
-                                <textarea name="Content" class="w-full h-16 p-3 border border-neutral-200 bg-white text-sm focus:outline-none focus:border-primary mb-2" placeholder="Yanıtınızı yazın..."></textarea>
-                                <div class="flex gap-2 justify-end">
-                                    <button type="button" onclick="hideReplyForm(${data.commentId})" class="text-xs uppercase font-bold text-neutral-400 px-3 py-1">İptal</button>
-                                    <button type="submit" class="bg-[#111318] text-white px-4 py-1 text-xs font-bold uppercase">Gönder</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div id="replies-${data.commentId}" class="mt-4 ml-4 pl-4 border-l-2 border-neutral-200 flex-col gap-4 hidden"></div>
                     </div>`;
 
                 document.getElementById("commentList").insertAdjacentHTML("afterbegin", newComment);
@@ -359,7 +201,7 @@
         })
         .catch(() => alert('Bir hata oluştu.'))
         .finally(() => {
-            submitBtn.disabled = false;
+            submitBtn.disabled    = false;
             submitBtn.textContent = 'Gönder';
         });
     });

@@ -15,11 +15,13 @@ public class _UIHeaderComponentPartial : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        if (User.Identity.IsAuthenticated)
+        AppUser? user = null;
+
+        if (User?.Identity != null && User.Identity.IsAuthenticated)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            return View(user);
+            user = await _userManager.GetUserAsync(HttpContext.User);
         }
-        return View((AppUser)null); 
+
+        return View(user);
     }
 }

@@ -43,9 +43,16 @@
                         <a href="~/Admin/Category/Editcategory/@item.CategoryId" class="btn btn-sm btn-outline-primary me-1" title="Güncelle">
                             <i class="bx bx-edit-alt"></i>
                         </a>
-                        <a href="~/Admin/Category/DeleteCategory/@item.CategoryId" class="btn btn-sm btn-outline-danger me-1" title="Sil">
-                            <i class="bx bx-trash"></i>
-                        </a>
+                        <form asp-action="DeleteCategory" asp-route-id="@item.CategoryId" method="post" style="display:inline">
+                            @Html.AntiForgeryToken()
+                            <button
+                                type="submit"
+                                class="btn btn-sm btn-icon btn-outline-danger"
+                                title="Sil"
+                                onclick="return confirm('Bu yazıyı silmek istediğinizden emin misiniz?')">
+                                <i class="bx bx-trash"></i>
+                            </button>
+                        </form>
                         @if (@item.IsStatus == true)
                         {
                             <a href="~/Admin/Category/ChangeStatus/@item.CategoryId" class="btn btn-sm btn-outline-secondary" title="Taslağa Al">

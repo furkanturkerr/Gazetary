@@ -6,7 +6,6 @@
 
 <div class="w-full md:w-[760px] flex flex-col gap-10">
 
-    <!-- Başlık -->
     <div class="flex items-center gap-4 border-b border-neutral-300 dark:border-neutral-700 pb-5">
         <h2 class="text-4xl font-black tracking-tight uppercase text-[#111318] dark:text-white">
             Tüm Kategoriler
@@ -14,7 +13,6 @@
         <span class="flex-1 h-px bg-neutral-300 dark:bg-neutral-700"></span>
     </div>
 
-    <!-- Kategori Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
 
         @foreach (var item in Model)
@@ -24,7 +22,6 @@
                asp-route-categorySlug="@item.CategorySlug"
                class="group border border-neutral-200 dark:border-neutral-800 p-6 rounded-lg hover:shadow-lg transition-all duration-300 bg-white dark:bg-[#111318] hover:-translate-y-1">
 
-                <!-- Üst Alan -->
                 <div class="flex items-center justify-between mb-4">
 
                     <span class="text-xs uppercase tracking-widest text-neutral-500">
@@ -37,16 +34,14 @@
 
                 </div>
 
-                <!-- Kategori Adı -->
                 <h3 class="text-2xl font-extrabold text-[#111318] dark:text-white group-hover:text-primary transition-colors">
                     @item.CategoryName
                 </h3>
 
-                <!-- Alt Bilgi -->
                 <div class="mt-4 flex items-center justify-between text-sm text-neutral-500">
 
                     <span>
-                        @item.BlogPosts?.Count() ?? 0 Yazı
+                        @item.BlogPosts?.Count() 0 Yazı
                     </span>
 
                     <span class="text-xs uppercase tracking-wide">

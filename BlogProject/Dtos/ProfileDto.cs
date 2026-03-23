@@ -2,5 +2,8 @@ namespace BlogProject.Dtos;
 
 public class ProfileDto
 {
-    public string NameSurname { get; set; }
+    public string Id { get; set; } = string.Empty;
+    public string NameSurname { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string? AvatarUrl { get; set; }
 }

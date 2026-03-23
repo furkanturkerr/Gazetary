@@ -15,7 +15,7 @@ public class _HomeCategoryWithTurkiye : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var value = await _blogPostService.TGetBlogsWithCategoryByNameAsync("Türkiye");
+        var value = await _blogPostService.TGetBlogsWithCategoryByNameAsync("Son Dakika");
         return View(value);
     }
 }

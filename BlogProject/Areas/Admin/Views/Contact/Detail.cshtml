@@ -1,0 +1,89 @@
+@model Entities.Concrate.Contact
+
+@{
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <h4 class="fw-bold mb-0"><span class="text-muted fw-light">İletişim / </span>Mesaj Detayı</h4>
+    <a href="/Admin/Contact/Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bx bx-arrow-back me-1"></i> Geri Dön
+    </a>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between py-3">
+                <h6 class="mb-0 fw-bold">@Model.Subject</h6>
+                @if (Model.IsRead)
+                {
+                    <span class="badge bg-label-success">Okundu</span>
+                }
+                else
+                {
+                    <span class="badge bg-label-warning">Okunmadı</span>
+                }
+            </div>
+            <div class="card-body">
+                <p class="mb-0" style="white-space:pre-wrap;line-height:1.8">@Model.Message</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center py-3">
+                <small class="text-muted">@Model.CreatedDate.ToString("dd MMMM yyyy, HH:mm")</small>
+                <div class="d-flex gap-2">
+                    @if (!Model.IsRead)
+                    {
+                        <a href="/Admin/Contact/MarkAsRead/@Model.ContactId"
+                           class="btn btn-sm btn-success">
+                            <i class="bx bx-check me-1"></i> Okundu İşaretle
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/Contact/MarkAsUnread/@Model.ContactId"
+                           class="btn btn-sm btn-outline-warning">
+                            <i class="bx bx-undo me-1"></i> Okunmadı İşaretle
+                        </a>
+                    }
+                    <a href="/Admin/Contact/Delete/@Model.ContactId"
+                       class="btn btn-sm btn-outline-danger"
+                       onclick="return confirm('Bu mesajı silmek istediğinizden emin misiniz?')">
+                        <i class="bx bx-trash me-1"></i> Sil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="mb-0 fw-bold">Gönderen Bilgileri</h6>
+            </div>
+            <div class="card-body d-flex flex-column gap-3">
+                <div>
+                    <small class="text-muted d-block text-uppercase fw-bold" style="font-size:10px;letter-spacing:.08em">Ad Soyad</small>
+                    <span class="fw-semibold">@Model.NameSurname</span>
+                </div>
+                <div>
+                    <small class="text-muted d-block text-uppercase fw-bold" style="font-size:10px;letter-spacing:.08em">E-posta</small>
+                    <a href="mailto:@Model.Email" class="text-primary">@Model.Email</a>
+                </div>
+                <div>
+                    <small class="text-muted d-block text-uppercase fw-bold" style="font-size:10px;letter-spacing:.08em">Konu</small>
+                    <span>@Model.Subject</span>
+                </div>
+                <div>
+                    <small class="text-muted d-block text-uppercase fw-bold" style="font-size:10px;letter-spacing:.08em">Tarih</small>
+                    <span>@Model.CreatedDate.ToString("dd MMM yyyy, HH:mm")</span>
+                </div>
+                <div class="pt-2 border-top">
+                    <a href="mailto:@Model.Email?subject=Re: @Model.Subject"
+                       class="btn btn-primary w-100">
+                        <i class="bx bx-reply me-1"></i> E-posta ile Yanıtla
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,11 +2,11 @@ using Business.Abstract;
 using Business.ValidationsRules;
 using Entities.Concrate;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.Areas.Admin.Controllers;
-
-[Area("Admin")]
+[Authorize(Roles = "Admin")][Area("Admin")]
 public class CategoryController : Controller
 {
     private readonly ICategoryService _categoryService;
@@ -30,6 +30,7 @@ public class CategoryController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult CreateCategory(Category category)
     {
         CategoryValidation categoryValidation = new CategoryValidation();
@@ -57,6 +58,7 @@ public class CategoryController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult EditCategory(Category category)
     {
         CategoryValidation categoryValidation = new CategoryValidation();
@@ -76,6 +78,8 @@ public class CategoryController : Controller
         return View(category);
     }
 
+    [ValidateAntiForgeryToken]
+    [HttpPost]
     public IActionResult DeleteCategory(int id)
     {
         var value = _categoryService.GetById(id);

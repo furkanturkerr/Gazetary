@@ -1,0 +1,88 @@
+@model List<Entities.Concrate.BlogPost>
+
+@{
+    Layout = "~/Views/UILayout/Home.cshtml";
+    var q     = ViewBag.Query as string ?? "";
+    var count = (int)(ViewBag.Count ?? 0);
+}
+
+<div class="max-w-[760px] mx-auto py-10 px-4">
+
+    <div class="border-b-2 border-black dark:border-white pb-4 mb-8">
+        <p class="text-[10px] font-sans font-bold uppercase tracking-widest text-primary mb-1">Arama</p>
+        @if (!string.IsNullOrEmpty(q))
+        {
+            <h1 class="text-3xl font-display font-bold text-[#111318] dark:text-white">
+                <span class="text-primary">@count</span> sonuç &mdash; @q
+            </h1>
+        }
+        else
+        {
+            <h1 class="text-3xl font-display font-bold text-[#111318] dark:text-white">Arama</h1>
+        }
+    </div>
+
+    <form method="get" action="/arama" class="mb-10">
+        <div class="flex gap-0">
+            <input type="text"
+                   name="q"
+                   value="@q"
+                   placeholder="Haber, yazar veya kategori ara..."
+                   autofocus
+                   class="flex-1 px-4 py-3 border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-900 text-sm font-sans focus:outline-none focus:border-primary text-[#111318] dark:text-white" />
+            <button type="submit"
+                    class="px-5 py-3 bg-primary text-white font-sans font-bold text-xs uppercase tracking-widest hover:bg-blue-700 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-[18px]">search</span>
+                Ara
+            </button>
+        </div>
+    </form>
+
+    @if (!string.IsNullOrEmpty(q) && !Model.Any())
+    {
+        <div class="py-16 text-center border border-dashed border-neutral-200 dark:border-neutral-700">
+            <span class="material-symbols-outlined text-4xl text-neutral-300 block mb-3">search_off</span>
+            <p class="text-base font-display font-bold text-[#111318] dark:text-white mb-2">Sonuç bulunamadı</p>
+            <p class="text-sm text-neutral-400 font-sans">
+                <strong>@q</strong> ile eşleşen içerik bulunamadı. Farklı anahtar kelimeler deneyin.
+            </p>
+        </div>
+    }
+
+    @if (Model.Any())
+    {
+        <div class="flex flex-col divide-y divide-neutral-100 dark:divide-neutral-800">
+            @foreach (var post in Model)
+            {
+                <a href="/@post.Category.CategorySlug/@post.Slug"
+                   class="group flex gap-4 py-6 hover:bg-neutral-50 dark:hover:bg-neutral-900 -mx-4 px-4 transition-colors">
+
+                    <div class="w-28 h-20 shrink-0 overflow-hidden bg-neutral-100">
+                        <img src="@post.ImageUrl"
+                             alt="@post.Title"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    </div>
+
+                    <div class="flex flex-col justify-center flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span class="text-[10px] font-sans font-bold uppercase tracking-widest text-primary">
+                                @post.Category.CategoryName
+                            </span>
+                            <span class="text-neutral-300 dark:text-neutral-600 text-xs">·</span>
+                            <span class="text-[10px] font-sans text-neutral-400">
+                                @post.CreatedDate.ToString("dd MMM yyyy")
+                            </span>
+                        </div>
+                        <h2 class="font-display font-bold text-lg leading-snug text-[#111318] dark:text-white group-hover:text-primary transition-colors mb-1.5">
+                            @post.Title
+                        </h2>
+                        <p class="text-sm text-neutral-500 dark:text-neutral-400 font-sans leading-snug line-clamp-2">
+                            @post.Description
+                        </p>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+
+</div>

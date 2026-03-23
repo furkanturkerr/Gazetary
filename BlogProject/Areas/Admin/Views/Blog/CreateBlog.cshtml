@@ -4,58 +4,181 @@
     Layout = "~/Views/Admin/Index.cshtml";
 }
 
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blog/</span> Yeni Blog Ekle</h4>
-<div class="row">
-    <div class="col-md-12">
-        <div class="card mb-4">
-            <div class="card-body">
-                <div>
-                    <form method="post">
-                        <label class="form-label">Başlık</label>
-                        <input asp-for="Title" type="text" class="form-control"/>
-                        <span asp-validation-for="Title" class="text-danger"></span>
-                        <br/>
-                        <label class="form-label">Blog Yazısı</label>
-                        <textarea id="editor"
-                                  asp-for="Content"
-                                  rows="80"></textarea>
-                        <span asp-validation-for="Content" class="text-danger"></span>
-                        <br/>
-                        <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control">
-                            <option>Kategori</option>
-                        </select>
-                        <span asp-validation-for="CategoryId" class="text-danger"></span>
-                        <br/>
-                        <label>Görsel Yolu</label>
-                        <input asp-for="ImageUrl" type="text" class="form-control"/>
-                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
-                        <br/>
-                        <label>Görsel Açıklaması</label>
-                        <input asp-for="ImageDescription" type="text" class="form-control"/>
-                        <span asp-validation-for="ImageDescription" class="text-danger"></span>
-                        <br/>
-                        <label>Blog Kısa Açıkla</label>
-                        <input asp-for="Description" type="text" class="form-control"/>
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                        <br/>
-                        <label>Yazı Kısa Adı</label>
-                        <input asp-for="Slug" type="text" class="form-control"/>
-                        <span asp-validation-for="Slug" class="text-danger"></span>
-                        <br/>
-                        <button class="btn btn-dark">Kaydet</button>
-                    </form>
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <h4 class="fw-bold mb-0"><span class="text-muted fw-light">Blog / </span>Blog Ekle</h4>
+    <a href="/Admin/Blog/Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bx bx-arrow-back me-1"></i> Listeye Dön
+    </a>
+</div>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div class="row g-4">
+
+        <div class="col-lg-8">
+
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h6 class="mb-0 fw-bold">Başlık</h6>
+                </div>
+                <div class="card-body">
+                    <input asp-for="Title"
+                           type="text"
+                           class="form-control form-control-lg"
+                           placeholder="Yazı başlığını girin..."/>
+                    <span asp-validation-for="Title" class="text-danger small"></span>
                 </div>
             </div>
+
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h6 class="mb-0 fw-bold">Blog Yazısı</h6>
+                </div>
+                <div class="card-body p-0">
+                    <textarea id="editor" asp-for="Content"></textarea>
+                    <span asp-validation-for="Content" class="text-danger small px-3 pb-2 d-block"></span>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h6 class="mb-0 fw-bold">Kısa Açıklama</h6>
+                </div>
+                <div class="card-body">
+                    <textarea asp-for="Description"
+                              class="form-control"
+                              rows="3"
+                              placeholder="Yazının kısa açıklaması (liste görünümünde gösterilir)..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h6 class="mb-0 fw-bold">Yayın Ayarları</h6>
+                </div>
+                <div class="card-body d-flex flex-column gap-3">
+                    <div>
+                        <label class="form-label fw-semibold small text-uppercase tracking-wide">Kategori</label>
+                        <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-select">
+                            <option value="">Kategori Seçin</option>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                    </div>
+                    <div class="d-grid gap-2 pt-2 border-top">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bx bx-save me-1"></i> Kaydet
+                        </button>
+                        <a href="/Admin/Blog/Index" class="btn btn-outline-secondary">
+                            İptal
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h6 class="mb-0 fw-bold">Görsel</h6>
+                </div>
+                <div class="card-body d-flex flex-column gap-3">
+                    <div>
+                        <label class="form-label fw-semibold small">Görsel URL</label>
+                        <input asp-for="ImageUrl"
+                               type="text"
+                               class="form-control"
+                               placeholder="https://..."/>
+                        <span asp-validation-for="ImageUrl" class="text-danger small"></span>
+                    </div>
+                    <div id="imagePreviewWrap" class="d-none">
+                        <img id="imagePreview"
+                             src=""
+                             alt="Önizleme"
+                             class="img-fluid rounded"
+                             style="max-height:180px;object-fit:cover;width:100%"/>
+                    </div>
+                    <div>
+                        <label class="form-label fw-semibold small">Görsel Açıklaması (Alt)</label>
+                        <input asp-for="ImageDescription"
+                               type="text"
+                               class="form-control"
+                               placeholder="Görsel açıklaması..."/>
+                        <span asp-validation-for="ImageDescription" class="text-danger small"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h6 class="mb-0 fw-bold">SEO</h6>
+                </div>
+                <div class="card-body d-flex flex-column gap-3">
+                    <div>
+                        <label class="form-label fw-semibold small">URL Kısa Adı (Slug)</label>
+                        <div class="input-group">
+                            <span class="input-group-text text-muted small">/</span>
+                            <input asp-for="Slug"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="yazi-kisa-adi"/>
+                        </div>
+                        <span asp-validation-for="Slug" class="text-danger small"></span>
+                        <div class="form-text">Boş bırakılırsa başlıktan otomatik oluşturulur.</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-</div>
+
+</form>
 
 <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('editor', {
-        height: 1200,
+        height: 600,
         removeButtons: 'About',
         enterMode: CKEDITOR.ENTER_P,
         shiftEnterMode: CKEDITOR.ENTER_BR
+    });
+
+    // Görsel önizleme
+    const imageUrlInput = document.querySelector('input[name="ImageUrl"]');
+    const imagePreview  = document.getElementById('imagePreview');
+    const imageWrap     = document.getElementById('imagePreviewWrap');
+
+    function updatePreview() {
+        const val = imageUrlInput.value.trim();
+        if (val) {
+            imagePreview.src = val;
+            imageWrap.classList.remove('d-none');
+        } else {
+            imageWrap.classList.add('d-none');
+        }
+    }
+
+    imageUrlInput.addEventListener('input', updatePreview);
+    updatePreview();
+
+    // Slug otomatik oluştur
+    const titleInput = document.querySelector('input[name="Title"]');
+    const slugInput  = document.querySelector('input[name="Slug"]');
+
+    titleInput.addEventListener('input', function () {
+        if (slugInput.dataset.manual === 'true') return;
+        slugInput.value = titleInput.value
+            .toLowerCase()
+            .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's')
+            .replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c')
+            .replace(/[^a-z0-9\s-]/g, '')
+            .trim()
+            .replace(/\s+/g, '-');
+    });
+
+    slugInput.addEventListener('input', function () {
+        slugInput.dataset.manual = 'true';
     });
 </script>

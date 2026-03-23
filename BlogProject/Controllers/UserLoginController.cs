@@ -1,11 +1,13 @@
 using BlogProject.Dtos;
 using Entities.Concrate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.Controllers;
 
 [Route("[controller]")]
+
 public class UserLoginController : Controller
 {
     private readonly SignInManager<AppUser> _signInManager;
@@ -28,10 +30,6 @@ public class UserLoginController : Controller
         if (!ModelState.IsValid)
             return View(loginDto);
         
-        var result1 = await _signInManager.PasswordSignInAsync(
-            loginDto.Email, loginDto.Password,
-            isPersistent: true,       
-            lockoutOnFailure: false);
 
         var result = await _signInManager.PasswordSignInAsync(
             loginDto.Email,
@@ -40,6 +38,12 @@ public class UserLoginController : Controller
             false
         );
 
+        if (result.IsNotAllowed)
+        {
+            ModelState.AddModelError("", "E-posta adresinizi doğrulamadan giriş yapamazsınız.");
+            return View(loginDto);
+        }
+        
         if (result.Succeeded)
         {
             var user = await _signInManager.UserManager.FindByEmailAsync(loginDto.Email);

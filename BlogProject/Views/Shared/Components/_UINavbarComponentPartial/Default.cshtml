@@ -1,48 +1,51 @@
-<aside class="w-full md:w-[300px] flex flex-col gap-6 md:gap-10 shrink-0">
-    <!-- Reklam alanı -->
-    <div class="w-full h-[250px] md:h-[600px] bg-neutral-100 dark:bg-neutral-800 flex flex-col items-center justify-center border border-neutral-200 dark:border-neutral-700 relative overflow-hidden">
-        <span class="absolute top-2 right-2 text-[10px] text-neutral-400 font-sans tracking-wide">REKLAM</span>
-        <div class="text-center p-6 z-10">
-            <span class="material-symbols-outlined text-4xl md:text-6xl text-neutral-300 dark:text-neutral-600 mb-2 md:mb-4">account_balance</span>
-            <h4 class="text-base md:text-xl font-bold text-neutral-400 dark:text-neutral-500 mb-1 md:mb-2">Vadeli Hesap Avantajları</h4>
-            <p class="text-xs md:text-sm text-neutral-400 dark:text-neutral-500 mb-3 md:mb-6">Yüksek faiz oranları ile birikimlerinizi değerlendirin.</p>
-            <button class="px-3 md:px-4 py-1.5 md:py-2 bg-neutral-200 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400 text-[10px] md:text-xs font-bold rounded">DETAYLI BİLGİ</button>
-        </div>
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-400 to-transparent"></div>
-    </div>
+@model BlogProject.Models.HomeMostReadViewModel
 
-    <!-- Çok okunanlar -->
-    <div class="flex flex-col border-t-4 border-black dark:border-white pt-4">
-        <h3 class="text-base md:text-lg font-bold uppercase tracking-wide mb-3 md:mb-4 text-[#111318] dark:text-white">Çok Okunanlar</h3>
-        <div class="flex flex-col gap-0">
-            <a class="group flex gap-2 md:gap-3 items-start py-2 md:py-3 border-b border-neutral-100 dark:border-neutral-800" href="#">
-                <span class="text-2xl md:text-3xl font-black text-neutral-200 dark:text-neutral-700 group-hover:text-primary leading-none -mt-1 font-sans">1</span>
-                <p class="text-xs md:text-sm font-bold text-[#111318] dark:text-white leading-snug group-hover:text-primary transition-colors">
-                    Emekli maaş zammı için tarih verildi: Gözler Kabine Toplantısı'nda
-                </p>
-            </a>
-            <a class="group flex gap-2 md:gap-3 items-start py-2 md:py-3 border-b border-neutral-100 dark:border-neutral-800" href="#">
-                <span class="text-2xl md:text-3xl font-black text-neutral-200 dark:text-neutral-700 group-hover:text-primary leading-none -mt-1 font-sans">2</span>
-                <p class="text-xs md:text-sm font-bold text-[#111318] dark:text-white leading-snug group-hover:text-primary transition-colors">
-                    Meteoroloji'den 12 il için 'sarı' kodlu uyarı: Sağanak yağış geliyor
-                </p>
-            </a>
-            <a class="group flex gap-2 md:gap-3 items-start py-2 md:py-3 border-b border-neutral-100 dark:border-neutral-800" href="#">
-                <span class="text-2xl md:text-3xl font-black text-neutral-200 dark:text-neutral-700 group-hover:text-primary leading-none -mt-1 font-sans">3</span>
-                <p class="text-xs md:text-sm font-bold text-[#111318] dark:text-white leading-snug group-hover:text-primary transition-colors">
-                    Altın fiyatlarında son durum: Gram altın rekor tazeledi
-                </p>
-            </a>
-        </div>
-    </div>
+<aside class="flex flex-col gap-0 relative border-l border-gray-200 dark:border-gray-800 pl-6">
+    <div class="sticky top-20 flex flex-col gap-8">
 
-    <!-- Bülten kayıt -->
-    <div class="bg-neutral-100 dark:bg-neutral-800 p-4 md:p-6 rounded-sm">
-        <h4 class="text-xs md:text-sm font-bold uppercase mb-2 text-[#111318] dark:text-white font-sans">Bültenimize Abone Olun</h4>
-        <p class="text-[11px] md:text-xs text-neutral-500 dark:text-neutral-400 mb-3 md:mb-4 font-sans leading-relaxed">Gündemi yakından takip etmek için e-posta adresinizi bırakın.</p>
-        <div class="flex flex-col gap-2">
-            <input class="w-full text-xs md:text-sm px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-sm bg-white dark:bg-neutral-900 focus:outline-none focus:border-primary font-sans" placeholder="E-posta adresiniz" type="email"/>
-            <button class="w-full bg-[#111318] dark:bg-white text-white dark:text-[#111318] text-xs md:text-sm font-bold py-2 rounded-sm hover:opacity-90 transition-opacity uppercase tracking-widest font-sans">Kayıt Ol</button>
+        <div class="pt-4">
+            <h3 class="text-xs font-black uppercase tracking-widest mb-4 font-sans">Çok Okunanlar</h3>
+            <div class="flex flex-col gap-0">
+                @for (int i = 0; i < Model.MostReadPosts.Count; i++)
+                {
+                    <a href="/@Model.MostReadPosts[i].Category.CategorySlug/@Model.MostReadPosts[i].Slug"
+                       class="flex gap-2.5 py-3 border-b border-gray-100 dark:border-gray-800 group cursor-pointer first:pt-0">
+                        <span class="text-xl font-black text-gray-200 dark:text-gray-700 font-sans leading-none mt-0.5 w-5 shrink-0">
+                            @(i + 1)
+                        </span>
+                        <div class="flex flex-col gap-1">
+                            <span class="text-[9px] font-bold uppercase tracking-widest text-primary font-sans">
+                                @Model.MostReadPosts[i].Category.CategoryName
+                            </span>
+                            <h4 class="text-xs font-bold leading-snug group-hover:text-primary transition-colors">
+                                @Model.MostReadPosts[i].Title
+                            </h4>
+                        </div>
+                    </a>
+                }
+            </div>
         </div>
+
+        <div class="border-t-2 border-black dark:border-white pt-4">
+            <h3 class="text-xs font-black uppercase tracking-widest mb-4 font-sans">Kategoriler</h3>
+            <div class="flex flex-col gap-0">
+                @foreach (var category in Model.Categories)
+                {
+                    <a href="/@category.CategorySlug"
+                       class="group flex items-center justify-between py-2.5 border-b border-gray-100 dark:border-gray-800 cursor-pointer last:border-0">
+                        <div class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+                            <span class="text-xs font-bold group-hover:text-primary transition-colors">
+                                @category.CategoryName
+                            </span>
+                        </div>
+                        <span class="text-[10px] font-bold text-gray-400 font-sans group-hover:text-primary transition-colors">
+                            @category.BlogCount yazı
+                        </span>
+                    </a>
+                }
+            </div>
+        </div>
+
     </div>
 </aside>

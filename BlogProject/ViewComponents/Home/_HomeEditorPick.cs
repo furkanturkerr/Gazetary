@@ -15,10 +15,10 @@ public class _HomeEditorPick : ViewComponent
     {
         var todayBlogs = await _blogPostService.TGetTodaysBlogsAsync();
 
-        if (!todayBlogs.Any())
+        if (todayBlogs == null || !todayBlogs.Any())
         {
-            todayBlogs = _blogPostService.GetAll()
-                .OrderByDescending(x => x.CreatedDate)
+            todayBlogs = _blogPostService.TGetCategoryWithBlogPosts()
+                ?.OrderByDescending(x => x.CreatedDate)
                 .Take(5)
                 .ToList();
         }
@@ -26,7 +26,7 @@ public class _HomeEditorPick : ViewComponent
         var ekonomiPosts = await _blogPostService.TGetLatestBlogsByCategoryAsync("Ekonomi", 1);
         var sporPosts = await _blogPostService.TGetLatestBlogsByCategoryAsync("Spor", 1);
         var teknolojiPosts = await _blogPostService.TGetLatestBlogsByCategoryAsync("Teknoloji", 1);
-        var turkiyePosts    = await _blogPostService.TGetLatestBlogsByCategoryAsync("Türkiye",   1);
+        var turkiyePosts    = await _blogPostService.TGetLatestBlogsByCategoryAsync("Son Dakika",   1);
 
         var viewModel = new HomeEditorPickViewModel
         {
@@ -52,7 +52,7 @@ public class _HomeEditorPick : ViewComponent
             
             Category4 = new CategoryWithLatestBlog
             {
-            CategoryName = "Türkiye",
+            CategoryName = "Son Dakika",
             CategorySlug = "turkiye",
             Posts = turkiyePosts
         }

@@ -1,9 +1,9 @@
 using Business.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.Areas.Admin.Controllers;
-
-[Area("Admin")]
+[Authorize(Roles = "Admin")][Area("Admin")]
 public class CommentController : Controller
 {
     private readonly ICommentService _commentService;

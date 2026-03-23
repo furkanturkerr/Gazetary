@@ -1,24 +1,7 @@
-@model BlogProject.Dtos.ProfileDto
+@model ProfileViewModel
 
 @{
     Layout = null;
-
-    var comments = new[]
-    {
-        new { ArticleTitle = "Fenerbahce Trabzonspor Maci: Derbi Heyecani Zirvede!", Category = "Spor", ArticleSlug = "#", CommentContent = "Muhtesem bir macti, ozellikle ikinci yari cok heyecanliydi. Bu tur maclar Turk futboluna cok yakisiyor.", Date = "24 Ekim 2023" },
-        new { ArticleTitle = "Kuresel Piyasalar Haftaya Merkez Bankalari Odakli Basladi", Category = "Ekonomi", ArticleSlug = "#", CommentContent = "Faiz kararlari gercekten piyasalari cok etkiliyor, yakin takip etmek gerekiyor.", Date = "22 Ekim 2023" },
-        new { ArticleTitle = "Venedik Film Festivali Kazananlari Belli Oldu", Category = "Kultur Sanat", ArticleSlug = "#", CommentContent = "Altin Aslan alan film gercekten hak etti, kesinlikle izlemenizi tavsiye ederim.", Date = "18 Ekim 2023" },
-        new { ArticleTitle = "Istanbul Yeni Metro Hatti Icin Imzalar Atildi", Category = "Gundem", ArticleSlug = "#", CommentContent = "Umaririm proje zamaninda tamamlanir, sehrin buna gercekten cok ihtiyaci var.", Date = "15 Ekim 2023" },
-        new { ArticleTitle = "Yapay Zeka Teknolojileri 2023te Rekor Kirdi", Category = "Yazilim", ArticleSlug = "#", CommentContent = "Bu gelismeler gercekten cok hizli ilerliyor, takip etmesi bile zor hale geldi.", Date = "10 Ekim 2023" },
-    };
-
-    var sideArticles = new[]
-    {
-        new { Title = "Borsa Istanbul Gunun Ilk Islemlerinde Yukseliste", Category = "Ekonomi", Time = "2 saat once", Image = "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=80" },
-        new { Title = "Galatasaray Sampiyonlar Ligi'nde Sahaya Cikiyor", Category = "Spor", Time = "4 saat once", Image = "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400&q=80" },
-        new { Title = "Turkiye'nin Teknoloji Ihracati Rekor Kirdi", Category = "Yazilim", Time = "6 saat once", Image = "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" },
-        new { Title = "Kapadokya'da Turizm Sezonu Erken Basladi", Category = "Turkiye", Time = "Dun", Image = "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?w=400&q=80" },
-    };
 }
 
 <!DOCTYPE html>
@@ -26,10 +9,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Profilim - Gazete</title>
+    <title>@Model.User.NameSurname - Profil</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
@@ -49,14 +30,6 @@
     </script>
     <style>
         body { background-color: #f6f6f6; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .cat-spor { color: #dc2626; }
-        .cat-ekonomi { color: #1152d4; }
-        .cat-gundem { color: #111318; }
-        .cat-yazilim { color: #7c3aed; }
-        .cat-kultur { color: #b45309; }
-        .cat-turkiye { color: #059669; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col font-sans text-[#111318] antialiased">
@@ -68,11 +41,17 @@
 
         <!-- Profil Hero -->
         <div class="flex flex-col md:flex-row gap-6 mb-10 pb-8 border-b-2 border-black">
-            <!-- Avatar + Bilgi -->
             <div class="flex items-center gap-6">
                 <div class="relative group cursor-pointer shrink-0">
-                    <div class="h-24 w-24 md:h-28 md:w-28 rounded-full bg-gray-100 border-2 border-black flex items-center justify-center overflow-hidden">
-                        <span class="material-symbols-outlined text-5xl text-gray-400">person</span>
+                    <div class="h-24 w-24 md:h-28 md:w-28 rounded-full bg-gray-100 border-2 border-black overflow-hidden flex items-center justify-center">
+                        @if (!string.IsNullOrEmpty(Model.User.AvatarUrl))
+                        {
+                            <img src="@Model.User.AvatarUrl" alt="@Model.User.NameSurname" class="w-full h-full object-cover" />
+                        }
+                        else
+                        {
+                            <span class="material-symbols-outlined text-5xl text-gray-400">person</span>
+                        }
                     </div>
                     <div class="absolute inset-0 rounded-full bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <span class="material-symbols-outlined text-white text-xl">photo_camera</span>
@@ -80,70 +59,88 @@
                 </div>
                 <div>
                     <p class="text-xs font-sans font-bold uppercase tracking-widest text-gray-400 mb-1">Okuyucu</p>
-                    <h1 class="text-3xl md:text-4xl font-display font-bold text-[#111318] leading-tight">@Model.NameSurname</h1>
-                    <p class="text-sm text-gray-500 font-sans mt-1">@Model.NameSurname</p>
+                    <h1 class="text-3xl md:text-4xl font-display font-bold text-[#111318] leading-tight">@Model.User.NameSurname</h1>
+                    <p class="text-sm text-gray-500 font-sans mt-1">@Model.User.Email</p>
+                    @if (ViewBag.useremailstatus == true)
+                    {
+                        <p class="text-sm text-gray-500 font-sans mt-1">Email Doğrulanmış</p>
+                    }
+                    else
+                    {
+                        <p class="text-sm text-red-500 font-sans mt-1">Email Doğrulanmamış</p>
+                    }
+                    
                     <div class="flex items-center gap-3 mt-3">
-                        <button class="px-4 py-1.5 bg-black text-white text-[11px] font-sans font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors">
-                            Profili Duzenle
-                        </button>
-                        <a href="/UserLogin/UserLogout" class="px-4 py-1.5 border border-gray-300 text-[11px] font-sans font-bold uppercase tracking-wider text-gray-600 hover:border-black hover:text-black transition-colors">
-                            Cikis Yap
+                        <a href="/UserLogin/UserLogout"
+                           class="px-4 py-1.5 border border-gray-300 text-[11px] font-sans font-bold uppercase tracking-wider text-gray-600 hover:border-black hover:text-black transition-colors">
+                            Çıkış Yap
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Stat -->
             <div class="md:ml-auto flex items-center">
                 <div class="flex gap-8 md:gap-12">
                     <div class="text-center md:text-right">
-                        <p class="text-4xl md:text-5xl font-display font-bold text-[#111318]">@comments.Length</p>
+                        <p class="text-4xl md:text-5xl font-display font-bold text-[#111318]">@Model.UserComments.Count</p>
                         <p class="text-[11px] font-sans font-bold uppercase tracking-widest text-gray-400 mt-1">Yorum</p>
                     </div>
                     <div class="w-px bg-gray-200 hidden md:block"></div>
-                    <div class="text-center md:text-right">
-                        <p class="text-4xl md:text-5xl font-display font-bold text-[#111318]">142</p>
-                        <p class="text-[11px] font-sans font-bold uppercase tracking-widest text-gray-400 mt-1">Okuma</p>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- İki kolon layout -->
         <div class="flex flex-col lg:flex-row gap-10">
 
             <!-- Sol: Yorumlar -->
             <div class="flex-1 min-w-0">
                 <div class="flex items-center justify-between mb-6">
                     <h2 class="text-sm font-sans font-bold uppercase tracking-widest text-[#111318] border-b-2 border-black pb-2 pr-4">
-                        Yorumlarim
+                        Yorumlarım
                     </h2>
-                    <span class="text-xs text-gray-400 font-sans">@comments.Length yorum</span>
+                    <span class="text-xs text-gray-400 font-sans">@Model.UserComments.Count yorum</span>
                 </div>
 
-                <div class="flex flex-col">
-                    @foreach (var comment in comments)
-                    {
-                        <article class="group py-5 border-b border-gray-100 hover:bg-gray-50 px-3 -mx-3 transition-colors cursor-pointer">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-[10px] font-sans font-bold uppercase tracking-widest text-primary">@comment.Category</span>
-                                <span class="text-gray-300">·</span>
-                                <span class="text-[10px] font-sans text-gray-400 uppercase tracking-wide">@comment.Date</span>
-                            </div>
-                            <a href="@comment.ArticleSlug">
-                                <h3 class="text-base md:text-lg font-display font-bold text-[#111318] leading-snug group-hover:text-primary transition-colors mb-2">
-                                    @comment.ArticleTitle
-                                </h3>
-                            </a>
-                            <div class="flex gap-2.5">
-                                <div class="w-[3px] bg-gray-200 rounded-full shrink-0 my-0.5"></div>
-                                <p class="text-sm text-gray-500 font-sans leading-relaxed italic line-clamp-2">
-                                    "@comment.CommentContent"
-                                </p>
-                            </div>
-                        </article>
-                    }
-                </div>
+                @if (Model.UserComments.Any())
+                {
+                    <div class="flex flex-col">
+                        @foreach (var comment in Model.UserComments)
+                        {
+                            <article class="group py-5 border-b border-gray-100 hover:bg-gray-50 px-3 -mx-3 transition-colors cursor-pointer">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-sans font-bold uppercase tracking-widest text-primary">
+                                        @comment.BlogPost?.Category?.CategoryName
+                                    </span>
+                                    <span class="text-gray-300">·</span>
+                                    <span class="text-[10px] font-sans text-gray-400 uppercase tracking-wide">
+                                        @comment.CreatedDate.ToString("dd MMM yyyy")
+                                    </span>
+                                </div>
+                                <a href="/@comment.BlogPost?.Category?.CategorySlug/@comment.BlogPost?.Slug">
+                                    <h3 class="text-base md:text-lg font-display font-bold text-[#111318] leading-snug group-hover:text-primary transition-colors mb-2">
+                                        @comment.BlogPost?.Title
+                                    </h3>
+                                </a>
+                                <div class="flex gap-2.5">
+                                    <div class="w-[3px] bg-gray-200 rounded-full shrink-0 my-0.5"></div>
+                                    <p class="text-sm text-gray-500 font-sans leading-relaxed italic line-clamp-2">
+                                        "@comment.Content"
+                                    </p>
+                                </div>
+                            </article>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="py-16 text-center border border-dashed border-gray-200">
+                        <span class="material-symbols-outlined text-4xl text-gray-300 block mb-3">chat_bubble</span>
+                        <p class="text-sm text-gray-400 font-sans">Henüz hiç yorum yapmadınız.</p>
+                        <a href="/" class="mt-3 inline-block text-xs font-bold text-primary uppercase tracking-wide hover:underline">
+                            Haberlere Göz At
+                        </a>
+                    </div>
+                }
             </div>
 
             <!-- Sağ: Sidebar -->
@@ -155,47 +152,55 @@
                         Son Haberler
                     </h2>
                     <div class="flex flex-col gap-4">
-                        @foreach (var article in sideArticles)
+                        @foreach (var post in Model.LatestPosts)
                         {
-                            <a href="#" class="flex gap-3 group">
+                            <a href="/@post.Category?.CategorySlug/@post.Slug" class="flex gap-3 group">
                                 <div class="w-20 h-16 shrink-0 bg-gray-100 overflow-hidden">
-                                    <img src="@article.Image" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+                                    <img src="@post.ImageUrl"
+                                         alt="@post.Title"
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 </div>
                                 <div class="flex flex-col justify-center flex-1 min-w-0">
-                                    <span class="text-[10px] font-sans font-bold uppercase tracking-widest text-primary mb-1">@article.Category</span>
-                                    <p class="text-sm font-display font-bold text-[#111318] leading-snug line-clamp-2 group-hover:text-primary transition-colors">@article.Title</p>
-                                    <span class="text-[10px] text-gray-400 font-sans mt-1">@article.Time</span>
+                                    <span class="text-[10px] font-sans font-bold uppercase tracking-widest text-primary mb-1">
+                                        @post.Category?.CategoryName
+                                    </span>
+                                    <p class="text-sm font-display font-bold text-[#111318] leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                                        @post.Title
+                                    </p>
+                                    <span class="text-[10px] text-gray-400 font-sans mt-1">
+                                        @post.CreatedDate.ToString("dd MMM yyyy")
+                                    </span>
                                 </div>
                             </a>
                         }
                     </div>
                 </div>
 
-                <!-- Ayirici -->
                 <div class="w-full h-px bg-gray-100 mb-8"></div>
 
-                <!-- En Cok Okunanlar -->
+                <!-- En Çok Okunanlar -->
                 <div>
                     <h2 class="text-sm font-sans font-bold uppercase tracking-widest text-[#111318] border-b-2 border-black pb-2 mb-5">
-                        En Cok Okunanlar
+                        En Çok Okunanlar
                     </h2>
                     <div class="flex flex-col gap-4">
-                        @{
-                            var topArticles = new[]
-                            {
-                                new { Title = "2024 Butce Planinda Dikkat Ceken Detaylar", Category = "Ekonomi", Num = "01" },
-                                new { Title = "Milli Takim Avrupa Sampiyonasina Hazirlaniyor", Category = "Spor", Num = "02" },
-                                new { Title = "Yapay Zeka Artik Haber Yaziyor", Category = "Yazilim", Num = "03" },
-                                new { Title = "Istanbul'un Yeni Cekim Merkezi", Category = "Gundem", Num = "04" },
-                            };
-                        }
-                        @foreach (var article in topArticles)
+                        @for (int i = 0; i < Model.MostReadPosts.Count; i++)
                         {
-                            <a href="#" class="flex gap-3 items-start group">
-                                <span class="text-2xl font-display font-bold text-gray-200 leading-none group-hover:text-primary transition-colors shrink-0 w-7">@article.Num</span>
+                            var post = Model.MostReadPosts[i];
+                            <a href="/@post.Category?.CategorySlug/@post.Slug" class="flex gap-3 items-start group">
+                                <span class="text-2xl font-display font-bold text-gray-200 leading-none group-hover:text-primary transition-colors shrink-0 w-7">
+                                    @((i + 1).ToString("D2"))
+                                </span>
                                 <div>
-                                    <span class="text-[10px] font-sans font-bold uppercase tracking-widest text-primary block mb-0.5">@article.Category</span>
-                                    <p class="text-sm font-display font-bold text-[#111318] leading-snug group-hover:text-primary transition-colors">@article.Title</p>
+                                    <span class="text-[10px] font-sans font-bold uppercase tracking-widest text-primary block mb-0.5">
+                                        @post.Category?.CategoryName
+                                    </span>
+                                    <p class="text-sm font-display font-bold text-[#111318] leading-snug group-hover:text-primary transition-colors">
+                                        @post.Title
+                                    </p>
+                                    <span class="text-[10px] text-gray-400 font-sans">
+                                        @post.ViewCount görüntülenme
+                                    </span>
                                 </div>
                             </a>
                         }
