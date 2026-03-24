@@ -10,6 +10,7 @@ namespace BlogProject.Controllers;
 public class PostController : Controller
 {
     private readonly IBlogPostService _blogPostService;
+    private readonly ISeoService _seoService;
     private readonly ICommentService _commentService;
     private readonly ICommentLikeService _commentLikeService;
     private readonly UserManager<AppUser> _userManager;
@@ -18,12 +19,13 @@ public class PostController : Controller
         IBlogPostService blogPostService,
         ICommentService commentService,
         ICommentLikeService commentLikeService,
-        UserManager<AppUser> userManager)
+        UserManager<AppUser> userManager, ISeoService seoService)
     {
         _blogPostService = blogPostService;
         _commentService = commentService;
         _commentLikeService = commentLikeService;
         _userManager = userManager;
+        _seoService = seoService;
     }
 
     [HttpGet("{postSlug}")]
@@ -70,6 +72,9 @@ public class PostController : Controller
             LikeCounts = likeCounts,
             LikedCommentIds = likedIds
         };
+        
+        _seoService.SetPostSeo(ViewData, post);
+
 
         return View(model);
     }

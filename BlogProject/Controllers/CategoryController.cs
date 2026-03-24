@@ -7,12 +7,14 @@ namespace BlogProject.Controllers;
 public class CategoryController : Controller
 {
     private readonly IBlogPostService _blogPostService;
+    private readonly ISeoService _seoService;
     private readonly ICategoryService _categoryService;
 
-    public CategoryController(IBlogPostService blogPostService, ICategoryService categoryService)
+    public CategoryController(IBlogPostService blogPostService, ICategoryService categoryService, ISeoService seoService)
     {
         _blogPostService = blogPostService;
         _categoryService = categoryService;
+        _seoService = seoService;
     }
 
     // /oyun
@@ -49,6 +51,9 @@ public class CategoryController : Controller
         ViewBag.Pagesize = allPosts.Count;
         ViewBag.TotalPages = (int)Math.Ceiling(allPosts.Count / (double)pageSize);
         ViewBag.CategorySlug = categorySlug;
+        
+        _seoService.SetCategorySeo(ViewData, category, allPosts.FirstOrDefault()?.ImageUrl);
+
 
         return View(posts);
     }
@@ -57,6 +62,7 @@ public class CategoryController : Controller
     public IActionResult kategoriler()
     {
         var value = _categoryService.GetAll().Where(x=>x.IsStatus == true).ToList();
+        _seoService.SetCategoryListSeo(ViewData);
         return View(value);
     }
 

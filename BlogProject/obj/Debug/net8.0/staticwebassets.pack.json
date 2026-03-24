@@ -21,8 +21,40 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/favicon/apple-touch-icon.png",
+      "PackagePath": "staticwebassets/favicon/apple-touch-icon.png"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/favicon/favicon-96x96.png",
+      "PackagePath": "staticwebassets/favicon/favicon-96x96.png"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/favicon/favicon.svg",
+      "PackagePath": "staticwebassets/favicon/favicon.svg"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/favicon/site.webmanifest",
+      "PackagePath": "staticwebassets/favicon/site.webmanifest"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/favicon/web-app-manifest-192x192.png",
+      "PackagePath": "staticwebassets/favicon/web-app-manifest-192x192.png"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/favicon/web-app-manifest-512x512.png",
+      "PackagePath": "staticwebassets/favicon/web-app-manifest-512x512.png"
+    },
+    {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/images/1493549.jpeg",
       "PackagePath": "staticwebassets/images/1493549.jpeg"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/images/upload/G.png",
+      "PackagePath": "staticwebassets/images/upload/G.png"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/images/upload/logo.png",
+      "PackagePath": "staticwebassets/images/upload/logo.png"
     },
     {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/js/home-editorPick.js",

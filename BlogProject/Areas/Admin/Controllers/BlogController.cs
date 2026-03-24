@@ -11,15 +11,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace BlogProject.Areas.Admin.Controllers;
 [Authorize(Roles = "Admin")]
 [Area("Admin")]
+[Route("Admin/[controller]/[action]/{id?}")]
 public class BlogController : Controller
 {
     private readonly IBlogPostService _blogPostService;
     private readonly ICategoryService _categoryService;
+    private readonly IImageService _imageService;
 
-    public BlogController(IBlogPostService blogPostService, ICategoryService categoryService)
+    public BlogController(IBlogPostService blogPostService, ICategoryService categoryService, IImageService imageService)
     {
         _blogPostService = blogPostService;
         _categoryService = categoryService;
+        _imageService = imageService;
     }
 
     public IActionResult Index(string status = "all", int page = 1, string q = "", int category = 0)
@@ -70,6 +73,11 @@ public class BlogController : Controller
     public IActionResult CreateBlog()
     {
         ViewBag.Categories = new SelectList(_categoryService.GetAll(), "CategoryId", "CategoryName");
+        ViewBag.Images = new SelectList(
+            _imageService.GetAll(),
+            "ImageUrl",   
+            "ImageUrl"   
+        );
         return View();
     }
 
@@ -85,12 +93,17 @@ public class BlogController : Controller
             blogPost.Status      = true;
             blogPost.CreatedDate = DateTime.Now;
             _blogPostService.Insert(blogPost);
-            return RedirectToAction("Index", "Blog", new { area = "Admin" });
+            return RedirectToAction("Index", new { area = "Admin" });
         }
 
         foreach (var error in result.Errors)
             ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
 
+        ViewBag.Images = new SelectList(
+            _imageService.GetAll(),
+            "ImageUrl",   
+            "ImageUrl"   
+        );
         ViewBag.Categories = new SelectList(_categoryService.GetAll(), "CategoryId", "CategoryName");
         return View(blogPost);
     }
@@ -101,7 +114,7 @@ public class BlogController : Controller
     {
         var value = _blogPostService.GetById(id);
         _blogPostService.Delete(value);
-        return RedirectToAction("Index", "Blog", new { area = "Admin" });
+        return RedirectToAction("Index", new { area = "Admin" });
     }
 
     [HttpGet]
@@ -109,6 +122,11 @@ public class BlogController : Controller
     {
         ViewBag.Categories = new SelectList(_categoryService.GetAll(), "CategoryId", "CategoryName");
         var value = _blogPostService.GetById(id);
+        ViewBag.Images = new SelectList(
+            _imageService.GetAll(),
+            "ImageUrl",   
+            "ImageUrl"   
+        );
         return View(value);
     }
 
@@ -116,20 +134,27 @@ public class BlogController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult EditBlog(BlogPost blogPost)
     {
-        BlogValidation blogValidation = new BlogValidation();
-        ValidationResult result = blogValidation.Validate(blogPost);
-
-        if (result.IsValid)
-        {
-            _blogPostService.Update(blogPost);
-            return RedirectToAction("Index", "Blog", new { area = "Admin" });
-        }
+        var validator = new BlogValidation();
+        var result = validator.Validate(blogPost);
 
         foreach (var error in result.Errors)
+        {
             ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+        }
 
-        ViewBag.Categories = new SelectList(_categoryService.GetAll(), "CategoryId", "CategoryName");
-        return View(blogPost);
+        if (!ModelState.IsValid)
+        {
+            ViewBag.Categories = new SelectList(_categoryService.GetAll(), "CategoryId", "CategoryName");
+            ViewBag.Images = new SelectList(
+                _imageService.GetAll(),
+                "ImageUrl",   
+                "ImageUrl"   
+            );
+            return View(blogPost);
+        }
+
+        _blogPostService.Update(blogPost);
+        return RedirectToAction("Index", new { area = "Admin" });
     }
 
     [ValidateAntiForgeryToken]
@@ -137,6 +162,6 @@ public class BlogController : Controller
     public IActionResult ChangeStatus(int id)
     {
         _blogPostService.ChangeStatus(id);
-        return RedirectToAction("Index", "Blog", new { area = "Admin" });
+        return RedirectToAction("Index", new { area = "Admin" });
     }
 }

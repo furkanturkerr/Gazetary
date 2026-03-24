@@ -20,4 +20,8 @@ public class BlogPost
     public DateTime CreatedDate { get; set; }
     
     public List<Comment> Comments { get; set; }
+    
+    public string? MetaTitle       { get; set; }
+    public string? MetaDescription { get; set; }
+    public string? MetaKeywords    { get; set; }
 }

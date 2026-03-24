@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.Areas.Admin.Controllers;
-[Authorize(Roles = "Admin")][Area("Admin")]
+[Authorize(Roles = "Admin")]
+[Route("Admin/[controller]/[action]/{id?}")]
+[Area("Admin")]
 public class ContactController : Controller
 {
     private readonly IContactService _contactService;

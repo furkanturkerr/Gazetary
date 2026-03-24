@@ -1,0 +1,134 @@
+@model List<Entities.Concrate.Image>
+
+@{
+    ViewData["Title"] = "Görseller";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+            <div>
+                <h4 class="fw-bold mb-1">Görsel Galerisi</h4>
+                <p class="text-muted mb-0">Yüklenen görselleri buradan yönetebilirsin.</p>
+            </div>
+
+            <a asp-area="Admin"
+               asp-controller="Image"
+               asp-action="AddImage"
+               class="btn btn-primary">
+                <i class="bx bx-plus me-1"></i> Görsel Ekle
+            </a>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card h-100 border-0 shadow-sm image-card">
+                        <div class="image-frame">
+                            <img src="@item.ImageUrl" alt="Görsel" class="image-preview" />
+                        </div>
+
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-label-primary">#@item.ImageId</span>
+                                <a href="@item.ImageUrl" target="_blank" class="text-muted small text-decoration-none">
+                                    Aç
+                                </a>
+                            </div>
+
+                            <div class="small text-muted image-url mb-3" title="@item.ImageUrl">
+                                @item.ImageUrl
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <a asp-area="Admin"
+                                   asp-controller="Image"
+                                   asp-action="Update"
+                                   asp-route-id="@item.ImageId"
+                                   class="btn btn-outline-warning btn-sm w-100">
+                                    <i class="bx bx-edit-alt me-1"></i> Güncelle
+                                </a>
+
+                                <form asp-area="Admin"
+                                      asp-controller="Image"
+                                      asp-action="Delete"
+                                      asp-route-id="@item.ImageId"
+                                      method="post"
+                                      class="w-100">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit"
+                                            class="btn btn-outline-danger btn-sm w-100"
+                                            onclick="return confirm('Bu görseli silmek istediğine emin misin?');">
+                                        <i class="bx bx-trash me-1"></i> Sil
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center py-5">
+                <i class="bx bx-image fs-1 text-muted mb-3"></i>
+                <h5 class="mb-2">Henüz görsel yok</h5>
+                <p class="text-muted mb-4">İlk görseli ekleyerek galeri oluşturmaya başlayabilirsin.</p>
+                <a asp-area="Admin"
+                   asp-controller="Image"
+                   asp-action="AddImage"
+                   class="btn btn-primary">
+                    Görsel Ekle
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .image-card {
+        border-radius: 18px;
+        overflow: hidden;
+        transition: all .2s ease;
+        background: #fff;
+    }
+
+    .image-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 1rem 2rem rgba(67, 89, 113, .12) !important;
+    }
+
+    .image-frame {
+        height: 190px;
+        background: #f6f7fb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-bottom: 1px solid #eef0f4;
+    }
+
+    .image-preview {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .image-url {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 10px 12px;
+    }
+</style>

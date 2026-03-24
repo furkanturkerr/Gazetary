@@ -28,11 +28,10 @@ public class ProfileController : Controller
     public async Task<IActionResult> Profile(string id)
     {
         var user = await _userManager.FindByIdAsync(id);
+        if (user == null)
+            return View("~/Views/Shared/NotFound.cshtml");
         
         ViewBag.useremailstatus = user.EmailConfirmed;
-
-        if (user == null)
-            return NotFound();
 
         var userComments = _commentService.GetAll()
             .Where(c => c.AppUserId == id)

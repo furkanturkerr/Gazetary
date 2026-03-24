@@ -16,6 +16,9 @@ builder.Services.AddDbContext<Context>();
 builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 
+builder.Services.AddScoped<IImageDal, EfImageDal>();
+builder.Services.AddScoped<IImageService, ImageManager>();
+
 builder.Services.AddScoped<IBlogPostDal, EfBlogPostDal>();
 builder.Services.AddScoped<IBlogPostService, BlogPostManager>();
 
@@ -27,7 +30,8 @@ builder.Services.AddScoped<ICommentLikeService, CommentLikeManager>();
 
 builder.Services.AddScoped<IContactDal, EfContactDal>();
 builder.Services.AddScoped<IContactService, ContactManager>();
-
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<ISeoService, SeoManager>();
 builder.Services.AddIdentity<AppUser, AppRole>(options =>
     {
         options.SignIn.RequireConfirmedEmail = true;
@@ -75,9 +79,12 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error/404");
     app.UseHsts();
 }
+
+
+app.UseStatusCodePagesWithReExecute("/Error/404");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

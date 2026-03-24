@@ -1,0 +1,63 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sayfa Bulunamadı • GAZETARY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind (prod'da build etmeni öneririm) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+        }
+    </style>
+</head>
+<body class="bg-white text-black flex items-center justify-center min-h-screen">
+
+<div class="text-center max-w-xl px-6">
+
+    <!-- Logo / Başlık -->
+    <h1 class="text-4xl md:text-5xl font-black tracking-widest uppercase border-b border-black pb-2">
+        GAZETARY
+    </h1>
+
+    <!-- 404 -->
+    <h2 class="text-7xl md:text-8xl font-extrabold mt-10 tracking-tight">
+        404
+    </h2>
+
+    <!-- Alt mesaj -->
+    <p class="mt-6 text-lg text-gray-700">
+        Aradığın sayfa bulunamadı.
+    </p>
+
+    <!-- Butonlar -->
+    <div class="mt-10 flex justify-center gap-4">
+
+        <a href="/"
+           class="px-6 py-3 bg-black text-white text-sm font-bold uppercase tracking-wider hover:bg-gray-800 transition">
+            Anasayfa
+        </a>
+
+        <a href="/"
+           class="px-6 py-3 border border-black text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition">
+            Haberleri Gör
+        </a>
+
+    </div>
+
+    <!-- Alt çizgi gazete hissi -->
+    <div class="mt-12 border-t border-black pt-4 text-xs text-gray-500 tracking-widest uppercase">
+        GAZETARY
+    </div>
+
+</div>
+
+</body>
+</html>

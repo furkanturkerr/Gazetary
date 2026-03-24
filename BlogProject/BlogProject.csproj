@@ -35,6 +35,7 @@
       <Folder Include="Areas\Admin\Pages\" />
       <Folder Include="Pages\" />
       <Folder Include="Post\" />
+      <Folder Include="wwwroot\images\upload\" />
     </ItemGroup>
 
     <ItemGroup>

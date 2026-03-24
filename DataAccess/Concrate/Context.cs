@@ -16,5 +16,6 @@ public class Context : IdentityDbContext<AppUser, AppRole, string>{
     public DbSet<CommentLike> CommentLikes { get; set; }
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Contact> Contacts { get; set; }
+    public DbSet<Image> Images { get; set; }
     
 }

@@ -47,6 +47,7 @@
                 </div>
                 <div class="card-body">
                     <textarea asp-for="Description"
+                              id="descriptionInput"
                               class="form-control"
                               rows="3"
                               placeholder="Yazının kısa açıklaması (liste görünümünde gösterilir)..."></textarea>
@@ -59,6 +60,7 @@
         <!-- SAĞ: Ayarlar -->
         <div class="col-lg-4">
 
+            <!-- Yayın Ayarları -->
             <div class="card mb-4">
                 <div class="card-header py-3">
                     <h6 class="mb-0 fw-bold">Yayın Ayarları</h6>
@@ -82,26 +84,40 @@
                 </div>
             </div>
 
+            <!-- Görsel -->
             <div class="card mb-4">
                 <div class="card-header py-3">
                     <h6 class="mb-0 fw-bold">Görsel</h6>
                 </div>
                 <div class="card-body d-flex flex-column gap-3">
-                    <div>
-                        <label class="form-label fw-semibold small">Görsel URL</label>
-                        <input asp-for="ImageUrl"
-                               type="text"
-                               class="form-control"
-                               placeholder="https://..." />
-                        <span asp-validation-for="ImageUrl" class="text-danger small"></span>
-                    </div>
-                    <div id="imagePreviewWrap" class="d-none">
+
+                    <!-- Seçili Görsel Önizleme -->
+                    <div id="imagePreviewWrap" class="@(string.IsNullOrEmpty(Model.ImageUrl) ? "d-none" : "")">
                         <img id="imagePreview"
-                             src=""
+                             src="@Model.ImageUrl"
                              alt="Önizleme"
                              class="img-fluid rounded"
-                             style="max-height:180px;object-fit:cover;width:100%" />
+                             style="max-height:180px;object-fit:cover;width:100%;" />
+                        <button type="button"
+                                class="btn btn-sm btn-outline-danger mt-2 w-100"
+                                onclick="clearImage()">
+                            <i class="bx bx-x me-1"></i> Görseli Kaldır
+                        </button>
                     </div>
+
+                    <!-- Görsel Seç Butonu -->
+                    <button type="button"
+                            class="btn btn-outline-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#imagePickerModal">
+                        <i class="bx bx-image-add me-1"></i> Görsel Seç
+                    </button>
+
+                    <!-- Hidden input -->
+                    <input asp-for="ImageUrl" type="hidden" id="selectedImageUrl" />
+                    <span asp-validation-for="ImageUrl" class="text-danger small"></span>
+
+                    <!-- Görsel Açıklaması -->
                     <div>
                         <label class="form-label fw-semibold small">Görsel Açıklaması (Alt)</label>
                         <input asp-for="ImageDescription"
@@ -110,14 +126,20 @@
                                placeholder="Görsel açıklaması..." />
                         <span asp-validation-for="ImageDescription" class="text-danger small"></span>
                     </div>
+
                 </div>
             </div>
 
+            <!-- SEO -->
             <div class="card mb-4">
-                <div class="card-header py-3">
+                <div class="card-header py-3 d-flex align-items-center justify-content-between">
                     <h6 class="mb-0 fw-bold">SEO</h6>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="autoFillSeo()">
+                        <i class="bx bx-magic me-1"></i> Otomatik Doldur
+                    </button>
                 </div>
                 <div class="card-body d-flex flex-column gap-3">
+
                     <div>
                         <label class="form-label fw-semibold small">URL Kısa Adı (Slug)</label>
                         <div class="input-group">
@@ -130,16 +152,124 @@
                         <span asp-validation-for="Slug" class="text-danger small"></span>
                         <div class="form-text">Boş bırakılırsa başlıktan otomatik oluşturulur.</div>
                     </div>
+
+                    <div>
+                        <label class="form-label fw-semibold small d-flex justify-content-between">
+                            Meta Başlık
+                            <span class="text-muted fw-normal" id="metaTitleCount">0/60</span>
+                        </label>
+                        <input asp-for="MetaTitle"
+                               id="metaTitleInput"
+                               type="text"
+                               maxlength="60"
+                               class="form-control"
+                               placeholder="Boş bırakılırsa yazı başlığı kullanılır." />
+                        <div class="form-text">Max 60 karakter. Google arama başlığı.</div>
+                    </div>
+
+                    <div>
+                        <label class="form-label fw-semibold small d-flex justify-content-between">
+                            Meta Açıklama
+                            <span class="text-muted fw-normal" id="metaDescCount">0/160</span>
+                        </label>
+                        <textarea asp-for="MetaDescription"
+                                  id="metaDescInput"
+                                  class="form-control"
+                                  rows="3"
+                                  maxlength="160"
+                                  placeholder="Boş bırakılırsa kısa açıklama kullanılır."></textarea>
+                        <div class="form-text">Max 160 karakter. Google arama açıklaması.</div>
+                    </div>
+
+                    <div>
+                        <label class="form-label fw-semibold small">Anahtar Kelimeler</label>
+                        <input asp-for="MetaKeywords"
+                               type="text"
+                               class="form-control"
+                               placeholder="teknoloji, yazılım, yapay zeka" />
+                        <div class="form-text">Virgülle ayırın.</div>
+                    </div>
+
+                    <div class="border rounded p-3 bg-light">
+                        <p class="mb-2 fw-bold text-muted text-uppercase" style="font-size:10px;letter-spacing:.08em">
+                            Google Önizleme
+                        </p>
+                        <div id="previewUrl" class="text-success" style="font-size:12px">gazetary.com › ...</div>
+                        <div id="previewTitle" class="text-primary fw-bold" style="font-size:17px;line-height:1.3">Başlık</div>
+                        <div id="previewDesc" class="text-muted" style="font-size:13px;line-height:1.5">Açıklama...</div>
+                    </div>
+
                 </div>
             </div>
 
         </div>
     </div>
-
 </form>
 
+<!-- ===================== GÖRSEL SEÇİM MODALI ===================== -->
+<div class="modal fade" id="imagePickerModal" tabindex="-1" aria-labelledby="imagePickerLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="imagePickerLabel">
+                    <i class="bx bx-images me-2"></i>Görsel Seç
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+                <!-- Arama -->
+                <div class="mb-3">
+                    <input type="text"
+                           id="imageSearch"
+                           class="form-control"
+                           placeholder="Görsel adına göre ara..." />
+                </div>
+
+                <!-- Görsel Grid -->
+                <div class="row g-3" id="imageGrid">
+                    @if (ViewBag.Images != null)
+                    {
+                        @foreach (var img in (IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)ViewBag.Images)
+                        {
+                            <div class="col-6 col-md-4 col-lg-3 image-picker-item" data-url="@img.Value">
+                                <div class="card h-100 border-2 image-picker-card @(Model.ImageUrl == img.Value ? "border-primary shadow" : "")"
+                                     style="cursor:pointer;transition:all .2s;"
+                                     onclick="selectImage('@img.Value', this)">
+                                    <img src="@img.Value"
+                                         class="card-img-top"
+                                         style="height:140px;object-fit:cover;"
+                                         onerror="this.parentElement.parentElement.style.display='none'" />
+                                    <div class="card-footer p-1 text-center">
+                                        <small class="text-muted text-truncate d-block" style="font-size:10px;">
+                                            @System.IO.Path.GetFileName(img.Value)
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-12 text-center text-muted py-5">
+                            <i class="bx bx-image-alt" style="font-size:3rem;"></i>
+                            <p class="mt-2">Henüz görsel yüklenmemiş.</p>
+                        </div>
+                    }
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== SCRIPTS ===================== -->
 <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 <script>
+    // CKEditor
     CKEDITOR.replace('editor', {
         height: 600,
         removeButtons: 'About',
@@ -147,40 +277,110 @@
         shiftEnterMode: CKEDITOR.ENTER_BR
     });
 
-    // Görsel önizleme
-    const imageUrlInput = document.querySelector('input[name="ImageUrl"]');
-    const imagePreview  = document.getElementById('imagePreview');
-    const imageWrap     = document.getElementById('imagePreviewWrap');
+    // Elementler
+    const titleInput     = document.querySelector('input[name="Title"]');
+    const slugInput      = document.querySelector('input[name="Slug"]');
+    const descInput      = document.getElementById('descriptionInput');
+    const metaTitleInput = document.getElementById('metaTitleInput');
+    const metaDescInput  = document.getElementById('metaDescInput');
+    const metaTitleCount = document.getElementById('metaTitleCount');
+    const metaDescCount  = document.getElementById('metaDescCount');
+    const previewTitle   = document.getElementById('previewTitle');
+    const previewDesc    = document.getElementById('previewDesc');
+    const previewUrl     = document.getElementById('previewUrl');
 
-    function updatePreview() {
-        const val = imageUrlInput.value.trim();
-        if (val) {
-            imagePreview.src = val;
-            imageWrap.classList.remove('d-none');
-        } else {
-            imageWrap.classList.add('d-none');
-        }
+    // ---- Görsel Seçim ----
+    function selectImage(url, cardEl) {
+        document.getElementById('selectedImageUrl').value = url;
+
+        const preview = document.getElementById('imagePreview');
+        const wrap    = document.getElementById('imagePreviewWrap');
+        preview.src   = url;
+        wrap.classList.remove('d-none');
+
+        document.querySelectorAll('.image-picker-card').forEach(c => {
+            c.classList.remove('border-primary', 'shadow');
+        });
+        cardEl.classList.add('border-primary', 'shadow');
+
+        const modal = bootstrap.Modal.getInstance(document.getElementById('imagePickerModal'));
+        modal.hide();
     }
 
-    imageUrlInput.addEventListener('input', updatePreview);
-    updatePreview();
+    function clearImage() {
+        document.getElementById('selectedImageUrl').value = '';
+        document.getElementById('imagePreview').src = '';
+        document.getElementById('imagePreviewWrap').classList.add('d-none');
+        document.querySelectorAll('.image-picker-card').forEach(c => {
+            c.classList.remove('border-primary', 'shadow');
+        });
+    }
 
-    // Slug otomatik oluştur
-    const titleInput = document.querySelector('input[name="Title"]');
-    const slugInput  = document.querySelector('input[name="Slug"]');
+    // Arama filtresi
+    document.getElementById('imageSearch').addEventListener('input', function () {
+        const q = this.value.toLowerCase();
+        document.querySelectorAll('.image-picker-item').forEach(item => {
+            const url = item.dataset.url.toLowerCase();
+            item.style.display = url.includes(q) ? '' : 'none';
+        });
+    });
 
-    titleInput.addEventListener('input', function () {
-        if (slugInput.dataset.manual === 'true') return;
-        slugInput.value = titleInput.value
-            .toLowerCase()
+    // ---- SEO / Slug ----
+    function slugify(text) {
+        return text.toLowerCase()
             .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's')
             .replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c')
-            .replace(/[^a-z0-9\s-]/g, '')
-            .trim()
-            .replace(/\s+/g, '-');
+            .replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
+    }
+
+    titleInput.addEventListener('input', function () {
+        if (slugInput.dataset.manual !== 'true') {
+            slugInput.value = slugify(this.value);
+        }
+        updateGooglePreview();
     });
 
     slugInput.addEventListener('input', function () {
-        slugInput.dataset.manual = 'true';
+        this.dataset.manual = 'true';
+        updateGooglePreview();
     });
+
+    metaTitleInput.addEventListener('input', function () {
+        metaTitleCount.textContent = `${this.value.length}/60`;
+        metaTitleCount.style.color = this.value.length > 50 ? '#dc3545' : '#6c757d';
+        updateGooglePreview();
+    });
+
+    metaDescInput.addEventListener('input', function () {
+        metaDescCount.textContent = `${this.value.length}/160`;
+        metaDescCount.style.color = this.value.length > 140 ? '#dc3545' : '#6c757d';
+        updateGooglePreview();
+    });
+
+    descInput?.addEventListener('input', updateGooglePreview);
+
+    function updateGooglePreview() {
+        const title = metaTitleInput.value.trim() || titleInput.value.trim() || 'Başlık';
+        const desc  = metaDescInput.value.trim()  || descInput?.value.trim() || 'Açıklama...';
+        const slug  = slugInput.value.trim() || 'yazi-kisa-adi';
+        previewTitle.textContent = title.length > 60  ? title.substring(0, 60)  + '...' : title;
+        previewDesc.textContent  = desc.length  > 160 ? desc.substring(0, 160)  + '...' : desc;
+        previewUrl.textContent   = `gazetary.com › ${slug}`;
+    }
+
+    function autoFillSeo() {
+        if (!metaTitleInput.value.trim() && titleInput.value.trim()) {
+            metaTitleInput.value = titleInput.value.trim().substring(0, 60);
+            metaTitleInput.dispatchEvent(new Event('input'));
+        }
+        if (!metaDescInput.value.trim() && descInput?.value.trim()) {
+            metaDescInput.value = descInput.value.trim().substring(0, 160);
+            metaDescInput.dispatchEvent(new Event('input'));
+        }
+    }
+
+    // Sayfa yüklenince mevcut değerleri yansıt
+    metaTitleCount.textContent = `${metaTitleInput.value.length}/60`;
+    metaDescCount.textContent  = `${metaDescInput.value.length}/160`;
+    updateGooglePreview();
 </script>

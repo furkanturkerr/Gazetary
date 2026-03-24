@@ -131,19 +131,25 @@
                                 </a>
                                 @if (item.Status)
                                 {
-                                    <a href="/Admin/Blog/ChangeStatus/@item.BlogPostId"
-                                       class="btn btn-sm btn-icon btn-outline-warning"
-                                       title="Taslağa Al">
-                                        <i class="bx bx-archive"></i>
-                                    </a>
+                                    <form asp-area="Admin"
+                                          asp-controller="Blog"
+                                          asp-action="ChangeStatus"
+                                          asp-route-id="@item.BlogPostId"
+                                          method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-icon btn-outline-warning" title="Taslağa Al"><i class="bx bx-check-circle"></i></button>
+                                    </form>
                                 }
                                 else
                                 {
-                                    <a href="/Admin/Blog/ChangeStatus/@item.BlogPostId"
-                                       class="btn btn-sm btn-icon btn-outline-success"
-                                       title="Yayınla">
-                                        <i class="bx bx-check-circle"></i>
-                                    </a>
+                                    <form asp-area="Admin"
+                                          asp-controller="Blog"
+                                          asp-action="ChangeStatus"
+                                          asp-route-id="@item.BlogPostId"
+                                          method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-icon btn-outline-success" title="Taslağa Al"><i class="bx bx-check-circle"></i></button>
+                                    </form>
                                 }
                                 <form asp-action="Delete" asp-route-id="@item.BlogPostId" method="post" style="display:inline">
                                     @Html.AntiForgeryToken()
