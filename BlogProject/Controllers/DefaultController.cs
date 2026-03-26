@@ -67,4 +67,60 @@ public class DefaultController : Controller
         ViewBag.Count   = results.Count;
         return View(results);
     }
+
+[Route("sitemap.xml")]
+public IActionResult Sitemap()
+{
+    var posts = _blogPostService.TGetCategoryWithBlogPosts()
+        .Where(x => x.Status)
+        .OrderByDescending(x => x.CreatedDate)
+        .ToList();
+
+    var categories = posts
+        .Select(x => x.Category)
+        .DistinctBy(x => x.CategoryId)
+        .ToList();
+
+    var sb = new System.Text.StringBuilder();
+    sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+    sb.AppendLine("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">");
+
+    sb.AppendLine("  <url>");
+    sb.AppendLine("    <loc>https://gazetary.com</loc>");
+    sb.AppendLine("    <changefreq>daily</changefreq>");
+    sb.AppendLine("    <priority>1.0</priority>");
+    sb.AppendLine("  </url>");
+
+    foreach (var page in new[] { "hakkimizda", "iletisim", "reklam", "kategoriler" })
+    {
+        sb.AppendLine("  <url>");
+        sb.AppendLine($"    <loc>https://gazetary.com/{page}</loc>");
+        sb.AppendLine("    <changefreq>monthly</changefreq>");
+        sb.AppendLine("    <priority>0.5</priority>");
+        sb.AppendLine("  </url>");
+    }
+
+    foreach (var category in categories)
+    {
+        sb.AppendLine("  <url>");
+        sb.AppendLine($"    <loc>https://gazetary.com/{category.CategorySlug}</loc>");
+        sb.AppendLine("    <changefreq>daily</changefreq>");
+        sb.AppendLine("    <priority>0.7</priority>");
+        sb.AppendLine("  </url>");
+    }
+
+    foreach (var post in posts)
+    {
+        sb.AppendLine("  <url>");
+        sb.AppendLine($"    <loc>https://gazetary.com/{post.Category.CategorySlug}/{post.Slug}</loc>");
+        sb.AppendLine($"    <lastmod>{post.CreatedDate:yyyy-MM-dd}</lastmod>");
+        sb.AppendLine("    <changefreq>weekly</changefreq>");
+        sb.AppendLine("    <priority>0.8</priority>");
+        sb.AppendLine("  </url>");
+    }
+
+    sb.AppendLine("</urlset>");
+
+    return Content(sb.ToString(), "application/xml", System.Text.Encoding.UTF8);
+}
 }

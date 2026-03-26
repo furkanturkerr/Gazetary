@@ -6,9 +6,8 @@ using Microsoft.EntityFrameworkCore;
 namespace DataAccess.Concrate;
 
 public class Context : IdentityDbContext<AppUser, AppRole, string>{
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public Context(DbContextOptions<Context> options) : base(options)
     {
-        optionsBuilder.UseSqlServer("Server=localhost,1995;Database=BlogProje;User Id=sa;Password=Furkan12*;TrustServerCertificate=True;");
     }
     
     public DbSet<BlogPost> BlogPosts { get; set; }

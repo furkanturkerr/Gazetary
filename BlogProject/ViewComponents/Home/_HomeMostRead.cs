@@ -17,7 +17,7 @@ public class _HomeMostRead : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var mostViewed = await _blogPostService.TGetMostViewedBlogsAsync(5);
+        var mostViewed = await _blogPostService.TGetMostViewedBlogsAsync(10);
 
         if (!mostViewed.Any())
         {
@@ -34,7 +34,7 @@ public class _HomeMostRead : ViewComponent
                 BlogCount    = allPosts.Count(p => p.CategoryId == c.CategoryId)
             })
             .OrderByDescending(c => c.BlogCount)
-            .Take(5)
+            .Take(6)
             .ToList();
 
         var viewModel = new HomeMostReadViewModel

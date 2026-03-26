@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /panel-9xk2-admin
+Disallow: /Admin
+
+Sitemap: https://gazetary.com/sitemap.xml

@@ -3,6 +3,7 @@ using Entities.Concrate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace BlogProject.Controllers;
 
@@ -25,6 +26,7 @@ public class CommentController : Controller
 
     [HttpPost]
     [IgnoreAntiforgeryToken]
+    [EnableRateLimiting("comment-limit")]
     public async Task<IActionResult> AddComment(Comment comment)
     {
         if (string.IsNullOrWhiteSpace(comment.Content))
@@ -77,9 +79,7 @@ public class CommentController : Controller
         if (comment.AppUserId != user.Id)
             return Json(new { success = false, message = "Bu yorum size ait değil." });
 
-        var likes = _commentLikeService.GetAll()
-            .Where(l => l.CommentId == commentId)
-            .ToList();
+        var likes = _commentLikeService.GetByCommentId(commentId);
 
         foreach (var like in likes)
             _commentLikeService.Delete(like);
@@ -90,6 +90,7 @@ public class CommentController : Controller
 
     [HttpPost]
     [IgnoreAntiforgeryToken]
+    [EnableRateLimiting("like-limit")]
     public async Task<IActionResult> ToggleLike(int commentId)
     {
         if (commentId <= 0)

@@ -13,32 +13,33 @@ public class CommentLikeManager : ICommentLikeService
         _commentLikeDal = commentLikeDal;
     }
 
-    public CommentLike? GetByCommentAndUser(int commentId, string userId)
-        => _commentLikeDal.GetAll()
-            .FirstOrDefault(x => x.CommentId == commentId && x.AppUserId == userId);
-
     public void Insert(CommentLike like)
         => _commentLikeDal.Insert(like);
 
     public void Update(CommentLike t)
-    {
-        throw new NotImplementedException();
-    }
+        => _commentLikeDal.Update(t);
 
     public void Delete(CommentLike like)
         => _commentLikeDal.Delete(like);
 
     public List<CommentLike> GetAll()
-    {
-        return _commentLikeDal.GetAll();
-    }
+        => _commentLikeDal.GetAll();
 
     public CommentLike GetById(int id)
-    {
-        throw new NotImplementedException();
-    }
+        => _commentLikeDal.GetById(id);
+
+    public CommentLike? GetByCommentAndUser(int commentId, string userId)
+        => _commentLikeDal.GetByCommentAndUser(commentId, userId);
 
     public int GetLikeCount(int commentId)
-        => _commentLikeDal.GetAll()
-            .Count(x => x.CommentId == commentId);
+        => _commentLikeDal.GetLikeCount(commentId);
+
+    public Dictionary<int, int> GetLikeCountsByCommentIds(List<int> commentIds)
+        => _commentLikeDal.GetLikeCountsByCommentIds(commentIds);
+
+    public List<int> GetLikedCommentIdsByUser(List<int> commentIds, string userId)
+        => _commentLikeDal.GetLikedCommentIdsByUser(commentIds, userId);
+
+    public List<CommentLike> GetByCommentId(int commentId)
+        => _commentLikeDal.GetByCommentId(commentId);
 }

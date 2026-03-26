@@ -478,52 +478,157 @@
 }
 
 
-/* ════════════════════════════
-   YAZILIM
-════════════════════════════ */
+/* ════════════════════════════════════════
+   YAZILIM  —  sol 3 | orta görsel | sağ 5
+════════════════════════════════════════ */
+
 .hc-yazilim-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1.6fr 1fr;
     gap: 0;
+    align-items: start;
 }
 
-.hc-yazilim-card {
-    padding-right: 20px;
+/* ── Kolonlar ── */
+.hc-yazilim-col--left {
+    padding-right: 28px;
+    border-right: 1px solid var(--rule);
 }
-.hc-yazilim-card--bordered {
-    padding-left: 20px;
-    padding-right: 0;
+
+.hc-yazilim-col--right {
+    padding-left: 28px;
     border-left: 1px solid var(--rule);
 }
-.hc-yazilim-card:nth-child(2) {
-    padding-left: 20px;
-    padding-right: 20px;
+
+/* ── Metin kartı ── */
+.hc-yazilim-textcard {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: 16px;
 }
 
-.hc-yazilim-img-wrap {
+.hc-yazilim-textcard--sep {
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+}
+
+.hc-yazilim-textcard:hover .hc-yazilim-hed,
+.hc-yazilim-textcard:hover .hc-yazilim-hed-sm {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+/* Sol kolon başlığı — büyük */
+.hc-yazilim-hed {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.18;
+    color: var(--ink);
+    margin: 4px 0 8px;
+}
+
+/* Sağ kolon başlığı — küçük, sadece başlık+tarih */
+.hc-yazilim-hed-sm {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: var(--ink);
+    margin: 4px 0 6px;
+}
+
+.hc-yazilim-summary {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin: 0 0 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ── Merkez kolon ── */
+.hc-yazilim-center {
+    padding: 0 28px;
+}
+
+.hc-yazilim-center-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.hc-yazilim-center-link:hover .hc-yazilim-center-hed {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+.hc-yazilim-center-img-wrap {
+    width: 100%;
     aspect-ratio: 3/2;
-    margin-bottom: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    background: #eee;
 }
 
-.hc-yazilim-body { display: flex; flex-direction: column; }
-
-.hc-yazilim-img { filter: grayscale(15%); }
-.hc-yazilim-card:hover .hc-yazilim-img { filter: grayscale(0); }
-
-@media (max-width: 768px) {
-    .hc-yazilim-grid { grid-template-columns: 1fr; gap: 20px; }
-    .hc-yazilim-card, .hc-yazilim-card--bordered { padding: 0; border: none; }
+.hc-yazilim-center-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s cubic-bezier(.25,.46,.45,.94);
 }
 
+.hc-yazilim-center-link:hover .hc-yazilim-center-img {
+    transform: scale(1.03);
+}
 
-/* ════════════════════════════
-   DARK MODE
-════════════════════════════ */
-html.dark .hc-tech-card--bordered,
-html.dark .hc-spor-sidebar,
-html.dark .hc-spor-item--bordered,
-html.dark .hc-yazilim-card--bordered,
-html.dark .hc-turkiye-secondary,
-html.dark .hc-tarih-cards {
-    border-color: var(--rule);
+.hc-yazilim-center-hed {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.1;
+    color: var(--blue);
+    margin: 6px 0 12px;
+    letter-spacing: -0.01em;
+}
+
+.hc-yazilim-center-summary {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 0.75rem;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0 0 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .hc-yazilim-grid {
+        grid-template-columns: 1fr;
+    }
+    .hc-yazilim-center {
+        padding: 0;
+        order: -1;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 24px;
+        margin-bottom: 4px;
+    }
+    .hc-yazilim-col--left {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 4px;
+    }
+    .hc-yazilim-col--right {
+        border-left: none;
+        padding-left: 0;
+    }
 }

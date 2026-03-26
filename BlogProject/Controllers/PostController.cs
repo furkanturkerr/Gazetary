@@ -40,29 +40,35 @@ public class PostController : Controller
         if (post == null)
             return NotFound();
 
-        _blogPostService.IncrementViewCountAsync(post.BlogPostId);
+        var viewCookieKey = $"viewed_post_{post.BlogPostId}";
 
-        var comments = _commentService.GetAll()
-            .Where(c => c.BlogPostId == post.BlogPostId)
-            .OrderByDescending(c => c.CreatedDate)
-            .ToList();
+        if (!Request.Cookies.ContainsKey(viewCookieKey))
+        {
+            _blogPostService.IncrementViewCount(post.BlogPostId);
+
+            Response.Cookies.Append(viewCookieKey, "1", new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddHours(6),
+                HttpOnly = true,
+                IsEssential = true,
+                SameSite = SameSiteMode.Lax,
+                Secure = Request.IsHttps
+            });
+        }
+
+        var comments = _commentService.GetCommentsByBlogPostId(post.BlogPostId);
 
         var currentUser = await _userManager.GetUserAsync(User);
 
-        var likeCounts = new Dictionary<int, int>();
-        var likedIds = new List<int>();
+        var commentIds = comments.Select(x => x.CommentId).ToList();
 
-        foreach (var comment in comments)
-        {
-            likeCounts[comment.CommentId] = _commentLikeService.GetLikeCount(comment.CommentId);
+        var likeCounts = commentIds.Any()
+            ? _commentLikeService.GetLikeCountsByCommentIds(commentIds)
+            : new Dictionary<int, int>();
 
-            if (currentUser != null)
-            {
-                var liked = _commentLikeService.GetByCommentAndUser(comment.CommentId, currentUser.Id);
-                if (liked != null)
-                    likedIds.Add(comment.CommentId);
-            }
-        }
+        var likedIds = currentUser != null && commentIds.Any()
+            ? _commentLikeService.GetLikedCommentIdsByUser(commentIds, currentUser.Id)
+            : new List<int>();
 
         var model = new BlogDetailViewModel
         {

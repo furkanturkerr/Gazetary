@@ -53,6 +53,14 @@
       "PackagePath": "staticwebassets/images/upload/G.png"
     },
     {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/images/upload/ataturk.jpeg",
+      "PackagePath": "staticwebassets/images/upload/ataturk.jpeg"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/images/upload/ataturk_1.jpeg",
+      "PackagePath": "staticwebassets/images/upload/ataturk_1.jpeg"
+    },
+    {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/images/upload/logo.png",
       "PackagePath": "staticwebassets/images/upload/logo.png"
     },
@@ -291,6 +299,10 @@
     {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/lib/jquery/dist/jquery.min.map",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/robots.txt",
+      "PackagePath": "staticwebassets/robots.txt"
     },
     {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/BlogProject/wwwroot/site/blog.html",

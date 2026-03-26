@@ -1,3 +1,4 @@
+using BlogProject;
 using Business.Abstract;
 using Business.Concrate;
 using DataAccess.Abstarct;
@@ -6,12 +7,88 @@ using DataAccess.Concrate;
 using DataAccess.EntityFramework;
 using Entities.Concrate;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.RateLimiting;
+using Microsoft.AspNetCore.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
 
-builder.Services.AddDbContext<Context>();
+    options.AddPolicy("login-limit", httpContext =>
+    {
+        var ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+        return RateLimitPartition.GetFixedWindowLimiter(ip, _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 5,
+            Window = TimeSpan.FromMinutes(1),
+            QueueLimit = 0,
+            AutoReplenishment = true
+        });
+    });
+    
+    options.AddPolicy("like-limit", httpContext =>
+    {
+        var ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+        return RateLimitPartition.GetFixedWindowLimiter(ip, _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 10,
+            Window = TimeSpan.FromSeconds(10),
+            QueueLimit = 0,
+            AutoReplenishment = true
+        });
+    });
+    
+    options.AddPolicy("comment-limit", httpContext =>
+    {
+        var ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+        return RateLimitPartition.GetFixedWindowLimiter(ip, _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 3,
+            Window = TimeSpan.FromSeconds(30),
+            QueueLimit = 0,
+            AutoReplenishment = true
+        });
+    });
+
+    options.AddPolicy("register-limit", httpContext =>
+    {
+        var ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+        return RateLimitPartition.GetFixedWindowLimiter(ip, _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 3,
+            Window = TimeSpan.FromMinutes(1),
+            QueueLimit = 0,
+            AutoReplenishment = true
+        });
+    });
+
+    options.AddPolicy("verify-limit", httpContext =>
+    {
+        var ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+        return RateLimitPartition.GetFixedWindowLimiter(ip, _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 5,
+            Window = TimeSpan.FromMinutes(1),
+            QueueLimit = 0,
+            AutoReplenishment = true
+        });
+    });
+});
+
+builder.Services.AddDbContext<Context>((serviceProvider, options) =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection"));
+});
+
 
 builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
@@ -83,6 +160,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<Context>();
+    db.Database.Migrate();
+}
+
 
 app.UseStatusCodePagesWithReExecute("/Error/404");
 
@@ -90,6 +173,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseRateLimiter();
 
 app.UseAuthentication();
 app.UseAuthorization();

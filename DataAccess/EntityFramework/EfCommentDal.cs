@@ -25,4 +25,12 @@ public class EfCommentDal : GenericRepository<Comment>, ICommentDal
         var value = _context.Comments.Include(x => x.BlogPost);
         return value.ToList();
     }
+
+    public List<Comment> GetCommentsByBlogPostId(int blogPostId)
+    {
+        return _context.Comments
+            .Where(x => x.BlogPostId == blogPostId && x.IsStatus)
+            .OrderByDescending(x => x.CreatedDate)
+            .ToList();
+    }
 }

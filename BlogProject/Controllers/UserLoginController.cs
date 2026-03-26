@@ -3,6 +3,7 @@ using Entities.Concrate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace BlogProject.Controllers;
 
@@ -25,11 +26,11 @@ public class UserLoginController : Controller
 
     [Route("[action]")]
     [HttpPost]
+    [EnableRateLimiting("login-limit")]
     public async Task<IActionResult> Login(LoginDto loginDto)
     {
         if (!ModelState.IsValid)
             return View(loginDto);
-        
 
         var result = await _signInManager.PasswordSignInAsync(
             loginDto.Email,
@@ -43,11 +44,10 @@ public class UserLoginController : Controller
             ModelState.AddModelError("", "E-posta adresinizi doğrulamadan giriş yapamazsınız.");
             return View(loginDto);
         }
-        
+
         if (result.Succeeded)
         {
             var user = await _signInManager.UserManager.FindByEmailAsync(loginDto.Email);
-
             return RedirectToAction("Profile", "Profile", new { id = user.Id });
         }
 

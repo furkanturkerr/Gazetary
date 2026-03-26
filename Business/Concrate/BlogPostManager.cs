@@ -111,7 +111,7 @@ public class BlogPostManager : IBlogPostService
         InvalidateCache();
     }
 
-    public void IncrementViewCountAsync(int blogPostId)
+    public void IncrementViewCount(int blogPostId)
     {
         var post = _blogPostDal.GetById(blogPostId);
         if (post == null) return;

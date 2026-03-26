@@ -4,6 +4,19 @@
     Layout = "~/Views/Admin/Index.cshtml";
 }
 
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger mt-2">
+        <strong>❌ HATA:</strong> @TempData["Error"]
+    </div>
+}
+@if (TempData["Debug"] != null)
+{
+    <div class="alert alert-info mt-2">
+        <strong>ℹ️ DEBUG:</strong> @TempData["Debug"]
+    </div>
+}
+
 <form method="post" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
     <label>Görsel</label>
@@ -20,7 +33,7 @@
         <button type="submit" class="btn btn-outline-warning">
             <i class="fas fa-save"></i> Kaydet
         </button>
-        <a href="~/Images/Index" class="btn btn-outline-secondary">
+        <a href="~/Admin/Image/ImageList" class="btn btn-outline-secondary">
             <i class="fas fa-times"></i> İptal
         </a>
     </div>

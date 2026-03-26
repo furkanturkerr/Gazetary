@@ -1,25 +1,53 @@
 @model List<Entities.Concrate.BlogPost>
 
-<section class="hc-section">
+<section class="hc-section hc-section--software-featured">
     <div class="hc-header">
         <h2 class="hc-title">Yazılım</h2>
         <a href="/yazilim" class="hc-more">Tümünü Görüntüle &rsaquo;</a>
     </div>
 
-    <div class="hc-yazilim-grid">
-        @for (int i = 0; i < Model.Count && i < 3; i++)
-        {
-            <a href="/yazilim/@Model[i].Slug" class="hc-yazilim-card @(i > 0 ? "hc-yazilim-card--bordered" : "")">
-                <div class="hc-yazilim-img-wrap">
-                    <img src="@Model[i].ImageUrl" alt="@Model[i].Title" class="hc-yazilim-img" />
+    @if (Model != null && Model.Count > 0)
+    {
+        var leftPosts  = Model.Take(3).ToList();
+        var center     = Model.ElementAtOrDefault(3);
+        var rightPosts = Model.Skip(4).Take(5).ToList();
+
+        <div class="hc-yazilim-grid">
+
+            <div class="hc-yazilim-col hc-yazilim-col--left">
+                @foreach (var (post, i) in leftPosts.Select((p, i) => (p, i)))
+                {
+                    <a href="/yazilim/@post.Slug" class="hc-yazilim-textcard @(i > 0 ? "hc-yazilim-textcard--sep" : "")">
+                        <h3 class="hc-yazilim-hed">@post.Title</h3>
+                        <p class="hc-yazilim-summary">@post.Description</p>
+                    </a>
+                }
+            </div>
+
+            @if (center != null)
+            {
+                <div class="hc-yazilim-center">
+                    <a href="/yazilim/@center.Slug" class="hc-yazilim-center-link">
+                        <div class="hc-yazilim-center-img-wrap">
+                            <img src="@center.ImageUrl"
+                                 alt="@center.Title"
+                                 class="hc-yazilim-center-img" />
+                        </div>
+                        <h3 class="hc-yazilim-center-hed">@center.Title</h3>
+                        <p class="hc-yazilim-center-summary">@center.Description</p>
+                    </a>
                 </div>
-                <div class="hc-yazilim-body">
-                    <span class="hc-kicker">@Model[i].Category.CategoryName</span>
-                    <h3 class="hc-hed-sm">@Model[i].Title</h3>
-                    <p class="hc-summary">@Model[i].Description</p>
-                    <span class="hc-byline">@Model[i].CreatedDate.ToString("dd MMM yyyy")</span>
-                </div>
-            </a>
-        }
-    </div>
+            }
+
+            <div class="hc-yazilim-col hc-yazilim-col--right">
+                @foreach (var (post, i) in rightPosts.Select((p, i) => (p, i)))
+                {
+                    <a href="/yazilim/@post.Slug" class="hc-yazilim-textcard @(i > 0 ? "hc-yazilim-textcard--sep" : "")">
+                        <h3 class="hc-yazilim-hed-sm">@post.Title</h3>
+                    </a>
+                }
+            </div>
+
+        </div>
+    }
 </section>

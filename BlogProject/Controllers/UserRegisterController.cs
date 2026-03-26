@@ -4,6 +4,7 @@ using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace BlogProject.Controllers;
 
@@ -27,6 +28,7 @@ public class UserRegisterController : Controller
 
     [Route("[action]")]
     [HttpPost]
+    [EnableRateLimiting("register-limit")]
     public async Task<IActionResult> Register(RegisterDto registerDto)
     {
         if (registerDto.ConfirmPassword != registerDto.Password)
@@ -99,6 +101,7 @@ public class UserRegisterController : Controller
 
     [Route("[action]")]
     [HttpPost]
+    [EnableRateLimiting("verify-limit")]
     public async Task<IActionResult> EmailConfirmation(EmailConfirmationDto emailConfirmationDto)
     {
         var email = TempData["Email"]?.ToString();
@@ -146,6 +149,7 @@ public class UserRegisterController : Controller
 
     [Route("[action]")]
     [HttpPost]
+    [EnableRateLimiting("verify-limit")]
     public async Task<IActionResult> ResendCode()
     {
         var email = TempData["Email"]?.ToString();

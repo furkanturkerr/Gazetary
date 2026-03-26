@@ -47,4 +47,9 @@ public class CommentManager : ICommentService
     {
         return _commentDal.GetCommentsWithBlogPost();
     }
+
+    public List<Comment> GetCommentsByBlogPostId(int blogPostId)
+    {
+        return _commentDal.GetCommentsByBlogPostId(blogPostId);
+    }
 }

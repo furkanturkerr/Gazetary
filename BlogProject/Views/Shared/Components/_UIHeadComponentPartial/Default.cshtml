@@ -1,40 +1,52 @@
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#1152d4" />
-    
-    <link rel="icon" type="image/png" href="~/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="~/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="~/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="~/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="~/favicon/site.webmanifest" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYW9WM7EN7"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NYW9WM7EN7');
+</script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="theme-color" content="#1152d4"/>
+
+    <link rel="stylesheet" href="~/css/home-categories.css"/>
+    <link rel="stylesheet" href="~/css/home-editorPick.css"/>
+
+    <link rel="icon" type="image/png" href="~/favicon/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/svg+xml" href="~/favicon/favicon.svg"/>
+    <link rel="shortcut icon" href="~/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="~/favicon/apple-touch-icon.png"/>
+    <link rel="manifest" href="~/favicon/site.webmanifest"/>
 
     @if (ViewBag.MetaTitle != null)
     {
         <title>@ViewBag.MetaTitle — Gazetary</title>
-        <meta name="description"  content="@ViewBag.MetaDesc" />
-        <meta name="keywords"     content="@ViewBag.MetaKeywords" />
-        <meta name="author"       content="Gazetary" />
-        <link rel="canonical"     href="@ViewBag.CanonicalUrl" />
+        <meta name="description" content="@ViewBag.MetaDesc"/>
+        <meta name="keywords" content="@ViewBag.MetaKeywords"/>
+        <meta name="author" content="Gazetary"/>
+        <link rel="canonical" href="@ViewBag.CanonicalUrl"/>
 
-        <meta property="og:title"       content="@ViewBag.MetaTitle" />
-        <meta property="og:description" content="@ViewBag.MetaDesc" />
-        <meta property="og:image"       content="@(ViewBag.OgImage ?? "https://gazetary.com/img/og-image.jpg")" />
-        <meta property="og:url"         content="@ViewBag.CanonicalUrl" />
-        <meta property="og:type"        content="@(ViewBag.OgType ?? "website")" />
-        <meta property="og:site_name"   content="Gazetary" />
-        <meta property="og:locale"      content="tr_TR" />
+        <meta property="og:title" content="@ViewBag.MetaTitle"/>
+        <meta property="og:description" content="@ViewBag.MetaDesc"/>
+        <meta property="og:image" content="@(ViewBag.OgImage ?? "https://gazetary.com/img/og-image.jpg")"/>
+        <meta property="og:url" content="@ViewBag.CanonicalUrl"/>
+        <meta property="og:type" content="@(ViewBag.OgType ?? "website")"/>
+        <meta property="og:site_name" content="Gazetary"/>
+        <meta property="og:locale" content="tr_TR"/>
 
-        <meta name="twitter:card"        content="summary_large_image" />
-        <meta name="twitter:title"       content="@ViewBag.MetaTitle" />
-        <meta name="twitter:description" content="@ViewBag.MetaDesc" />
-        <meta name="twitter:image"       content="@(ViewBag.OgImage ?? "https://gazetary.com/img/og-image.jpg")" />
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:title" content="@ViewBag.MetaTitle"/>
+        <meta name="twitter:description" content="@ViewBag.MetaDesc"/>
+        <meta name="twitter:image" content="@(ViewBag.OgImage ?? "https://gazetary.com/img/og-image.jpg")"/>
 
         @if (ViewBag.OgType == "article")
         {
-            <meta property="article:published_time" content="@ViewBag.PublishedTime" />
-            <meta property="article:section"        content="@ViewBag.ArticleSection" />
+            <meta property="article:published_time" content="@ViewBag.PublishedTime"/>
+            <meta property="article:section" content="@ViewBag.ArticleSection"/>
 
             <script type="application/ld+json">
             {
@@ -58,23 +70,23 @@
     else
     {
         <title>Gazetary.com</title>
-        <meta name="description"  content="Gazetary ile teknoloji, yazılım, yapay zeka, ekonomi ve Türkiye'den güncel haberleri takip edin." />
-        <meta name="keywords"     content="teknoloji haberleri, yazılım haberleri, yapay zeka, ekonomi, spor, türkiye haberleri, gazetary" />
-        <meta name="author"       content="Gazetary" />
-        <link rel="canonical"     href="https://gazetary.com" />
+        <meta name="description" content="Gazetary ile teknoloji, yazılım, yapay zeka, ekonomi ve Türkiye'den güncel haberleri takip edin."/>
+        <meta name="keywords" content="teknoloji haberleri, yazılım haberleri, yapay zeka, ekonomi, spor, türkiye haberleri, gazetary"/>
+        <meta name="author" content="Gazetary"/>
+        <link rel="canonical" href="https://gazetary.com"/>
 
-        <meta property="og:title"       content="Gazetary.com" />
-        <meta property="og:description" content="Gazetary ile teknoloji, yazılım, yapay zeka ve güncel haberlerden haberdar olun." />
-        <meta property="og:image"       content="https://gazetary.com/img/og-image.jpg" />
-        <meta property="og:url"         content="https://gazetary.com" />
-        <meta property="og:type"        content="website" />
-        <meta property="og:site_name"   content="Gazetary" />
-        <meta property="og:locale"      content="tr_TR" />
+        <meta property="og:title" content="Gazetary.com"/>
+        <meta property="og:description" content="Gazetary ile teknoloji, yazılım, yapay zeka ve güncel haberlerden haberdar olun."/>
+        <meta property="og:image" content="https://gazetary.com/img/og-image.jpg"/>
+        <meta property="og:url" content="https://gazetary.com"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:site_name" content="Gazetary"/>
+        <meta property="og:locale" content="tr_TR"/>
 
-        <meta name="twitter:card"        content="summary_large_image" />
-        <meta name="twitter:title"       content="Gazetary.com" />
-        <meta name="twitter:description" content="Gazetary ile teknoloji, yazılım, yapay zeka ve güncel haberlerden haberdar olun." />
-        <meta name="twitter:image"       content="https://gazetary.com/img/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:title" content="Gazetary.com"/>
+        <meta name="twitter:description" content="Gazetary ile teknoloji, yazılım, yapay zeka ve güncel haberlerden haberdar olun."/>
+        <meta name="twitter:image" content="https://gazetary.com/img/og-image.jpg"/>
 
         <script type="application/ld+json">
         {
@@ -94,8 +106,8 @@
     }
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
     <script>
         tailwind.config = {

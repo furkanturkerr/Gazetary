@@ -2,29 +2,30 @@
 
 @{
     Layout = "~/Views/UILayout/Home.cshtml";
-    <link rel="stylesheet" href="~/css/home-categories.css" />
-    <link rel="stylesheet" href="~/css/home-editorPick.css" />
 }
 
-<!DOCTYPE html>
-<html class="light" lang="tr">
-<body class="bg-white dark:bg-black min-h-screen flex flex-col items-center overflow-x-hidden text-[#121212] dark:text-[#e0e0e0] font-display antialiased">
-<div class="w-full max-w-paper bg-paper-white dark:bg-paper-dark min-h-screen border-x border-gray-200 dark:border-gray-800 flex flex-col mx-auto relative shadow-none">
-    <main class="flex-grow px-6 pb-12">
-        @await Component.InvokeAsync("_HomeEditorPick")
-        <div class="grid grid-cols-12 gap-8 lg:gap-10">
-            <div class="col-span-12 lg:col-span-9 flex flex-col gap-10">
-                @await Component.InvokeAsync("_HomeCategoryWithTurkiye")
-                @await Component.InvokeAsync("_HomeCategoryWithEconomy")
-                @await Component.InvokeAsync("_HomeCategoryWithSpor")
-                @await Component.InvokeAsync("_HomeCategoryWithTechnology")
-                @await Component.InvokeAsync("_HomeCategoryWithHistory")
-                @await Component.InvokeAsync("_HomeCategoryWithSoftware")
-            </div>
-            @await Component.InvokeAsync("_HomeMostRead")
-        </div>
-    </main>
+@await Component.InvokeAsync("_HomeEditorPick")
+
+<div class="grid grid-cols-12 gap-8 lg:gap-10 mt-10">
+
+    <div class="col-span-12 lg:col-span-9 flex flex-col gap-10">
+        @await Component.InvokeAsync("_HomeCategoryWithTurkiye")
+        @await Component.InvokeAsync("_HomeCategoryWithEconomy")
+    </div>
+
+    <div class="col-span-12 lg:col-span-3">
+        @await Component.InvokeAsync("_HomeMostRead")
+    </div>
+
 </div>
-</body>
-<script src="~/js/home-editorPick.js"></script>
-</html>
+
+<div class="mt-10">
+    @await Component.InvokeAsync("_HomeCategoryWithSpor")
+    @await Component.InvokeAsync("_HomeCategoryWithTechnology")
+    @await Component.InvokeAsync("_HomeCategoryWithHistory")
+    @await Component.InvokeAsync("_HomeCategoryWithSoftware")
+</div>
+
+@section scripts {
+    <script src="~/js/home-editorPick.js"></script>
+}
