@@ -1,0 +1,12 @@
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/bin/Debug/net8.0/Dtos.deps.json
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/bin/Debug/net8.0/Dtos.dll
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/bin/Debug/net8.0/Dtos.pdb
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/obj/Debug/net8.0/Dtos.GeneratedMSBuildEditorConfig.editorconfig
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/obj/Debug/net8.0/Dtos.AssemblyInfoInputs.cache
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/obj/Debug/net8.0/Dtos.AssemblyInfo.cs
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/obj/Debug/net8.0/Dtos.csproj.CoreCompileInputs.cache
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/obj/Debug/net8.0/Dtos.sourcelink.json
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/obj/Debug/net8.0/Dtos.dll
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/obj/Debug/net8.0/refint/Dtos.dll
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/obj/Debug/net8.0/Dtos.pdb
+/Users/furkanturker/RiderProjects/BlogProject/Dtos/obj/Debug/net8.0/ref/Dtos.dll

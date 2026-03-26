@@ -1,12 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogProject", "BlogProject\BlogProject.csproj", "{A860F2A9-7244-4D3B-B0E4-7E58D6F6AF05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gazetary_UI", "Gazetary_UI\Gazetary_UI.csproj", "{A860F2A9-7244-4D3B-B0E4-7E58D6F6AF05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{133ADF6D-883E-494F-A0DB-0E9505BCB393}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{04E15FC5-6BC4-4F2D-A331-F32C96581505}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{D55CF3F3-34CF-4F1C-8D84-434D091D96E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtos", "Dtos\Dtos.csproj", "{42008342-4308-4F60-A247-7ACBDA7D7E9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +32,9 @@ Global
 		{D55CF3F3-34CF-4F1C-8D84-434D091D96E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D55CF3F3-34CF-4F1C-8D84-434D091D96E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D55CF3F3-34CF-4F1C-8D84-434D091D96E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42008342-4308-4F60-A247-7ACBDA7D7E9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42008342-4308-4F60-A247-7ACBDA7D7E9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42008342-4308-4F60-A247-7ACBDA7D7E9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42008342-4308-4F60-A247-7ACBDA7D7E9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

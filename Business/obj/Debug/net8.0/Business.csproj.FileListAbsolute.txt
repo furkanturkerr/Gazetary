@@ -16,3 +16,5 @@
 /Users/furkanturker/RiderProjects/BlogProject/Business/obj/Debug/net8.0/Business.pdb
 /Users/furkanturker/RiderProjects/BlogProject/Business/obj/Debug/net8.0/ref/Business.dll
 /Users/furkanturker/RiderProjects/BlogProject/Business/obj/Debug/net8.0/Business.sourcelink.json
+/Users/furkanturker/RiderProjects/BlogProject/Business/bin/Debug/net8.0/Dtos.dll
+/Users/furkanturker/RiderProjects/BlogProject/Business/bin/Debug/net8.0/Dtos.pdb

@@ -9,6 +9,7 @@
       "Business/1.0.0": {
         "dependencies": {
           "DataAccess": "1.0.0",
+          "Dtos": "1.0.0",
           "FluentValidation": "12.1.1"
         },
         "runtime": {
@@ -932,6 +933,14 @@
           }
         }
       },
+      "Dtos/1.0.0": {
+        "runtime": {
+          "Dtos.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Entities/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity": "2.3.9",
@@ -1550,6 +1559,11 @@
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
     "DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Dtos/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

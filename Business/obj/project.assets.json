@@ -1533,6 +1533,16 @@
           "bin/placeholder/DataAccess.dll": {}
         }
       },
+      "Dtos/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Dtos.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Dtos.dll": {}
+        }
+      },
       "Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -3837,6 +3847,11 @@
       "path": "../DataAccess/DataAccess.csproj",
       "msbuildProject": "../DataAccess/DataAccess.csproj"
     },
+    "Dtos/1.0.0": {
+      "type": "project",
+      "path": "../Dtos/Dtos.csproj",
+      "msbuildProject": "../Dtos/Dtos.csproj"
+    },
     "Entities/1.0.0": {
       "type": "project",
       "path": "../Entities/Entities.csproj",
@@ -3846,6 +3861,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "DataAccess >= 1.0.0",
+      "Dtos >= 1.0.0",
       "FluentValidation >= 12.1.1"
     ]
   },
@@ -3876,6 +3892,9 @@
           "projectReferences": {
             "/Users/furkanturker/RiderProjects/BlogProject/DataAccess/DataAccess.csproj": {
               "projectPath": "/Users/furkanturker/RiderProjects/BlogProject/DataAccess/DataAccess.csproj"
+            },
+            "/Users/furkanturker/RiderProjects/BlogProject/Dtos/Dtos.csproj": {
+              "projectPath": "/Users/furkanturker/RiderProjects/BlogProject/Dtos/Dtos.csproj"
             }
           }
         }

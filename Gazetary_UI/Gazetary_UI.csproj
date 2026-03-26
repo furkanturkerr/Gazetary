@@ -1,0 +1,249 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>BlogProject</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MailKit" Version="4.15.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.9" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.23" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.23">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.23" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.23">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.23" />
+      <PackageReference Include="MvcPages" Version="0.9.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Business\Business.csproj" />
+      <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+      <ProjectReference Include="..\Entities\Entities.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Areas\Admin\Data\" />
+      <Folder Include="Areas\Admin\Pages\" />
+      <Folder Include="Pages\" />
+      <Folder Include="Post\" />
+      <Folder Include="wwwroot\images\upload\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\.env" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\.gitignore" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\.npmrc" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\.prettierignore" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\.prettierrc.cjs" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\eslint.config.mjs" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\index.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\LICENSE.md" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\package-lock.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\package.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\pnpm-lock.yaml" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\public\assets\images\aurora-free-preview.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\public\assets\images\cta-bg.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\public\assets\images\illustrations\1.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\public\assets\images\illustrations\2.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\public\assets\images\illustrations\3.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\public\assets\images\illustrations\4.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\public\assets\images\illustrations\5.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\public\aurora.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\README.md" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\App.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\base\IconifyIcon.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\base\Image.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\base\NumberTextField.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\base\PhoneTextfield.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\base\ReactEchart.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\base\SimpleBar.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\base\StatusAvatar.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\common\CountrySelect.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\common\DashboardMenu.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\common\DashboardSelectMenu.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\common\Logo.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\common\PasswordTextField.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\common\PromoCard.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\common\SectionHeader.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\icons\CheckBoxBlankIcon.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\icons\CheckBoxCheckedIcon.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\icons\CheckBoxIndeterminateIcon.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\icons\EllipsisHorizontalIcon.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\icons\RadioIcon.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\icons\SettingsIcon.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\loading\PageLoader.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\pagination\CustomTablePaginationAction.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\pagination\DataGridPagination.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\pagination\DataGridPaginationAction.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\pagination\TableLabelDisplayedRows.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\common\AccountDialog.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\common\AccountTab.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\common\AccountTabPanel.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\common\AccountTabPanelSection.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\common\InfoCard.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\common\InfoCardAttribute.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\personal-info\Address.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\personal-info\Email.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\personal-info\Names.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\personal-info\PersonalInfoTabPanel.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\personal-info\Phone.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\personal-info\UserName.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\account\SideTabList.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\authentications\LoginForm.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\authentications\SignupForm.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\authentications\SocialAuth.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\dashboards\analytics\cta\ProPlanCTA.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\dashboards\analytics\kpi\AnalyticKPI.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\dashboards\analytics\top-campaigns\TopCampaigns.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\dashboards\analytics\top-campaigns\TopCampaignsChart.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\dashboards\analytics\user-by-country\UserByCountry.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\dashboards\analytics\user-by-country\UserByCountryTable.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\dashboards\analytics\user-engagement\UserEngagement.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\dashboards\analytics\user-engagement\UserEngagementChart.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\notification\NotificationActionMenu.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\notification\NotificationList.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\notification\NotificationListItemAvatar.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\user-table\filters\FilterMenu.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\user-table\filters\FilterSection.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\user-table\index.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\user-table\PageBreadcrumb.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\user-table\PageHeader.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\sections\user-table\UsersTable.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\settings-panel\FontFamilyPanel.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\settings-panel\SettingPanelToggler.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\settings-panel\SettingsPanel.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\styled\OutlinedBadge.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\styled\StyledFormControl.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\components\styled\StyledTextField.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\config.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\data\account\account-tabs.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\data\account\personal-info.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\data\color-presets.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\data\countries.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\data\dashboard.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\data\languages.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\data\notifications.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\data\users.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\helpers\echart-utils.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\hooks\useNumberFormat.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\hooks\useSettingsPanelMountEffect.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\hooks\useToggleChartLegends.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\auth-layout\index.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\app-bar\index.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\common\AppbarActionItems.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\common\LanguageMenu.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\common\NotificationMenu.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\common\ProfileMenu.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\common\ProSnackbar.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\common\search-box\SearchBox.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\common\search-box\SearchTextField.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\common\ThemeToggler.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\footer\index.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\index.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\NavProvider.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\sidenav\index.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\sidenav\NavItem.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\sidenav\NavItemPopper.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\sidenav\SidenavCollapse.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\sidenav\SidenavDrawerContent.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\layouts\main-layout\sidenav\SidenavSimpleBar.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\lib\constants.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\lib\iconify\icon-datasets.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\lib\iconify\iconify-register.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\lib\utils.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\main.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\pages\authentication\Login.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\pages\authentication\Signup.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\pages\dashboard\Analytics.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\pages\errors\Page404.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\pages\others\Account.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\pages\others\Starter.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\pages\users\UserList.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\providers\AccountsProvider.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\providers\BreakpointsProvider.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\providers\SettingsPanelProvider.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\providers\SettingsProvider.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\providers\ThemeProvider.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\reactjs-social-login.d.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\reducers\SettingsReducer.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\routes\paths.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\routes\router.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\routes\sitemap.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\simplebar-react.d.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\AppBar.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Autocomplete.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Avatar.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Backdrop.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Breadcrumbs.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Button.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Checkbox.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Chip.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\CssBaseline.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\DataGrid.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Dialog.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Drawer.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Link.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\List.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Menu.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Pagination.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Paper.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Popover.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Popper.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Progress.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Radio.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Select.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Snackbar.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Stack.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Switch.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Tab.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\TablePagination.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\text-fields\FilledInput.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\text-fields\FormControl.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\text-fields\FormControlLabel.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\text-fields\FormHelperText.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\text-fields\Input.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\text-fields\InputAdornment.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\text-fields\InputLabel.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\text-fields\OutlinedInput.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\text-fields\TextField.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\ToggleButton.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Toolbar.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Tooltip.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\components\Typography.tsx" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\palette\colors.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\palette\index.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\shadows.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\styles\keyFrames.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\styles\popper.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\styles\simplebar.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\sxConfig.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\theme.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\theme\typography.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\types\accounts.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\types\countries.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\types\dashboard.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\types\notification.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\types\users.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\src\vite-env.d.ts" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\tsconfig.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\tsconfig.node.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\aurora-free-1.0.0\vite.config.ts" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="wwwroot\sneat-1.0.0\.github\workflows\handle-new-issue-comment.yml" />
+      <Content Include="wwwroot\sneat-1.0.0\.github\workflows\handle-new-issue.yml" />
+      <Content Include="wwwroot\sneat-1.0.0\.github\workflows\issue-staler.yml" />
+    </ItemGroup>
+
+</Project>
