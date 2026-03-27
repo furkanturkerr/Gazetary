@@ -14,7 +14,15 @@ public class _Weather : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var value = await _weatherService.GetIstanbulWeatherAsync();
-        return View(value);
+        try
+        {
+            var value = await _weatherService.GetIstanbulWeatherAsync();
+            return View(value);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

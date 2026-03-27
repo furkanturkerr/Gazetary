@@ -132,10 +132,10 @@ public class BlogController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult EditBlog(BlogPost blogPost)
+    public IActionResult EditBlog(BlogPost model)
     {
         var validator = new BlogValidation();
-        var result = validator.Validate(blogPost);
+        var result = validator.Validate(model);
 
         foreach (var error in result.Errors)
         {
@@ -145,15 +145,27 @@ public class BlogController : Controller
         if (!ModelState.IsValid)
         {
             ViewBag.Categories = new SelectList(_categoryService.GetAll(), "CategoryId", "CategoryName");
-            ViewBag.Images = new SelectList(
-                _imageService.GetAll(),
-                "ImageUrl",   
-                "ImageUrl"   
-            );
-            return View(blogPost);
+            ViewBag.Images = new SelectList(_imageService.GetAll(), "ImageUrl", "ImageUrl");
+            return View(model);
         }
 
-        _blogPostService.Update(blogPost);
+        var existingBlog = _blogPostService.GetById(model.BlogPostId);
+        if (existingBlog == null)
+            return NotFound();
+
+        existingBlog.Title = model.Title;
+        existingBlog.Description = model.Description;
+        existingBlog.Content = model.Content;
+        existingBlog.ImageUrl = model.ImageUrl;
+        existingBlog.ImageDescription = model.ImageDescription;
+        existingBlog.Slug = model.Slug;
+        existingBlog.CategoryId = model.CategoryId;
+        existingBlog.MetaTitle = model.MetaTitle;
+        existingBlog.MetaDescription = model.MetaDescription;
+        existingBlog.MetaKeywords = model.MetaKeywords;
+        
+        _blogPostService.Update(existingBlog);
+
         return RedirectToAction("Index", new { area = "Admin" });
     }
 

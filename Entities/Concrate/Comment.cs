@@ -5,6 +5,7 @@ public class Comment
     public int CommentId { get; set; }
     public string Name { get; set; }
     public string Content { get; set; }
+    public string? Analysis { get; set; }
     public DateTime CreatedDate { get; set; }
     public bool IsStatus { get; set; }
     

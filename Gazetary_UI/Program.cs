@@ -93,8 +93,20 @@ builder.Services.AddDbContext<Context>((serviceProvider, options) =>
 builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 
-builder.Services.AddHttpClient<IExchangeRateService, ExchangeRateManager>();
-builder.Services.AddHttpClient<IWeatherService, WeatherManager>();
+builder.Services.AddHttpClient<IExchangeRateService, ExchangeRateManager>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(10);
+});
+
+builder.Services.AddHttpClient<IWeatherService, WeatherManager>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(10);
+});
+
+builder.Services.AddHttpClient<IRssService, RssManager>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(15);
+});
 
 builder.Services.AddScoped<IImageDal, EfImageDal>();
 builder.Services.AddScoped<IImageService, ImageManager>();

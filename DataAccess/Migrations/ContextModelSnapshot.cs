@@ -218,6 +218,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
 
+                    b.Property<string>("Analysis")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 

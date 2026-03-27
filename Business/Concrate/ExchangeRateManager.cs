@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Xml.Linq;
 using Business.Abstract;
 using Dtos;
@@ -8,6 +9,9 @@ public class ExchangeRateManager : IExchangeRateService
     private readonly HttpClient _httpClient;
     private readonly IMemoryCache _cache;
 
+    private const string CacheKey = "tcmb_rates";
+    private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(30);
+
     public ExchangeRateManager(HttpClient httpClient, IMemoryCache cache)
     {
         _httpClient = httpClient;
@@ -16,24 +20,26 @@ public class ExchangeRateManager : IExchangeRateService
 
     public async Task<ExchangeRateDto> GetRatesAsync()
     {
-        // CACHE (çok önemli)
-        if (_cache.TryGetValue("tcmb_rates", out ExchangeRateDto cached))
-            return cached;
+        if (_cache.TryGetValue(CacheKey, out ExchangeRateDto? cachedRates) && cachedRates is not null)
+        {
+            return cachedRates;
+        }
 
         var xml = await _httpClient.GetStringAsync("https://www.tcmb.gov.tr/kurlar/today.xml");
-
         var doc = XDocument.Parse(xml);
-
-        decimal usd = GetCurrency(doc, "USD");
-        decimal eur = GetCurrency(doc, "EUR");
 
         var result = new ExchangeRateDto
         {
-            USD = usd,
-            EUR = eur
+            USD = GetCurrency(doc, "USD"),
+            EUR = GetCurrency(doc, "EUR")
         };
 
-        _cache.Set("tcmb_rates", result, TimeSpan.FromMinutes(30));
+        var cacheOptions = new MemoryCacheEntryOptions
+        {
+            AbsoluteExpirationRelativeToNow = CacheDuration
+        };
+
+        _cache.Set(CacheKey, result, cacheOptions);
 
         return result;
     }
@@ -45,10 +51,14 @@ public class ExchangeRateManager : IExchangeRateService
 
         var value = currency?.Element("ForexSelling")?.Value;
 
-        if (string.IsNullOrEmpty(value))
+        if (string.IsNullOrWhiteSpace(value))
             return 0;
 
-        // TR format → decimal çevir
-        return decimal.Parse(value.Replace(",", "."), System.Globalization.CultureInfo.InvariantCulture);
+        value = value.Replace(",", ".");
+
+        if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var parsedValue))
+            return parsedValue;
+
+        return 0;
     }
 }

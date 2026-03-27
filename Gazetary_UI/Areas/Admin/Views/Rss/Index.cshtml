@@ -1,0 +1,199 @@
+@model Dtos.RssAdminPageDto
+
+@{
+    ViewData["Title"] = "RSS Haber Yönetimi";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<style>
+    .rss-page-wrap {
+        height: calc(100vh - 140px);
+    }
+
+    .rss-card-full {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .rss-scroll {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .rss-left-scroll {
+        height: calc(100vh - 220px);
+    }
+
+    .rss-right-scroll {
+        height: calc(100vh - 260px);
+    }
+
+    .rss-source-item {
+        display: block;
+        text-decoration: none;
+        transition: 0.2s ease;
+    }
+
+    .rss-source-item .rss-source-category {
+        color: #6c757d;
+    }
+
+    .rss-source-item.active .rss-source-category {
+        color: rgba(255,255,255,.85);
+    }
+
+    .rss-news-card {
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        background: #fff;
+    }
+
+    .rss-news-image {
+        width: 160px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+        flex-shrink: 0;
+    }
+
+    .rss-news-placeholder {
+        width: 160px;
+        height: 100px;
+        border-radius: 10px;
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6c757d;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+
+    @@media (max-width: 768px) {
+        .rss-page-wrap {
+            height: auto;
+        }
+
+        .rss-left-scroll,
+        .rss-right-scroll {
+            height: auto;
+            max-height: none;
+            overflow: visible;
+        }
+
+        .rss-news-card {
+            flex-direction: column;
+        }
+
+        .rss-news-image,
+        .rss-news-placeholder {
+            width: 100%;
+            height: 200px;
+        }
+    }
+</style>
+
+<div class="container-fluid mt-4">
+    <div class="row rss-page-wrap">
+
+        <!-- SOL TARAF -->
+        <div class="col-md-3 mb-4 mb-md-0 h-100">
+            <div class="card shadow-sm border-0 rss-card-full">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">RSS Kaynakları</h5>
+                </div>
+
+                <div class="list-group list-group-flush rss-scroll rss-left-scroll">
+                    @foreach (var source in Model.Sources)
+                    {
+                        var isActive = Model.SelectedSourceId == source.Id;
+
+                        <a asp-area="Admin"
+                           asp-controller="Rss"
+                           asp-action="Index"
+                           asp-route-id="@source.Id"
+                           class="list-group-item list-group-item-action rss-source-item @(isActive ? "active" : "")">
+                            <div class="fw-bold">@source.Name</div>
+                            <small class="rss-source-category">@source.Category</small>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- SAĞ TARAF -->
+        <div class="col-md-9 h-100">
+            <div class="card shadow-sm border-0 rss-card-full">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Haberler</h5>
+                    <small>@Model.SelectedSourceName - @Model.SelectedSourceCategory</small>
+                </div>
+
+                <div class="card-body rss-scroll rss-right-scroll">
+                    @if (Model.News != null && Model.News.Any())
+                    {
+                        @foreach (var item in Model.News)
+                        {
+                            <div class="mb-3">
+                                <div class="rss-news-card">
+
+                                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                    {
+                                        <img src="@item.ImageUrl" alt="@item.Title" class="rss-news-image" />
+                                    }
+                                    else
+                                    {
+                                        <div class="rss-news-placeholder">
+                                            Görsel yok
+                                        </div>
+                                    }
+
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-2">@item.Title</h5>
+
+                                        <div class="mb-2 text-muted small">
+                                            <span class="me-3">
+                                                <strong>Tarih:</strong>
+                                                @(item.PublishDate?.ToString("dd.MM.yyyy HH:mm") ?? "-")
+                                            </span>
+
+                                            @if (!string.IsNullOrWhiteSpace(item.Category))
+                                            {
+                                                <span>
+                                                    <strong>Kategori:</strong> @item.Category
+                                                </span>
+                                            }
+                                        </div>
+
+                                        <p class="mb-3 text-secondary">
+                                            @(string.IsNullOrWhiteSpace(item.Description)
+                                                ? "Açıklama bulunamadı."
+                                                : item.Description)
+                                        </p>
+
+                                        <a href="@item.Link" target="_blank" class="btn btn-sm btn-outline-primary">
+                                            Habere Git
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning mb-0">
+                            Bu RSS kaynağında haber bulunamadı ya da veri çekilemedi.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

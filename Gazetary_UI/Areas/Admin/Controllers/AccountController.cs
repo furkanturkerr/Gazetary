@@ -142,4 +142,15 @@ public class AccountController : Controller
         await _signInManager.SignOutAsync();
         return RedirectToAction("Login");
     }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteUser(string id)
+    {
+        var user = await _userManager.FindByIdAsync(id);
+        if (user != null)
+        {
+            await _userManager.DeleteAsync(user);
+        }
+        return RedirectToAction("Users", "Account");
+    }
 }

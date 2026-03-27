@@ -16,3 +16,5 @@
 /Users/furkanturker/RiderProjects/BlogProject/Business/obj/Release/net8.0/refint/Business.dll
 /Users/furkanturker/RiderProjects/BlogProject/Business/obj/Release/net8.0/Business.pdb
 /Users/furkanturker/RiderProjects/BlogProject/Business/obj/Release/net8.0/ref/Business.dll
+/Users/furkanturker/RiderProjects/BlogProject/Business/bin/Release/net8.0/Dtos.dll
+/Users/furkanturker/RiderProjects/BlogProject/Business/bin/Release/net8.0/Dtos.pdb

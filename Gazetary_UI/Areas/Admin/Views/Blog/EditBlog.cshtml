@@ -14,7 +14,7 @@
 <form method="post">
     @Html.AntiForgeryToken()
     <div class="row g-4">
-
+        <input type="hidden" asp-for="BlogPostId" />
         <!-- SOL: Ana İçerik -->
         <div class="col-lg-8">
 
@@ -72,6 +72,12 @@
                             <option value="">Kategori Seçin</option>
                         </select>
                         <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
                     </div>
                     <div class="d-grid gap-2 pt-2 border-top">
                         <button type="submit" class="btn btn-primary">

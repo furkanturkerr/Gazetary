@@ -1,9 +1,9 @@
-/Users/furkanturker/Desktop/aa/BlogProject
+/Users/furkanturker/Desktop/aa/Gazetary_UI
 /Users/furkanturker/Desktop/aa/appsettings.Development.json
 /Users/furkanturker/Desktop/aa/appsettings.json
-/Users/furkanturker/Desktop/aa/BlogProject.dll
-/Users/furkanturker/Desktop/aa/BlogProject.runtimeconfig.json
-/Users/furkanturker/Desktop/aa/BlogProject.pdb
+/Users/furkanturker/Desktop/aa/Gazetary_UI.dll
+/Users/furkanturker/Desktop/aa/Gazetary_UI.runtimeconfig.json
+/Users/furkanturker/Desktop/aa/Gazetary_UI.pdb
 /Users/furkanturker/Desktop/aa/Azure.Core.dll
 /Users/furkanturker/Desktop/aa/Azure.Identity.dll
 /Users/furkanturker/Desktop/aa/BouncyCastle.Cryptography.dll
@@ -238,8 +238,10 @@
 /Users/furkanturker/Desktop/aa/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll
 /Users/furkanturker/Desktop/aa/Business.dll
 /Users/furkanturker/Desktop/aa/DataAccess.dll
+/Users/furkanturker/Desktop/aa/Dtos.dll
 /Users/furkanturker/Desktop/aa/Entities.dll
 /Users/furkanturker/Desktop/aa/Business.pdb
 /Users/furkanturker/Desktop/aa/DataAccess.pdb
 /Users/furkanturker/Desktop/aa/Entities.pdb
-/Users/furkanturker/Desktop/aa/BlogProject.deps.json
+/Users/furkanturker/Desktop/aa/Dtos.pdb
+/Users/furkanturker/Desktop/aa/Gazetary_UI.deps.json
