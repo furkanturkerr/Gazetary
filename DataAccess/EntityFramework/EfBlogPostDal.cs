@@ -38,7 +38,12 @@ public class EfBlogPostDal : GenericRepository<BlogPost>, IBlogPostDal
 
     public async Task<List<BlogPost>> GetBlogsWithCategoryByNameAsync(string categoryName)
     {
-        return await _context.BlogPosts.Include(x => x.Category).Where(x => x.Category.CategoryName == categoryName).ToListAsync();
+        return await _context.BlogPosts
+            .Include(x => x.Category)
+            .Where(x => x.Category.CategoryName == categoryName)
+            .OrderByDescending(x => x.CreatedDate)
+            .Take(9)
+            .ToListAsync();
     }
     
     public async Task<List<BlogPost>> GetMostViewedBlogsAsync(int count)
@@ -70,5 +75,14 @@ public class EfBlogPostDal : GenericRepository<BlogPost>, IBlogPostDal
             .OrderByDescending(x => x.CreatedDate)
             .Take(count)
             .ToListAsync();
+    }
+
+    public async Task<BlogPost?> GetBlogPostBySlugAsync(string categorySlug, string postSlug)
+    {
+        return await _context.BlogPosts
+            .Include(x => x.Category)
+            .FirstOrDefaultAsync(x =>
+                x.Category.CategorySlug == categorySlug &&
+                x.Slug == postSlug);
     }
 }

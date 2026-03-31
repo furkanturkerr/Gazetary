@@ -31,11 +31,7 @@ public class PostController : Controller
     [HttpGet("{postSlug}")]
     public async Task<IActionResult> Detail(string categorySlug, string postSlug)
     {
-        var post = _blogPostService
-            .TGetCategoryWithBlogPosts()
-            .FirstOrDefault(x =>
-                x.Category.CategorySlug == categorySlug &&
-                x.Slug == postSlug);
+        var post = await _blogPostService.GetBlogPostBySlugAsync(categorySlug, postSlug);
 
         if (post == null)
             return NotFound();

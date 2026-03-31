@@ -10,10 +10,23 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.RateLimiting;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.File(
+        Path.Combine(AppContext.BaseDirectory, "Logs", "log-.txt"),
+        rollingInterval: RollingInterval.Day,
+        retainedFileCountLimit: 7,
+        shared: true)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddRateLimiter(options =>
 {
     options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
@@ -30,7 +43,7 @@ builder.Services.AddRateLimiter(options =>
             AutoReplenishment = true
         });
     });
-    
+
     options.AddPolicy("like-limit", httpContext =>
     {
         var ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
@@ -43,7 +56,7 @@ builder.Services.AddRateLimiter(options =>
             AutoReplenishment = true
         });
     });
-    
+
     options.AddPolicy("comment-limit", httpContext =>
     {
         var ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
@@ -84,11 +97,10 @@ builder.Services.AddRateLimiter(options =>
     });
 });
 
-builder.Services.AddDbContext<Context>((serviceProvider, options) =>
+builder.Services.AddDbContext<Context>((_, options) =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection"));
 });
-
 
 builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
@@ -122,8 +134,11 @@ builder.Services.AddScoped<ICommentLikeService, CommentLikeManager>();
 
 builder.Services.AddScoped<IContactDal, EfContactDal>();
 builder.Services.AddScoped<IContactService, ContactManager>();
+
 builder.Services.AddMemoryCache();
+
 builder.Services.AddScoped<ISeoService, SeoManager>();
+
 builder.Services.AddIdentity<AppUser, AppRole>(options =>
     {
         options.SignIn.RequireConfirmedEmail = true;
@@ -169,18 +184,40 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<Context>();
+        db.Database.Migrate();
+        Log.Information("Database migration başarılı");
+    }
+    catch (Exception ex)
+    {
+        Log.Error(ex, "Database migration hatası - Uygulama başlatılamıyor!");
+        throw;
+    }
+}
+
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error/404");
+    app.UseExceptionHandler(errorApp =>
+    {
+        errorApp.Run(async context =>
+        {
+            var exception = context.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>()?.Error;
+
+            Log.Error(exception, "Unhandled exception");
+
+            context.Response.StatusCode = 500;
+            await context.Response.WriteAsync("Sunucu hatası oluştu.");
+        });
+    });
+
     app.UseHsts();
 }
 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<Context>();
-    db.Database.Migrate();
-}
-
+app.UseSerilogRequestLogging();
 
 app.UseStatusCodePagesWithReExecute("/Error/404");
 

@@ -167,7 +167,7 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -181,7 +181,20 @@ namespace DataAccess.Migrations
 
                     b.HasKey("BlogPostId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryId")
+                        .HasDatabaseName("IX_BlogPosts_CategoryId");
+
+                    b.HasIndex("CreatedDate")
+                        .HasDatabaseName("IX_BlogPosts_CreatedDate");
+
+                    b.HasIndex("Slug")
+                        .HasDatabaseName("IX_BlogPosts_Slug");
+
+                    b.HasIndex("Status")
+                        .HasDatabaseName("IX_BlogPosts_Status");
+
+                    b.HasIndex("ViewCount")
+                        .HasDatabaseName("IX_BlogPosts_ViewCount");
 
                     b.ToTable("BlogPosts");
                 });
@@ -200,12 +213,16 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("CategorySlug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsStatus")
                         .HasColumnType("bit");
 
                     b.HasKey("CategoryId");
+
+                    b.HasIndex("CategorySlug")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Categories_CategorySlug");
 
                     b.ToTable("Categories");
                 });
@@ -243,9 +260,17 @@ namespace DataAccess.Migrations
 
                     b.HasKey("CommentId");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId")
+                        .HasDatabaseName("IX_Comments_AppUserId");
 
-                    b.HasIndex("BlogPostId");
+                    b.HasIndex("BlogPostId")
+                        .HasDatabaseName("IX_Comments_BlogPostId");
+
+                    b.HasIndex("CreatedDate")
+                        .HasDatabaseName("IX_Comments_CreatedDate");
+
+                    b.HasIndex("IsStatus")
+                        .HasDatabaseName("IX_Comments_IsStatus");
 
                     b.ToTable("Comments");
                 });
@@ -269,7 +294,12 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("CommentId");
+                    b.HasIndex("CommentId")
+                        .HasDatabaseName("IX_CommentLikes_CommentId");
+
+                    b.HasIndex("CommentId", "AppUserId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_CommentLikes_CommentId_AppUserId");
 
                     b.ToTable("CommentLikes");
                 });

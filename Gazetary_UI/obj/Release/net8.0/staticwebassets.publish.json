@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MQZd2JQDxK6a5HNcasgzq3qoyam4NnVlwwBl0gaMMG8=",
+  "Hash": "Y3WTViFRfbh+Mq6hdQKzIi593YJoGrokRxqaq6n6LOI=",
   "Source": "Gazetary_UI",
   "BasePath": "_content/Gazetary_UI",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/obj/Release/net8.0/scopedcss/projectbundle/Gazetary_UI.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/ads.txt",
+      "SourceId": "Gazetary_UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/",
+      "BasePath": "_content/Gazetary_UI",
+      "RelativePath": "ads.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/ads.txt"
     },
     {
       "Identity": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/css/home-categories.css",
@@ -262,6 +281,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/1493549.jpeg"
+    },
+    {
+      "Identity": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/80b2ba1f-a23d-4e89-a338-14e4c9877212.png",
+      "SourceId": "Gazetary_UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/",
+      "BasePath": "_content/Gazetary_UI",
+      "RelativePath": "images/upload/80b2ba1f-a23d-4e89-a338-14e4c9877212.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/upload/80b2ba1f-a23d-4e89-a338-14e4c9877212.png"
     },
     {
       "Identity": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/ataturk_1.jpeg",

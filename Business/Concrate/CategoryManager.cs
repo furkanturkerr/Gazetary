@@ -30,30 +30,41 @@ public class CategoryManager : ICategoryService
 
     public Category GetById(int id)
     {
-        return _categoryDal.GetById(id);
+        var key = $"category_{id}";
+        return _cache.GetOrCreate(key, entry =>
+        {
+            entry.AbsoluteExpirationRelativeToNow = Expiry;
+            return _categoryDal.GetById(id);
+        })!;
     }
 
     public void Insert(Category t)
     {
         _categoryDal.Insert(t);
-        _cache.Remove(CacheKeyAll);
+        InvalidateCache(t.CategoryId);
     }
 
     public void Update(Category t)
     {
         _categoryDal.Update(t);
-        _cache.Remove(CacheKeyAll);
+        InvalidateCache(t.CategoryId);
     }
 
     public void Delete(Category t)
     {
         _categoryDal.Delete(t);
-        _cache.Remove(CacheKeyAll);
+        InvalidateCache(t.CategoryId);
     }
 
     public void TChangeStatus(int id)
     {
         _categoryDal.ChangeStatus(id);
+        InvalidateCache(id);
+    }
+
+    private void InvalidateCache(int categoryId)
+    {
         _cache.Remove(CacheKeyAll);
+        _cache.Remove($"category_{categoryId}");
     }
 }

@@ -17,12 +17,9 @@ public class CategoryController : Controller
         _seoService = seoService;
     }
 
-    // /oyun
-    // /yazilim
     [HttpGet("{categorySlug}")]
     public IActionResult Index(string categorySlug, int page = 1)
     {
-        // 1️⃣ KATEGORİ VAR MI?
         var category = _categoryService
             .GetAll()
             .FirstOrDefault(x => x.CategorySlug == categorySlug);
@@ -32,12 +29,11 @@ public class CategoryController : Controller
         
         int pageSize = 5;
 
-        // 2️⃣ BU KATEGORİYE AİT YAZILAR
         var allPosts = _blogPostService
             .TGetCategoryWithBlogPosts()
             .Where(x =>
                 x.Category != null &&
-                x.Category.CategorySlug == categorySlug && x.Status == true)
+                x.Category.CategorySlug == categorySlug && x.Status == true).OrderByDescending(x => x.CreatedDate)
             .ToList();
 
         var posts = allPosts

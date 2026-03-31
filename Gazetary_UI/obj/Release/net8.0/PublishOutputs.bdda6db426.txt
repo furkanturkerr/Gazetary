@@ -73,6 +73,15 @@
 /Users/furkanturker/Desktop/aa/NuGet.ProjectModel.dll
 /Users/furkanturker/Desktop/aa/NuGet.Protocol.dll
 /Users/furkanturker/Desktop/aa/NuGet.Versioning.dll
+/Users/furkanturker/Desktop/aa/Serilog.dll
+/Users/furkanturker/Desktop/aa/Serilog.AspNetCore.dll
+/Users/furkanturker/Desktop/aa/Serilog.Extensions.Hosting.dll
+/Users/furkanturker/Desktop/aa/Serilog.Extensions.Logging.dll
+/Users/furkanturker/Desktop/aa/Serilog.Formatting.Compact.dll
+/Users/furkanturker/Desktop/aa/Serilog.Settings.Configuration.dll
+/Users/furkanturker/Desktop/aa/Serilog.Sinks.Console.dll
+/Users/furkanturker/Desktop/aa/Serilog.Sinks.Debug.dll
+/Users/furkanturker/Desktop/aa/Serilog.Sinks.File.dll
 /Users/furkanturker/Desktop/aa/System.ClientModel.dll
 /Users/furkanturker/Desktop/aa/System.CodeDom.dll
 /Users/furkanturker/Desktop/aa/System.Composition.AttributedModel.dll

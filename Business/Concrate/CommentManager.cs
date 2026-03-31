@@ -1,16 +1,22 @@
 using Business.Abstract;
 using DataAccess.Abstarct;
 using Entities.Concrate;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Business.Concrate;
 
 public class CommentManager : ICommentService
 {
     private readonly ICommentDal _commentDal;
+    private readonly IMemoryCache _cache;
 
-    public CommentManager(ICommentDal commentDal)
+    private const string CacheKeyByBlogPost = "comments_blogpost_{0}";
+    private static readonly TimeSpan CacheExpiry = TimeSpan.FromMinutes(5);
+
+    public CommentManager(ICommentDal commentDal, IMemoryCache cache)
     {
         _commentDal = commentDal;
+        _cache = cache;
     }
 
     public void Insert(Comment t)

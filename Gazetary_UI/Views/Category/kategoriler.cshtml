@@ -41,7 +41,7 @@
                 <div class="mt-4 flex items-center justify-between text-sm text-neutral-500">
 
                     <span>
-                        @item.BlogPosts?.Count() 0 Yazı
+                        @(item.BlogPosts?.Count() ?? 0) Yazı
                     </span>
 
                     <span class="text-xs uppercase tracking-wide">

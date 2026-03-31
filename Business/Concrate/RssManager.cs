@@ -1,21 +1,19 @@
 using System.Xml.Linq;
 using Business.Abstract;
 using Dtos;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Business.Concrate;
 
 public class RssManager : IRssService
 {
     private readonly HttpClient _httpClient;
+    private readonly IMemoryCache _cache;
 
-    public RssManager(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
+    private const string CacheKeyNews = "rss_news_{0}";
+    private static readonly TimeSpan CacheExpiry = TimeSpan.FromMinutes(10);
 
-    public List<RssSourceDto> GetRssSources()
-{
-    return new List<RssSourceDto>
+    private static readonly List<RssSourceDto> _rssSources = new List<RssSourceDto>
     {
         new RssSourceDto(1, "NTV", "Gündem", "https://www.ntv.com.tr/gundem.rss"),
         new RssSourceDto(2, "NTV", "Türkiye", "https://www.ntv.com.tr/turkiye.rss"),
@@ -82,16 +80,32 @@ public class RssManager : IRssService
         new RssSourceDto(49, "Bigpara", "Ekonomi", "http://bigpara.hurriyet.com.tr/rss/"),
         new RssSourceDto(50, "Ekosayir", "Piyasalar", "http://www.ekoseyir.com/rss/piyasalar/248.xml")
     };
-}
+
+    public RssManager(HttpClient httpClient, IMemoryCache cache)
+    {
+        _httpClient = httpClient;
+        _cache = cache;
+    }
+
+    public List<RssSourceDto> GetRssSources()
+    {
+        return _rssSources;
+    }
 
     public async Task<List<RssNewsDto>> GetNewsFromFeedAsync(string rssUrl)
     {
-        var result = new List<RssNewsDto>();
+        var key = string.Format(CacheKeyNews, rssUrl.GetHashCode());
 
-        try
+        return await _cache.GetOrCreateAsync(key, async entry =>
         {
-            var xmlContent = await _httpClient.GetStringAsync(rssUrl);
-            var doc = XDocument.Parse(xmlContent);
+            entry.AbsoluteExpirationRelativeToNow = CacheExpiry;
+
+            var result = new List<RssNewsDto>();
+
+            try
+            {
+                var xmlContent = await _httpClient.GetStringAsync(rssUrl);
+                var doc = XDocument.Parse(xmlContent);
 
             XNamespace media = "http://search.yahoo.com/mrss/";
 
@@ -148,14 +162,15 @@ public class RssManager : IRssService
                 });
             }
         }
-        catch
-        {
-            return new List<RssNewsDto>();
-        }
+            catch
+            {
+                return new List<RssNewsDto>();
+            }
 
-        return result
-            .Where(x => !string.IsNullOrWhiteSpace(x.Title))
-            .OrderByDescending(x => x.PublishDate)
-            .ToList();
+            return result
+                .Where(x => !string.IsNullOrWhiteSpace(x.Title))
+                .OrderByDescending(x => x.PublishDate)
+                .ToList();
+        }) ?? new List<RssNewsDto>();
     }
 }

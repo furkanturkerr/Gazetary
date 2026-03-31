@@ -271,3 +271,12 @@
 /Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/obj/Debug/net8.0/Gazetary_UI.pdb
 /Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/obj/Debug/net8.0/Gazetary_UI.genruntimeconfig.cache
 /Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/obj/Debug/net8.0/ref/Gazetary_UI.dll
+/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/bin/Debug/net8.0/Serilog.dll
+/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/bin/Debug/net8.0/Serilog.AspNetCore.dll
+/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/bin/Debug/net8.0/Serilog.Extensions.Hosting.dll
+/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/bin/Debug/net8.0/Serilog.Extensions.Logging.dll
+/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/bin/Debug/net8.0/Serilog.Formatting.Compact.dll
+/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/bin/Debug/net8.0/Serilog.Settings.Configuration.dll
+/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/bin/Debug/net8.0/Serilog.Sinks.Console.dll
+/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/bin/Debug/net8.0/Serilog.Sinks.Debug.dll
+/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/bin/Debug/net8.0/Serilog.Sinks.File.dll

@@ -36,7 +36,12 @@ public class BlogPostManager : IBlogPostService
 
     public BlogPost GetById(int id)
     {
-        return _blogPostDal.GetById(id);
+        var key = $"blogpost_{id}";
+        return _cache.GetOrCreate(key, entry =>
+        {
+            entry.AbsoluteExpirationRelativeToNow = DefaultExpiry;
+            return _blogPostDal.GetById(id);
+        })!;
     }
 
     public void Insert(BlogPost entity)
@@ -119,9 +124,20 @@ public class BlogPostManager : IBlogPostService
         post.ViewCount++;
         _blogPostDal.Update(post);
 
-        _cache.Remove(string.Format(CacheKeyMostViewed, 4));
-        _cache.Remove(string.Format(CacheKeyMostViewed, 5));
-        _cache.Remove(string.Format(CacheKeyMostViewed, 10));
+        _cache.Remove($"blogpost_{blogPostId}");
+
+        foreach (var count in new[] { 1, 2, 3, 4, 5, 10 })
+            _cache.Remove(string.Format(CacheKeyMostViewed, count));
+    }
+
+    public async Task<BlogPost?> GetBlogPostBySlugAsync(string categorySlug, string postSlug)
+    {
+        var key = $"blogpost_slug_{categorySlug}_{postSlug}";
+        return await _cache.GetOrCreateAsync(key, async entry =>
+        {
+            entry.AbsoluteExpirationRelativeToNow = DefaultExpiry;
+            return await _blogPostDal.GetBlogPostBySlugAsync(categorySlug, postSlug);
+        });
     }
 
     private void InvalidateCache()
@@ -132,5 +148,13 @@ public class BlogPostManager : IBlogPostService
 
         foreach (var count in new[] { 1, 2, 3, 4, 5, 10 })
             _cache.Remove(string.Format(CacheKeyMostViewed, count));
+
+        var categories = new[] { "ekonomi", "spor", "teknoloji", "son dakika", "türkiye", "dünya", "yazılım", "tarih" };
+        foreach (var category in categories)
+        {
+            _cache.Remove($"blogposts_byname_{category}");
+            foreach (var count in new[] { 1, 2, 3, 4, 5, 10 })
+                _cache.Remove(string.Format(CacheKeyByCategory, category, count));
+        }
     }
 }

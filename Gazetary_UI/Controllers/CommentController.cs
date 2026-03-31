@@ -16,17 +16,24 @@ public class CommentController : Controller
     private readonly ICommentLikeService _commentLikeService;
     private readonly UserManager<AppUser> _userManager;
     private readonly IConfiguration _configuration;
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly ILogger<CommentController> _logger;
 
 
     public CommentController(
         ICommentService commentService,
         ICommentLikeService commentLikeService,
-        UserManager<AppUser> userManager, IConfiguration configuration)
+        UserManager<AppUser> userManager,
+        IConfiguration configuration,
+        IHttpClientFactory httpClientFactory,
+        ILogger<CommentController> logger)
     {
         _commentService     = commentService;
         _commentLikeService = commentLikeService;
         _userManager        = userManager;
         _configuration = configuration;
+        _httpClientFactory = httpClientFactory;
+        _logger = logger;
     }
 
     [HttpPost]
@@ -144,10 +151,19 @@ public class CommentController : Controller
     
     private async Task<string> AnalyzeSentiment(string text)
     {
-        var key = _configuration["Api:Url"];
-        using (HttpClient client = new())
+        try
         {
+            var key = _configuration["Api:Url"];
+            if (string.IsNullOrEmpty(key))
+            {
+                _logger.LogWarning("OpenAI API key is not configured. Skipping sentiment analysis.");
+                return "ONAY"; // Fallback: approve if API not configured
+            }
+
+            var client = _httpClientFactory.CreateClient();
+            client.Timeout = TimeSpan.FromSeconds(10);
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {key}");
+
             var requestBody = new
             {
                 model = "gpt-4o-mini",
@@ -188,18 +204,43 @@ Başka hiçbir şey yazma."
                     }
                 }
             };
+
             string json = JsonConvert.SerializeObject(requestBody);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("https://api.openai.com/v1/chat/completions", content);
-            
-            string responseBody = await response.Content.ReadAsStringAsync();
+
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(8));
+            HttpResponseMessage response = await client.PostAsync(
+                "https://api.openai.com/v1/chat/completions",
+                content,
+                cts.Token
+            );
+
             if (response.IsSuccessStatusCode)
             {
+                string responseBody = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<dynamic>(responseBody);
-                return result.choices[0].message.content;
-            }
-        }
+                string sentiment = result?.choices?[0]?.message?.content?.ToString()?.Trim().ToUpper();
 
-        return null;
+                return sentiment == "RED" || sentiment == "ONAY" ? sentiment : "ONAY";
+            }
+
+            _logger.LogWarning("OpenAI API returned non-success status: {StatusCode}", response.StatusCode);
+            return "ONAY"; // Fallback: approve if API fails
+        }
+        catch (TaskCanceledException ex)
+        {
+            _logger.LogError(ex, "OpenAI API request timed out for comment analysis");
+            return "ONAY"; // Fallback: approve on timeout
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.LogError(ex, "HTTP request failed during sentiment analysis");
+            return "ONAY"; // Fallback: approve on network error
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Unexpected error during sentiment analysis");
+            return "ONAY"; // Fallback: approve on any error
+        }
     }
 }

@@ -10,4 +10,5 @@ public interface IBlogPostDal : IGenericDal<BlogPost>
     Task<List<BlogPost>> GetBlogsWithCategoryByNameAsync(string categoryName);
     Task<List<BlogPost>> GetTodaysBlogsAsync();
     Task<List<BlogPost>> GetLatestBlogsByCategoryAsync(string categoryName, int count);
+    Task<BlogPost?> GetBlogPostBySlugAsync(string categorySlug, string postSlug);
 }

@@ -11,4 +11,5 @@ public interface IBlogPostService : IGenericService<BlogPost>
     Task<List<BlogPost>> TGetMostViewedBlogsAsync(int count);
     Task<List<BlogPost>> TGetTodaysBlogsAsync();
     Task<List<BlogPost>> TGetLatestBlogsByCategoryAsync(string categoryName, int count);
+    Task<BlogPost?> GetBlogPostBySlugAsync(string categorySlug, string postSlug);
 }
