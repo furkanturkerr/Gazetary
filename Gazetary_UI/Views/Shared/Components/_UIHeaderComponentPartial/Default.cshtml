@@ -1,3 +1,4 @@
+@using System.Globalization
 @model Entities.Concrate.AppUser
 @{
     var currentPath = Context.Request.Path.Value?.ToLower().TrimEnd('/') ?? "";
@@ -19,7 +20,7 @@
 
     <div class="flex items-center justify-between px-4 md:px-8 py-2 border-b border-[#f3f4f6] dark:border-neutral-800">
         <div class="text-[10px] md:text-xs font-sans text-neutral-500 dark:text-neutral-400 font-medium">
-            @DateTime.Now.ToString("dd MMMM yyyy, dddd")
+            @DateTime.Now.ToString("dd MMMM yyyy | dddd", new CultureInfo("tr-TR"))
         </div>
         <div class="hidden sm:flex items-center gap-2 md:gap-4 text-[10px] md:text-xs font-sans font-medium text-neutral-600 dark:text-neutral-400">
             @await Component.InvokeAsync("_TopBarRates")

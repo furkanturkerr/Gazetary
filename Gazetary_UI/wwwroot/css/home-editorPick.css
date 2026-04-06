@@ -6,7 +6,7 @@
     --ep-ink-3:      var(--ink-3,     #666);
     --ep-rule:       var(--rule,      #e2e2e2);
     --ep-bg:         var(--bg,        #fff);
-    --ep-radius:     0px; /* editorial — no rounding */
+    --ep-radius:     0px;
     border-bottom: 1px solid var(--ep-rule);
     padding-bottom: 32px;
     margin-bottom: 32px;
@@ -15,9 +15,9 @@
 /* ── Grid ── */
 .ep-grid {
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 320px;
     gap: 28px;
-    align-items: stretch;
+    align-items: start;
 }
 @media (max-width: 900px) {
     .ep-grid { grid-template-columns: 1fr; }
@@ -43,7 +43,6 @@
 .ep-slide--active {
     opacity: 1;
     pointer-events: auto;
-    position: absolute; /* all same stack */
 }
 
 .ep-slide-link {
@@ -78,7 +77,6 @@
     );
 }
 
-/* Caption */
 .ep-slide-body {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -191,12 +189,12 @@
     transition: width .1s linear;
 }
 
-/* ══ SIDEBAR CARDS ══ */
+/* ══ SIDEBAR ══ */
 .ep-sidebar {
     display: flex;
     flex-direction: column;
     border-left: 1px solid var(--ep-rule);
-    padding-left: 28px;
+    padding-left: 24px;
     gap: 0;
 }
 
@@ -214,95 +212,64 @@
 }
 
 .ep-card-link {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 14px;
-    align-items: start;
+    display: block;
     text-decoration: none;
     color: inherit;
 }
-
-.ep-card-img-wrap {
-    position: relative;
-    flex-shrink: 0;
-    overflow: hidden;
-    aspect-ratio: 4/3;
-}
-.ep-card-img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(25%);
-    transition: filter .35s, transform .45s;
-}
-.ep-card-link:hover .ep-card-img {
-    filter: grayscale(0%);
-    transform: scale(1.04);
-}
-
-.ep-card-kicker {
-    position: absolute;
-    top: 0; left: 0;
-    font-family: 'Lato', sans-serif;
-    font-size: 9px;
-    font-weight: 900;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    background: var(--ep-blue);
-    color: #fff;
-    padding: 2px 6px;
+.ep-card-link:hover .ep-card-hed {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
 }
 
 .ep-card-body {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
+}
+
+/* kicker gizli — HTML'de span kalabilir, göstermiyoruz */
+.ep-card-kicker {
+    display: none;
 }
 
 .ep-card-hed {
     font-family: 'EB Garamond', Georgia, serif;
     font-weight: 700;
-    font-size: 1.05rem;
+    font-size: .97rem;
     line-height: 1.25;
     color: var(--ep-ink);
+    margin: 0;
 }
 .ep-card-hed--clamped {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    min-height: 2.6em; /* ~2 satır minimum */
 }
-.ep-card-link:hover .ep-card-hed { text-decoration: underline; text-decoration-thickness: 1px; }
 
 .ep-card-summary {
     font-family: 'EB Garamond', Georgia, serif;
-    font-size: .88rem;
+    font-size: .82rem;
     color: var(--ep-ink-2);
-    line-height: 1.5;
+    line-height: 1.45;
+    margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-}
-.ep-card-summary--clamped {
-    -webkit-line-clamp: 2;
-    max-height: 2.64em; /* 2 satır * line-height 1.5 * font-size .88rem */
 }
 
 .ep-card-meta {
     font-family: 'Lato', sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     color: var(--ep-ink-3);
     display: flex;
     align-items: center;
     gap: 5px;
-    margin-top: 2px;
+    margin-top: 3px;
 }
 
-/* ── Dark mode overrides ── */
-html.dark .ep-card-img { filter: grayscale(40%); }
-html.dark .ep-card-link:hover .ep-card-img { filter: grayscale(5%); }
+/* ── Dark mode ── */
 html.dark .ep-sidebar { border-left-color: var(--ep-rule); }
 html.dark .ep-card { border-bottom-color: var(--ep-rule); }
 
@@ -319,7 +286,6 @@ html.dark .ep-card { border-bottom-color: var(--ep-rule); }
     .ep-slide-body { padding: 32px 20px 44px; }
 }
 @media (max-width: 560px) {
-    .ep-card-link { grid-template-columns: 90px 1fr; gap: 10px; }
     .ep-slider { height: 280px; }
     .ep-slide-summary { display: none; }
 }

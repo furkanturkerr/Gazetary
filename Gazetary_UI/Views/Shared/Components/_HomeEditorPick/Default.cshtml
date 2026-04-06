@@ -1,8 +1,6 @@
 @model BlogProject.Models.HomeEditorPickViewModel
 
-
 <section class="editor-pick-section">
-
     <div class="ep-grid">
         <div class="ep-slider-col">
             <div class="ep-slider" id="epSlider">
@@ -33,7 +31,6 @@
                         </div>
                     }
 
-                    <!-- DOTS -->
                     <div class="ep-dots" id="epDots">
                         @for (int i = 0; i < Model.TodaySliderPosts.Count; i++)
                         {
@@ -69,11 +66,8 @@
                 var hoursAgo = (int)(DateTime.Now - post.CreatedDate).TotalHours;
                 <article class="ep-card">
                     <a href="/@post.Category.CategorySlug/@post.Slug" class="ep-card-link">
-                        <div class="ep-card-img-wrap">
-                            <img src="@post.ImageUrl" alt="@post.Title" class="ep-card-img" />
-                            <span class="ep-card-kicker">@Model.Category1.CategoryName</span>
-                        </div>
                         <div class="ep-card-body">
+                            <span class="ep-card-kicker">@Model.Category1.CategoryName</span>
                             <h3 class="ep-card-hed ep-card-hed--clamped">@post.Title</h3>
                             <p class="ep-card-summary ep-card-summary--clamped">@post.Description</p>
                             <div class="ep-card-meta">
@@ -91,11 +85,8 @@
                 var hoursAgo = (int)(DateTime.Now - post.CreatedDate).TotalHours;
                 <article class="ep-card">
                     <a href="/@post.Category.CategorySlug/@post.Slug" class="ep-card-link">
-                        <div class="ep-card-img-wrap">
-                            <img src="@post.ImageUrl" alt="@post.Title" class="ep-card-img" />
-                            <span class="ep-card-kicker">@Model.Category2.CategoryName</span>
-                        </div>
                         <div class="ep-card-body">
+                            <span class="ep-card-kicker">@Model.Category2.CategoryName</span>
                             <h3 class="ep-card-hed ep-card-hed--clamped">@post.Title</h3>
                             <p class="ep-card-summary ep-card-summary--clamped">@post.Description</p>
                             <div class="ep-card-meta">
@@ -113,11 +104,8 @@
                 var hoursAgo = (int)(DateTime.Now - post.CreatedDate).TotalHours;
                 <article class="ep-card">
                     <a href="/@post.Category.CategorySlug/@post.Slug" class="ep-card-link">
-                        <div class="ep-card-img-wrap">
-                            <img src="@post.ImageUrl" alt="@post.Title" class="ep-card-img" />
-                            <span class="ep-card-kicker">@Model.Category3.CategoryName</span>
-                        </div>
                         <div class="ep-card-body">
+                            <span class="ep-card-kicker">@Model.Category3.CategoryName</span>
                             <h3 class="ep-card-hed ep-card-hed--clamped">@post.Title</h3>
                             <p class="ep-card-summary ep-card-summary--clamped">@post.Description</p>
                             <div class="ep-card-meta">
@@ -135,11 +123,8 @@
                 var hoursAgo = (int)(DateTime.Now - post.CreatedDate).TotalHours;
                 <article class="ep-card ep-card--last">
                     <a href="/@post.Category.CategorySlug/@post.Slug" class="ep-card-link">
-                        <div class="ep-card-img-wrap">
-                            <img src="@post.ImageUrl" alt="@post.Title" class="ep-card-img" />
-                            <span class="ep-card-kicker">@Model.Category4.CategoryName</span>
-                        </div>
                         <div class="ep-card-body">
+                            <span class="ep-card-kicker">@Model.Category4.CategoryName</span>
                             <h3 class="ep-card-hed ep-card-hed--clamped">@post.Title</h3>
                             <p class="ep-card-summary ep-card-summary--clamped">@post.Description</p>
                             <div class="ep-card-meta">
@@ -154,4 +139,3 @@
         </div>
     </div>
 </section>
-

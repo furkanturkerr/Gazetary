@@ -99,7 +99,7 @@ builder.Services.AddRateLimiter(options =>
 
 builder.Services.AddDbContext<Context>((_, options) =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ServerConnection"));
 });
 
 builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
@@ -136,6 +136,10 @@ builder.Services.AddScoped<IContactDal, EfContactDal>();
 builder.Services.AddScoped<IContactService, ContactManager>();
 
 builder.Services.AddMemoryCache();
+
+var turkishCulture = new System.Globalization.CultureInfo("tr-TR");
+System.Globalization.CultureInfo.DefaultThreadCurrentCulture = turkishCulture;
+System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = turkishCulture;
 
 builder.Services.AddScoped<ISeoService, SeoManager>();
 

@@ -65,6 +65,26 @@ public class Context : IdentityDbContext<AppUser, AppRole, string>{
             .HasIndex(c => c.CreatedDate)
             .HasDatabaseName("IX_Comments_CreatedDate");
 
+        // Cascade delete: Yorum silindiğinde like'ları da sil
+        modelBuilder.Entity<CommentLike>()
+            .HasOne(cl => cl.Comment)
+            .WithMany(c => c.Likes)
+            .HasForeignKey(cl => cl.CommentId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // NoAction: SQL Server'da multiple cascade path hatasını önlemek için
+        modelBuilder.Entity<Comment>()
+            .HasOne(c => c.AppUser)
+            .WithMany(u => u.Comments)
+            .HasForeignKey(c => c.AppUserId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<CommentLike>()
+            .HasOne(cl => cl.AppUser)
+            .WithMany()
+            .HasForeignKey(cl => cl.AppUserId)
+            .OnDelete(DeleteBehavior.NoAction);
+
         // CommentLike indexes
         modelBuilder.Entity<CommentLike>()
             .HasIndex(cl => cl.CommentId)

@@ -74,7 +74,7 @@ public class BlogController : Controller
     {
         ViewBag.Categories = new SelectList(_categoryService.GetAll(), "CategoryId", "CategoryName");
         ViewBag.Images = new SelectList(
-            _imageService.GetAll(),
+            _imageService.GetAll().OrderByDescending(x => x.CreatedDate),
             "ImageUrl",   
             "ImageUrl"   
         );
@@ -100,7 +100,7 @@ public class BlogController : Controller
             ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
 
         ViewBag.Images = new SelectList(
-            _imageService.GetAll(),
+            _imageService.GetAll().OrderByDescending(x => x.CreatedDate),
             "ImageUrl",   
             "ImageUrl"   
         );
@@ -123,7 +123,7 @@ public class BlogController : Controller
         ViewBag.Categories = new SelectList(_categoryService.GetAll(), "CategoryId", "CategoryName");
         var value = _blogPostService.GetById(id);
         ViewBag.Images = new SelectList(
-            _imageService.GetAll(),
+            _imageService.GetAll().OrderByDescending(x => x.CreatedDate),
             "ImageUrl",   
             "ImageUrl"   
         );
@@ -145,7 +145,7 @@ public class BlogController : Controller
         if (!ModelState.IsValid)
         {
             ViewBag.Categories = new SelectList(_categoryService.GetAll(), "CategoryId", "CategoryName");
-            ViewBag.Images = new SelectList(_imageService.GetAll(), "ImageUrl", "ImageUrl");
+            ViewBag.Images = new SelectList(_imageService.GetAll().OrderByDescending(x => x.CreatedDate), "ImageUrl", "ImageUrl");
             return View(model);
         }
 

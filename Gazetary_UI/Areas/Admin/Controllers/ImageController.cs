@@ -21,7 +21,7 @@ public class ImageController : Controller
 
     public IActionResult ImageList()
     {
-        var values = _imagesService.GetAll();
+        var values = _imagesService.GetAll().OrderByDescending(x => x.CreatedDate).ToList();
         return View(values);
     }
 

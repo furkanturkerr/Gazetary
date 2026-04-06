@@ -2,12 +2,14 @@ using BlogProject.Dtos;
 using BlogProject.Models;
 using Business.Abstract;
 using Entities.Concrate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.Controllers;
 
 [Route("profil")]
+[Authorize]
 public class ProfileController : Controller
 {
     private readonly UserManager<AppUser> _userManager;

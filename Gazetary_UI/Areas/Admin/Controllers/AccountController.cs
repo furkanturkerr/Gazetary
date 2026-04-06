@@ -1,4 +1,5 @@
 using BlogProject.Areas.Admin.Models;
+using Business.Abstract;
 using Entities.Concrate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,11 +12,19 @@ public class AccountController : Controller
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
+    private readonly ICommentService _commentService;
+    private readonly ICommentLikeService _commentLikeService;
 
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+    public AccountController(
+        UserManager<AppUser> userManager,
+        SignInManager<AppUser> signInManager,
+        ICommentService commentService,
+        ICommentLikeService commentLikeService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _commentService = commentService;
+        _commentLikeService = commentLikeService;
     }
 
     [HttpGet]
@@ -149,6 +158,35 @@ public class AccountController : Controller
         var user = await _userManager.FindByIdAsync(id);
         if (user != null)
         {
+            // 1. Kullanıcının yorumlarını bul
+            var userComments = _commentService.GetAll()
+                .Where(c => c.AppUserId == id).ToList();
+
+            // 2. Her yorumun like'larını sil
+            foreach (var comment in userComments)
+            {
+                var commentLikes = _commentLikeService.GetAll()
+                    .Where(cl => cl.CommentId == comment.CommentId).ToList();
+
+                foreach (var like in commentLikes)
+                {
+                    _commentLikeService.Delete(like);
+                }
+
+                // 3. Yorumu sil
+                _commentService.Delete(comment);
+            }
+
+            // 4. Kullanıcının attığı like'ları sil
+            var userLikes = _commentLikeService.GetAll()
+                .Where(cl => cl.AppUserId == id).ToList();
+
+            foreach (var like in userLikes)
+            {
+                _commentLikeService.Delete(like);
+            }
+
+            // 5. Kullanıcıyı sil
             await _userManager.DeleteAsync(user);
         }
         return RedirectToAction("Users", "Account");

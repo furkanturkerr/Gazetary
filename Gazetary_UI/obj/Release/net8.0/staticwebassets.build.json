@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "61dm1vtQ7BxGW/Xo0yy2NFc2NmSb4iEhYLljstwS9Vw=",
+  "Hash": "83QxSUu1gNSARORd3AxHlwAWKG5rwD7ecbbQ6JLD7ck=",
   "Source": "Gazetary_UI",
   "BasePath": "_content/Gazetary_UI",
   "Mode": "Default",
@@ -281,6 +281,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/1493549.jpeg"
+    },
+    {
+      "Identity": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp",
+      "SourceId": "Gazetary_UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/",
+      "BasePath": "_content/Gazetary_UI",
+      "RelativePath": "images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp"
     },
     {
       "Identity": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/80b2ba1f-a23d-4e89-a338-14e4c9877212.png",

@@ -17,7 +17,7 @@ public class RssController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index(int? id)
+    public async Task<IActionResult> RssList(int? id)
     {
         var sources = _rssService.GetRssSources();
 

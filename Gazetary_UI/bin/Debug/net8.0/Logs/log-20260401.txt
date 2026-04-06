@@ -1,0 +1,1545 @@
+2026-04-01 17:47:41.464 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:47:41.490 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:47:41.492 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:47:41.493 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:47:41.501 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 17:47:41.507 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 17:47:41.507 +03:00 [INF] Database migration başarılı
+2026-04-01 17:47:41.541 +03:00 [INF] User profile is available. Using '/Users/furkanturker/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-04-01 17:47:41.557 +03:00 [INF] Now listening on: http://localhost:5171
+2026-04-01 17:47:41.558 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-01 17:47:41.558 +03:00 [INF] Hosting environment: Development
+2026-04-01 17:47:41.558 +03:00 [INF] Content root path: /Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI
+2026-04-01 17:47:41.995 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/ - null null
+2026-04-01 17:47:42.007 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-04-01 17:47:42.298 +03:00 [INF] Executed DbCommand (35ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:47:42.428 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2026-04-01 17:47:42.444 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-04-01 17:47:42.456 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-04-01 17:47:42.468 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2026-04-01 17:47:42.473 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:47:42.476 +03:00 [INF] Route matched with {action = "Anasayfa", controller = "Default", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Anasayfa() on controller BlogProject.Controllers.DefaultController (Gazetary_UI).
+2026-04-01 17:47:42.480 +03:00 [INF] Executing action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:47:42.482 +03:00 [INF] Executed action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.1636ms.
+2026-04-01 17:47:42.487 +03:00 [INF] Executing ViewResult, running view Anasayfa.
+2026-04-01 17:47:42.538 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__today_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE CONVERT(date, [b].[CreatedDate]) = @__today_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:42.556 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+2026-04-01 17:47:42.701 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:42.709 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:42.714 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:42.718 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:42.746 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:42.757 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:42.790 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_1='?' (DbType = Int32), @__weekAgo_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[BlogPostId], [t].[CategoryId], [t].[Content], [t].[CreatedDate], [t].[Description], [t].[ImageDescription], [t].[ImageUrl], [t].[MetaDescription], [t].[MetaKeywords], [t].[MetaTitle], [t].[Slug], [t].[Status], [t].[Title], [t].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM (
+    SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+    FROM [BlogPosts] AS [b]
+    WHERE [b].[CreatedDate] >= @__weekAgo_0
+    ORDER BY [b].[ViewCount] DESC
+) AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+ORDER BY [t].[ViewCount] DESC
+2026-04-01 17:47:42.797 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+2026-04-01 17:47:42.823 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [Categories] AS [c]
+2026-04-01 17:47:42.840 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:44.019 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:44.026 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:44.033 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:47:44.085 +03:00 [INF] Start processing HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:47:44.086 +03:00 [INF] Sending HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:47:44.551 +03:00 [INF] Received HTTP response headers after 463.5229ms - 200
+2026-04-01 17:47:44.551 +03:00 [INF] End processing HTTP request after 466.9251ms - 200
+2026-04-01 17:47:44.558 +03:00 [INF] Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:47:44.558 +03:00 [INF] Sending HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:47:45.011 +03:00 [INF] Received HTTP response headers after 452.3616ms - 200
+2026-04-01 17:47:45.011 +03:00 [INF] End processing HTTP request after 452.6494ms - 200
+2026-04-01 17:47:45.055 +03:00 [INF] Executed ViewResult - view Anasayfa executed in 2567.9955ms.
+2026-04-01 17:47:45.063 +03:00 [INF] Executed action BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) in 2585.9427ms
+2026-04-01 17:47:45.064 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:47:45.072 +03:00 [INF] HTTP GET / responded 200 in 3070.5336 ms
+2026-04-01 17:47:45.073 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/css/home-editorPick.css - null null
+2026-04-01 17:47:45.075 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/ataturk.jpeg - null null
+2026-04-01 17:47:45.074 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/css/home-categories.css - null null
+2026-04-01 17:47:45.076 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/logo.png - null null
+2026-04-01 17:47:45.078 +03:00 [INF] The file /css/home-categories.css was not modified
+2026-04-01 17:47:45.078 +03:00 [INF] The file /css/home-editorPick.css was not modified
+2026-04-01 17:47:45.078 +03:00 [INF] The file /images/upload/ataturk.jpeg was not modified
+2026-04-01 17:47:45.078 +03:00 [INF] HTTP GET /css/home-categories.css responded 304 in 2.7074 ms
+2026-04-01 17:47:45.078 +03:00 [INF] The file /images/upload/logo.png was not modified
+2026-04-01 17:47:45.078 +03:00 [INF] HTTP GET /css/home-editorPick.css responded 304 in 2.9452 ms
+2026-04-01 17:47:45.078 +03:00 [INF] HTTP GET /images/upload/logo.png responded 304 in 2.2520 ms
+2026-04-01 17:47:45.078 +03:00 [INF] HTTP GET /images/upload/ataturk.jpeg responded 304 in 2.7941 ms
+2026-04-01 17:47:45.078 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/logo.png - 304 null image/png 2.52ms
+2026-04-01 17:47:45.078 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/css/home-editorPick.css - 304 null text/css 4.8847ms
+2026-04-01 17:47:45.078 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/css/home-categories.css - 304 null text/css 4.5992ms
+2026-04-01 17:47:45.078 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/ataturk.jpeg - 304 null image/jpeg 3.4785ms
+2026-04-01 17:47:45.082 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/js/home-editorPick.js - null null
+2026-04-01 17:47:45.082 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/favicon/site.webmanifest - null null
+2026-04-01 17:47:45.082 +03:00 [INF] The file /js/home-editorPick.js was not modified
+2026-04-01 17:47:45.082 +03:00 [INF] The file /favicon/site.webmanifest was not modified
+2026-04-01 17:47:45.082 +03:00 [INF] HTTP GET /favicon/site.webmanifest responded 304 in 0.0941 ms
+2026-04-01 17:47:45.082 +03:00 [INF] HTTP GET /js/home-editorPick.js responded 304 in 0.1288 ms
+2026-04-01 17:47:45.082 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/favicon/site.webmanifest - 304 null application/manifest+json 0.1816ms
+2026-04-01 17:47:45.083 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/js/home-editorPick.js - 304 null text/javascript 0.3056ms
+2026-04-01 17:47:45.086 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 3091.9891ms
+2026-04-01 17:47:45.581 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/1493549.jpeg - null null
+2026-04-01 17:47:45.592 +03:00 [INF] Sending file. Request path: '/images/1493549.jpeg'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/1493549.jpeg'
+2026-04-01 17:47:45.592 +03:00 [INF] HTTP GET /images/1493549.jpeg responded 200 in 10.8860 ms
+2026-04-01 17:47:45.592 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/1493549.jpeg - 200 380508 image/jpeg 11.3145ms
+2026-04-01 17:47:46.231 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/yazilim/temiz-kod-clean-code-nedir - null null
+2026-04-01 17:47:46.236 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.PostController.Detail (Gazetary_UI)'
+2026-04-01 17:47:46.243 +03:00 [INF] Route matched with {action = "Detail", controller = "Post", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.String, System.String) on controller BlogProject.Controllers.PostController (Gazetary_UI).
+2026-04-01 17:47:46.250 +03:00 [INF] Executing action method BlogProject.Controllers.PostController.Detail (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:47:46.295 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__categorySlug_0='?' (Size = 450), @__postSlug_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategorySlug] = @__categorySlug_0 AND [b].[Slug] = @__postSlug_1
+2026-04-01 17:47:46.382 +03:00 [INF] Executed DbCommand (30ms) [Parameters=[@p13='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 450), @p10='?' (DbType = Boolean), @p11='?' (Size = 4000), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [BlogPosts] SET [CategoryId] = @p0, [Content] = @p1, [CreatedDate] = @p2, [Description] = @p3, [ImageDescription] = @p4, [ImageUrl] = @p5, [MetaDescription] = @p6, [MetaKeywords] = @p7, [MetaTitle] = @p8, [Slug] = @p9, [Status] = @p10, [Title] = @p11, [ViewCount] = @p12
+OUTPUT 1
+WHERE [BlogPostId] = @p13;
+2026-04-01 17:47:46.396 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__blogPostId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CommentId], [c].[Analysis], [c].[AppUserId], [c].[BlogPostId], [c].[Content], [c].[CreatedDate], [c].[IsStatus], [c].[Name]
+FROM [Comments] AS [c]
+WHERE [c].[BlogPostId] = @__blogPostId_0 AND [c].[IsStatus] = CAST(1 AS bit)
+ORDER BY [c].[CreatedDate] DESC
+2026-04-01 17:47:46.407 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:47:46.455 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__commentIds_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CommentId], [c].[CommentLikeId], [c].[AppUserId]
+FROM [CommentLikes] AS [c]
+WHERE [c].[CommentId] IN (
+    SELECT [c0].[value]
+    FROM OPENJSON(@__commentIds_0) WITH ([value] int '$') AS [c0]
+)
+ORDER BY [c].[CommentId]
+2026-04-01 17:47:46.463 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__commentIds_0='?' (Size = 4000), @__userId_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CommentId]
+FROM [CommentLikes] AS [c]
+WHERE [c].[CommentId] IN (
+    SELECT [c0].[value]
+    FROM OPENJSON(@__commentIds_0) WITH ([value] int '$') AS [c0]
+) AND [c].[AppUserId] = @__userId_1
+2026-04-01 17:47:46.464 +03:00 [INF] Executed action method BlogProject.Controllers.PostController.Detail (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 213.7342ms.
+2026-04-01 17:47:46.466 +03:00 [INF] Executing ViewResult, running view Detail.
+2026-04-01 17:47:46.498 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__weekAgo_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[BlogPostId], [t].[CategoryId], [t].[Content], [t].[CreatedDate], [t].[Description], [t].[ImageDescription], [t].[ImageUrl], [t].[MetaDescription], [t].[MetaKeywords], [t].[MetaTitle], [t].[Slug], [t].[Status], [t].[Title], [t].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM (
+    SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+    FROM [BlogPosts] AS [b]
+    WHERE [b].[CreatedDate] >= @__weekAgo_0
+    ORDER BY [b].[ViewCount] DESC
+) AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+ORDER BY [t].[ViewCount] DESC
+2026-04-01 17:47:46.502 +03:00 [INF] Executed ViewResult - view Detail executed in 36.2247ms.
+2026-04-01 17:47:46.502 +03:00 [INF] Executed action BlogProject.Controllers.PostController.Detail (Gazetary_UI) in 258.7551ms
+2026-04-01 17:47:46.502 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.PostController.Detail (Gazetary_UI)'
+2026-04-01 17:47:46.502 +03:00 [INF] HTTP GET /yazilim/temiz-kod-clean-code-nedir responded 200 in 271.0540 ms
+2026-04-01 17:47:46.502 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/yazilim/temiz-kod-clean-code-nedir - 200 null text/html; charset=utf-8 271.2977ms
+2026-04-01 17:47:48.174 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/favicon.ico - null null
+2026-04-01 17:47:48.175 +03:00 [INF] The file /favicon.ico was not modified
+2026-04-01 17:47:48.175 +03:00 [INF] HTTP GET /favicon.ico responded 304 in 0.2067 ms
+2026-04-01 17:47:48.175 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/favicon.ico - 304 null image/x-icon 0.644ms
+2026-04-01 17:47:49.636 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-04-01 17:47:49.655 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI)'
+2026-04-01 17:47:49.655 +03:00 [INF] Route matched with {action = "NotFoundPage", controller = "Error", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult NotFoundPage() on controller BlogProject.Controllers.ErrorController (Gazetary_UI).
+2026-04-01 17:47:49.656 +03:00 [INF] Executing action method BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:47:49.656 +03:00 [INF] Executed action method BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0945ms.
+2026-04-01 17:47:49.656 +03:00 [INF] Executing ViewResult, running view ~/Views/Shared/NotFound.cshtml.
+2026-04-01 17:47:49.658 +03:00 [INF] Executed ViewResult - view ~/Views/Shared/NotFound.cshtml executed in 2.5076ms.
+2026-04-01 17:47:49.658 +03:00 [INF] Executed action BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI) in 2.9736ms
+2026-04-01 17:47:49.658 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI)'
+2026-04-01 17:47:49.659 +03:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 22.3255 ms
+2026-04-01 17:47:49.661 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/.well-known/appspecific/com.chrome.devtools.json - 404 null text/html; charset=utf-8 24.9925ms
+2026-04-01 17:47:49.661 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5171/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-04-01 17:47:53.916 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/ - null null
+2026-04-01 17:47:53.919 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:47:53.919 +03:00 [INF] Route matched with {action = "Anasayfa", controller = "Default", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Anasayfa() on controller BlogProject.Controllers.DefaultController (Gazetary_UI).
+2026-04-01 17:47:53.919 +03:00 [INF] Executing action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:47:53.919 +03:00 [INF] Executed action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0215ms.
+2026-04-01 17:47:53.919 +03:00 [INF] Executing ViewResult, running view Anasayfa.
+2026-04-01 17:47:53.936 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:47:53.942 +03:00 [INF] Executed ViewResult - view Anasayfa executed in 23.0731ms.
+2026-04-01 17:47:53.943 +03:00 [INF] Executed action BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) in 23.8527ms
+2026-04-01 17:47:53.943 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:47:53.943 +03:00 [INF] HTTP GET / responded 200 in 25.9883 ms
+2026-04-01 17:47:53.944 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 27.5537ms
+2026-04-01 17:47:53.964 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-04-01 17:47:53.968 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI)'
+2026-04-01 17:47:53.968 +03:00 [INF] Route matched with {action = "NotFoundPage", controller = "Error", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult NotFoundPage() on controller BlogProject.Controllers.ErrorController (Gazetary_UI).
+2026-04-01 17:47:53.968 +03:00 [INF] Executing action method BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:47:53.968 +03:00 [INF] Executed action method BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0117ms.
+2026-04-01 17:47:53.968 +03:00 [INF] Executing ViewResult, running view ~/Views/Shared/NotFound.cshtml.
+2026-04-01 17:47:53.969 +03:00 [INF] Executed ViewResult - view ~/Views/Shared/NotFound.cshtml executed in 0.7436ms.
+2026-04-01 17:47:53.969 +03:00 [INF] Executed action BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI) in 1.1235ms
+2026-04-01 17:47:53.971 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI)'
+2026-04-01 17:47:53.971 +03:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 6.7352 ms
+2026-04-01 17:47:53.971 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/.well-known/appspecific/com.chrome.devtools.json - 404 null text/html; charset=utf-8 7.17ms
+2026-04-01 17:47:53.971 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5171/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-04-01 17:47:55.885 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/turkiye/bayram-mesajlarinda-ortaya-cikti-size-de-gelmis-olabilir - null null
+2026-04-01 17:47:55.887 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.PostController.Detail (Gazetary_UI)'
+2026-04-01 17:47:55.888 +03:00 [INF] Route matched with {action = "Detail", controller = "Post", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Detail(System.String, System.String) on controller BlogProject.Controllers.PostController (Gazetary_UI).
+2026-04-01 17:47:55.890 +03:00 [INF] Executing action method BlogProject.Controllers.PostController.Detail (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:47:55.902 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__categorySlug_0='?' (Size = 450), @__postSlug_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategorySlug] = @__categorySlug_0 AND [b].[Slug] = @__postSlug_1
+2026-04-01 17:47:55.917 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p13='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 450), @p10='?' (DbType = Boolean), @p11='?' (Size = 4000), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [BlogPosts] SET [CategoryId] = @p0, [Content] = @p1, [CreatedDate] = @p2, [Description] = @p3, [ImageDescription] = @p4, [ImageUrl] = @p5, [MetaDescription] = @p6, [MetaKeywords] = @p7, [MetaTitle] = @p8, [Slug] = @p9, [Status] = @p10, [Title] = @p11, [ViewCount] = @p12
+OUTPUT 1
+WHERE [BlogPostId] = @p13;
+2026-04-01 17:47:55.921 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__blogPostId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CommentId], [c].[Analysis], [c].[AppUserId], [c].[BlogPostId], [c].[Content], [c].[CreatedDate], [c].[IsStatus], [c].[Name]
+FROM [Comments] AS [c]
+WHERE [c].[BlogPostId] = @__blogPostId_0 AND [c].[IsStatus] = CAST(1 AS bit)
+ORDER BY [c].[CreatedDate] DESC
+2026-04-01 17:47:55.926 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:47:55.926 +03:00 [INF] Executed action method BlogProject.Controllers.PostController.Detail (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 36.202ms.
+2026-04-01 17:47:55.927 +03:00 [INF] Executing ViewResult, running view Detail.
+2026-04-01 17:47:55.935 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__weekAgo_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[BlogPostId], [t].[CategoryId], [t].[Content], [t].[CreatedDate], [t].[Description], [t].[ImageDescription], [t].[ImageUrl], [t].[MetaDescription], [t].[MetaKeywords], [t].[MetaTitle], [t].[Slug], [t].[Status], [t].[Title], [t].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM (
+    SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+    FROM [BlogPosts] AS [b]
+    WHERE [b].[CreatedDate] >= @__weekAgo_0
+    ORDER BY [b].[ViewCount] DESC
+) AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+ORDER BY [t].[ViewCount] DESC
+2026-04-01 17:47:55.936 +03:00 [INF] Executed ViewResult - view Detail executed in 9.3757ms.
+2026-04-01 17:47:55.936 +03:00 [INF] Executed action BlogProject.Controllers.PostController.Detail (Gazetary_UI) in 48.6305ms
+2026-04-01 17:47:55.936 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.PostController.Detail (Gazetary_UI)'
+2026-04-01 17:47:55.936 +03:00 [INF] HTTP GET /turkiye/bayram-mesajlarinda-ortaya-cikti-size-de-gelmis-olabilir responded 200 in 50.9028 ms
+2026-04-01 17:47:55.936 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/turkiye/bayram-mesajlarinda-ortaya-cikti-size-de-gelmis-olabilir - 200 null text/html; charset=utf-8 51.2555ms
+2026-04-01 17:47:55.951 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-04-01 17:47:55.952 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI)'
+2026-04-01 17:47:55.952 +03:00 [INF] Route matched with {action = "NotFoundPage", controller = "Error", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult NotFoundPage() on controller BlogProject.Controllers.ErrorController (Gazetary_UI).
+2026-04-01 17:47:55.952 +03:00 [INF] Executing action method BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:47:55.952 +03:00 [INF] Executed action method BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0107ms.
+2026-04-01 17:47:55.953 +03:00 [INF] Executing ViewResult, running view ~/Views/Shared/NotFound.cshtml.
+2026-04-01 17:47:55.953 +03:00 [INF] Executed ViewResult - view ~/Views/Shared/NotFound.cshtml executed in 0.3123ms.
+2026-04-01 17:47:55.953 +03:00 [INF] Executed action BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI) in 0.73ms
+2026-04-01 17:47:55.953 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.ErrorController.NotFoundPage (Gazetary_UI)'
+2026-04-01 17:47:55.953 +03:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 1.8290 ms
+2026-04-01 17:47:55.953 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/.well-known/appspecific/com.chrome.devtools.json - 404 null text/html; charset=utf-8 2.0765ms
+2026-04-01 17:47:55.953 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5171/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-04-01 17:49:53.381 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:49:53.401 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:49:53.403 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:49:53.404 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:49:53.411 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 17:49:53.416 +03:00 [INF] Applying migration '20260401144946_addimage_date'.
+2026-04-01 17:49:53.488 +03:00 [INF] Executed DbCommand (53ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Images] ADD [CreatedDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2026-04-01 17:49:53.492 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260401144946_addimage_date', N'8.0.23');
+2026-04-01 17:50:10.799 +03:00 [INF] Application is shutting down...
+2026-04-01 17:50:14.402 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:50:14.430 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:50:14.433 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:50:14.434 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:50:14.442 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 17:50:14.447 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 17:50:14.447 +03:00 [INF] Database migration başarılı
+2026-04-01 17:50:14.479 +03:00 [INF] User profile is available. Using '/Users/furkanturker/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-04-01 17:50:14.496 +03:00 [INF] Now listening on: http://localhost:5171
+2026-04-01 17:50:14.496 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-01 17:50:14.496 +03:00 [INF] Hosting environment: Development
+2026-04-01 17:50:14.496 +03:00 [INF] Content root path: /Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI
+2026-04-01 17:50:14.958 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/ - null null
+2026-04-01 17:50:14.965 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-04-01 17:50:14.995 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:50:15.002 +03:00 [INF] Route matched with {action = "Anasayfa", controller = "Default", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Anasayfa() on controller BlogProject.Controllers.DefaultController (Gazetary_UI).
+2026-04-01 17:50:15.005 +03:00 [INF] Executing action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:50:15.007 +03:00 [INF] Executed action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.1745ms.
+2026-04-01 17:50:15.011 +03:00 [INF] Executing ViewResult, running view Anasayfa.
+2026-04-01 17:50:15.299 +03:00 [INF] Executed DbCommand (29ms) [Parameters=[@__today_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE CONVERT(date, [b].[CreatedDate]) = @__today_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:15.316 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+2026-04-01 17:50:15.406 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:15.410 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:15.412 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:15.414 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:15.430 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:15.438 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:15.457 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__weekAgo_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[BlogPostId], [t].[CategoryId], [t].[Content], [t].[CreatedDate], [t].[Description], [t].[ImageDescription], [t].[ImageUrl], [t].[MetaDescription], [t].[MetaKeywords], [t].[MetaTitle], [t].[Slug], [t].[Status], [t].[Title], [t].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM (
+    SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+    FROM [BlogPosts] AS [b]
+    WHERE [b].[CreatedDate] >= @__weekAgo_0
+    ORDER BY [b].[ViewCount] DESC
+) AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+ORDER BY [t].[ViewCount] DESC
+2026-04-01 17:50:15.462 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+2026-04-01 17:50:15.479 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [Categories] AS [c]
+2026-04-01 17:50:15.488 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:16.643 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:16.650 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:16.657 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:50:16.709 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:50:16.732 +03:00 [INF] Start processing HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:50:16.732 +03:00 [INF] Sending HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:50:16.942 +03:00 [INF] Received HTTP response headers after 207.7783ms - 200
+2026-04-01 17:50:16.943 +03:00 [INF] End processing HTTP request after 211.802ms - 200
+2026-04-01 17:50:16.952 +03:00 [INF] Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:50:16.952 +03:00 [INF] Sending HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:50:17.370 +03:00 [INF] Received HTTP response headers after 418.3066ms - 200
+2026-04-01 17:50:17.370 +03:00 [INF] End processing HTTP request after 418.5821ms - 200
+2026-04-01 17:50:17.392 +03:00 [INF] Executed ViewResult - view Anasayfa executed in 2381.0637ms.
+2026-04-01 17:50:17.395 +03:00 [INF] Executed action BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) in 2393.07ms
+2026-04-01 17:50:17.395 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:50:17.399 +03:00 [INF] HTTP GET / responded 200 in 2434.7302 ms
+2026-04-01 17:50:17.405 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 2448.5792ms
+2026-04-01 17:50:20.485 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/admin/blog/index - null null
+2026-04-01 17:50:20.503 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI)'
+2026-04-01 17:50:20.511 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Blog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(System.String, Int32, System.String, Int32) on controller BlogProject.Areas.Admin.Controllers.BlogController (Gazetary_UI).
+2026-04-01 17:50:20.520 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:50:20.523 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 3.1093ms.
+2026-04-01 17:50:20.524 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-01 17:50:20.567 +03:00 [INF] Executed ViewResult - view Index executed in 43.5784ms.
+2026-04-01 17:50:20.567 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI) in 56.2281ms
+2026-04-01 17:50:20.567 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI)'
+2026-04-01 17:50:20.567 +03:00 [INF] HTTP GET /admin/blog/index responded 200 in 81.1539 ms
+2026-04-01 17:50:20.568 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/admin/blog/index - 200 null text/html; charset=utf-8 83.0373ms
+2026-04-01 17:50:20.587 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/fonts/boxicons.css - null null
+2026-04-01 17:50:20.588 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/css/core.css - null null
+2026-04-01 17:50:20.588 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/css/theme-default.css - null null
+2026-04-01 17:50:20.588 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/js/helpers.js - null null
+2026-04-01 17:50:20.589 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/css/demo.css - null null
+2026-04-01 17:50:20.589 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css - null null
+2026-04-01 17:50:20.590 +03:00 [INF] The file /sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css was not modified
+2026-04-01 17:50:20.590 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css responded 304 in 0.9390 ms
+2026-04-01 17:50:20.590 +03:00 [INF] The file /sneat-1.0.0/assets/css/demo.css was not modified
+2026-04-01 17:50:20.590 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css - 304 null text/css 1.0793ms
+2026-04-01 17:50:20.590 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/css/demo.css responded 304 in 1.4410 ms
+2026-04-01 17:50:20.591 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/css/demo.css - 304 null text/css 1.6405ms
+2026-04-01 17:50:20.591 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/js/config.js - null null
+2026-04-01 17:50:20.591 +03:00 [INF] The file /sneat-1.0.0/assets/js/config.js was not modified
+2026-04-01 17:50:20.591 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/js/config.js responded 304 in 0.1661 ms
+2026-04-01 17:50:20.591 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/js/config.js - 304 null text/javascript 0.3617ms
+2026-04-01 17:50:20.593 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/libs/jquery/jquery.js - null null
+2026-04-01 17:50:20.593 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/img/avatars/1.png - null null
+2026-04-01 17:50:20.594 +03:00 [INF] The file /sneat-1.0.0/assets/img/avatars/1.png was not modified
+2026-04-01 17:50:20.594 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/img/avatars/1.png responded 304 in 0.2066 ms
+2026-04-01 17:50:20.594 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/img/avatars/1.png - 304 null image/png 0.4895ms
+2026-04-01 17:50:20.598 +03:00 [INF] Sending file. Request path: '/sneat-1.0.0/assets/vendor/fonts/boxicons.css'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/sneat-1.0.0/assets/vendor/fonts/boxicons.css'
+2026-04-01 17:50:20.598 +03:00 [INF] Sending file. Request path: '/sneat-1.0.0/assets/vendor/js/helpers.js'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/sneat-1.0.0/assets/vendor/js/helpers.js'
+2026-04-01 17:50:20.598 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/js/helpers.js responded 200 in 9.3684 ms
+2026-04-01 17:50:20.598 +03:00 [INF] Sending file. Request path: '/sneat-1.0.0/assets/vendor/css/theme-default.css'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/sneat-1.0.0/assets/vendor/css/theme-default.css'
+2026-04-01 17:50:20.598 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/fonts/boxicons.css responded 200 in 10.3482 ms
+2026-04-01 17:50:20.598 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/js/helpers.js - 200 103079 text/javascript 9.5428ms
+2026-04-01 17:50:20.598 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/css/theme-default.css responded 200 in 9.6539 ms
+2026-04-01 17:50:20.598 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/fonts/boxicons.css - 200 79999 text/css 10.8244ms
+2026-04-01 17:50:20.598 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/css/theme-default.css - 200 70640 text/css 10.0917ms
+2026-04-01 17:50:20.598 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/libs/popper/popper.js - null null
+2026-04-01 17:50:20.600 +03:00 [INF] Sending file. Request path: '/sneat-1.0.0/assets/vendor/libs/popper/popper.js'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/sneat-1.0.0/assets/vendor/libs/popper/popper.js'
+2026-04-01 17:50:20.600 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/libs/popper/popper.js responded 200 in 2.1447 ms
+2026-04-01 17:50:20.601 +03:00 [INF] Sending file. Request path: '/sneat-1.0.0/assets/vendor/libs/jquery/jquery.js'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/sneat-1.0.0/assets/vendor/libs/jquery/jquery.js'
+2026-04-01 17:50:20.601 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/libs/jquery/jquery.js responded 200 in 7.3990 ms
+2026-04-01 17:50:20.601 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/libs/popper/popper.js - 200 57748 text/javascript 2.4916ms
+2026-04-01 17:50:20.601 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/libs/jquery/jquery.js - 200 832974 text/javascript 7.509ms
+2026-04-01 17:50:20.601 +03:00 [INF] Sending file. Request path: '/sneat-1.0.0/assets/vendor/css/core.css'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/sneat-1.0.0/assets/vendor/css/core.css'
+2026-04-01 17:50:20.601 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/css/core.css responded 200 in 13.3498 ms
+2026-04-01 17:50:20.601 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/css/core.css - 200 981701 text/css 13.557ms
+2026-04-01 17:50:20.601 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/js/bootstrap.js - null null
+2026-04-01 17:50:20.605 +03:00 [INF] Sending file. Request path: '/sneat-1.0.0/assets/vendor/js/bootstrap.js'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/sneat-1.0.0/assets/vendor/js/bootstrap.js'
+2026-04-01 17:50:20.605 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/js/bootstrap.js responded 200 in 4.1060 ms
+2026-04-01 17:50:20.606 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/js/bootstrap.js - 200 842340 text/javascript 4.3199ms
+2026-04-01 17:50:20.607 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js - null null
+2026-04-01 17:50:20.609 +03:00 [INF] Sending file. Request path: '/sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js'
+2026-04-01 17:50:20.609 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js responded 200 in 1.5801 ms
+2026-04-01 17:50:20.609 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/js/menu.js - null null
+2026-04-01 17:50:20.609 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js - 200 108747 text/javascript 2.0395ms
+2026-04-01 17:50:20.611 +03:00 [INF] Sending file. Request path: '/sneat-1.0.0/assets/vendor/js/menu.js'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/sneat-1.0.0/assets/vendor/js/menu.js'
+2026-04-01 17:50:20.611 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/js/menu.js responded 200 in 1.8798 ms
+2026-04-01 17:50:20.611 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/js/menu.js - 200 80183 text/javascript 2.0172ms
+2026-04-01 17:50:20.613 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/ataturk_1.jpeg - null null
+2026-04-01 17:50:20.613 +03:00 [INF] The file /images/upload/ataturk_1.jpeg was not modified
+2026-04-01 17:50:20.613 +03:00 [INF] HTTP GET /images/upload/ataturk_1.jpeg responded 304 in 0.2238 ms
+2026-04-01 17:50:20.613 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/ataturk_1.jpeg - 304 null image/jpeg 0.4437ms
+2026-04-01 17:50:20.613 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/js/main.js - null null
+2026-04-01 17:50:20.614 +03:00 [INF] The file /sneat-1.0.0/assets/js/main.js was not modified
+2026-04-01 17:50:20.614 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/js/main.js responded 304 in 0.0732 ms
+2026-04-01 17:50:20.614 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/js/main.js - 304 null text/javascript 0.1374ms
+2026-04-01 17:50:20.654 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/fonts/boxicons/boxicons.woff2 - null null
+2026-04-01 17:50:20.656 +03:00 [INF] Sending file. Request path: '/sneat-1.0.0/assets/vendor/fonts/boxicons/boxicons.woff2'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/sneat-1.0.0/assets/vendor/fonts/boxicons/boxicons.woff2'
+2026-04-01 17:50:20.656 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/vendor/fonts/boxicons/boxicons.woff2 responded 200 in 1.8167 ms
+2026-04-01 17:50:20.656 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/vendor/fonts/boxicons/boxicons.woff2 - 200 102988 font/woff2 2.078ms
+2026-04-01 17:50:23.220 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Image/ImageList - null null
+2026-04-01 17:50:23.239 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI)'
+2026-04-01 17:50:23.241 +03:00 [INF] Route matched with {area = "Admin", action = "ImageList", controller = "Image"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ImageList() on controller BlogProject.Areas.Admin.Controllers.ImageController (Gazetary_UI).
+2026-04-01 17:50:23.242 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:50:23.294 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[ImageId], [i].[CreatedDate], [i].[ImageUrl]
+FROM [Images] AS [i]
+2026-04-01 17:50:23.297 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 55.8011ms.
+2026-04-01 17:50:23.298 +03:00 [INF] Executing ViewResult, running view ImageList.
+2026-04-01 17:50:23.300 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI) in 58.8001ms
+2026-04-01 17:50:23.300 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI)'
+2026-04-01 17:50:23.300 +03:00 [ERR] HTTP GET /Admin/Image/ImageList responded 500 in 80.0937 ms
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'System.Linq.OrderedEnumerable`2[Entities.Concrate.Image,System.DateTime]', but this ViewDataDictionary instance requires a model item of type 'System.Collections.Generic.List`1[Entities.Concrate.Image]'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method488(Closure, ViewDataDictionary)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-01 17:50:23.306 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'System.Linq.OrderedEnumerable`2[Entities.Concrate.Image,System.DateTime]', but this ViewDataDictionary instance requires a model item of type 'System.Collections.Generic.List`1[Entities.Concrate.Image]'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method488(Closure, ViewDataDictionary)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-04-01 17:50:23.312 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Image/ImageList - 500 null text/html; charset=utf-8 92.6707ms
+2026-04-01 17:50:32.885 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Image/ImageList - null null
+2026-04-01 17:50:32.907 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI)'
+2026-04-01 17:50:32.909 +03:00 [INF] Route matched with {area = "Admin", action = "ImageList", controller = "Image"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ImageList() on controller BlogProject.Areas.Admin.Controllers.ImageController (Gazetary_UI).
+2026-04-01 17:50:32.912 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:50:32.923 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[ImageId], [i].[CreatedDate], [i].[ImageUrl]
+FROM [Images] AS [i]
+2026-04-01 17:50:32.926 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 14.2166ms.
+2026-04-01 17:50:32.929 +03:00 [INF] Executing ViewResult, running view ImageList.
+2026-04-01 17:50:32.946 +03:00 [INF] Executed ViewResult - view ImageList executed in 19.7686ms.
+2026-04-01 17:50:32.946 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI) in 37.0274ms
+2026-04-01 17:50:32.947 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI)'
+2026-04-01 17:50:32.947 +03:00 [INF] HTTP GET /Admin/Image/ImageList responded 200 in 60.2177 ms
+2026-04-01 17:50:32.947 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Image/ImageList - 200 null text/html; charset=utf-8 63.5096ms
+2026-04-01 17:50:32.976 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/80b2ba1f-a23d-4e89-a338-14e4c9877212.png - null null
+2026-04-01 17:50:32.978 +03:00 [INF] The file /images/upload/80b2ba1f-a23d-4e89-a338-14e4c9877212.png was not modified
+2026-04-01 17:50:32.979 +03:00 [INF] HTTP GET /images/upload/80b2ba1f-a23d-4e89-a338-14e4c9877212.png responded 304 in 2.1000 ms
+2026-04-01 17:50:32.979 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/80b2ba1f-a23d-4e89-a338-14e4c9877212.png - 304 null image/png 2.4385ms
+2026-04-01 17:50:33.022 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/img/favicon/favicon.ico - null null
+2026-04-01 17:50:33.022 +03:00 [INF] The file /sneat-1.0.0/assets/img/favicon/favicon.ico was not modified
+2026-04-01 17:50:33.022 +03:00 [INF] HTTP GET /sneat-1.0.0/assets/img/favicon/favicon.ico responded 304 in 0.3213 ms
+2026-04-01 17:50:33.022 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/sneat-1.0.0/assets/img/favicon/favicon.ico - 304 null image/x-icon 0.4785ms
+2026-04-01 17:50:36.280 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Image/AddImage - null null
+2026-04-01 17:50:36.286 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.ImageController.AddImage (Gazetary_UI)'
+2026-04-01 17:50:36.288 +03:00 [INF] Route matched with {area = "Admin", action = "AddImage", controller = "Image"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddImage() on controller BlogProject.Areas.Admin.Controllers.ImageController (Gazetary_UI).
+2026-04-01 17:50:36.288 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.ImageController.AddImage (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:50:36.288 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.ImageController.AddImage (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.2076ms.
+2026-04-01 17:50:36.289 +03:00 [INF] Executing ViewResult, running view AddImage.
+2026-04-01 17:50:36.313 +03:00 [INF] Executed ViewResult - view AddImage executed in 24.8712ms.
+2026-04-01 17:50:36.313 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.ImageController.AddImage (Gazetary_UI) in 25.5296ms
+2026-04-01 17:50:36.313 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.ImageController.AddImage (Gazetary_UI)'
+2026-04-01 17:50:36.313 +03:00 [INF] HTTP GET /Admin/Image/AddImage responded 200 in 32.9598 ms
+2026-04-01 17:50:36.314 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Image/AddImage - 200 null text/html; charset=utf-8 33.4124ms
+2026-04-01 17:50:38.823 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5171/Admin/Image/AddImage - multipart/form-data; boundary=----WebKitFormBoundaryZ5lj2BCWeVABkVYS 80714
+2026-04-01 17:50:38.825 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.ImageController.AddImage (Gazetary_UI)'
+2026-04-01 17:50:38.834 +03:00 [INF] Route matched with {area = "Admin", action = "AddImage", controller = "Image"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddImage(BlogProject.Areas.Admin.Models.ImageViewModel) on controller BlogProject.Areas.Admin.Controllers.ImageController (Gazetary_UI).
+2026-04-01 17:50:38.861 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.ImageController.AddImage (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:50:38.964 +03:00 [INF] Executed DbCommand (46ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Images] ([CreatedDate], [ImageUrl])
+OUTPUT INSERTED.[ImageId]
+VALUES (@p0, @p1);
+2026-04-01 17:50:38.974 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.ImageController.AddImage (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.RedirectToActionResult in 113.6648ms.
+2026-04-01 17:50:38.976 +03:00 [INF] Executing RedirectResult, redirecting to /Admin/Image/ImageList.
+2026-04-01 17:50:38.976 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.ImageController.AddImage (Gazetary_UI) in 141.8545ms
+2026-04-01 17:50:38.976 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.ImageController.AddImage (Gazetary_UI)'
+2026-04-01 17:50:38.976 +03:00 [INF] HTTP POST /Admin/Image/AddImage responded 302 in 152.4495 ms
+2026-04-01 17:50:38.977 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5171/Admin/Image/AddImage - 302 0 null 153.919ms
+2026-04-01 17:50:38.979 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Image/ImageList - null null
+2026-04-01 17:50:38.979 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI)'
+2026-04-01 17:50:38.979 +03:00 [INF] Route matched with {area = "Admin", action = "ImageList", controller = "Image"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ImageList() on controller BlogProject.Areas.Admin.Controllers.ImageController (Gazetary_UI).
+2026-04-01 17:50:38.980 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:50:38.982 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[ImageId], [i].[CreatedDate], [i].[ImageUrl]
+FROM [Images] AS [i]
+2026-04-01 17:50:38.982 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2.9039ms.
+2026-04-01 17:50:38.983 +03:00 [INF] Executing ViewResult, running view ImageList.
+2026-04-01 17:50:38.984 +03:00 [INF] Executed ViewResult - view ImageList executed in 1.2833ms.
+2026-04-01 17:50:38.984 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI) in 4.3854ms
+2026-04-01 17:50:38.984 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.ImageController.ImageList (Gazetary_UI)'
+2026-04-01 17:50:38.984 +03:00 [INF] HTTP GET /Admin/Image/ImageList responded 200 in 5.2185 ms
+2026-04-01 17:50:38.984 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Image/ImageList - 200 null text/html; charset=utf-8 5.4497ms
+2026-04-01 17:50:39.000 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp - null null
+2026-04-01 17:50:39.007 +03:00 [INF] Sending file. Request path: '/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp'
+2026-04-01 17:50:39.007 +03:00 [INF] HTTP GET /images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp responded 200 in 6.8304 ms
+2026-04-01 17:50:39.007 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp - 200 80168 image/webp 7.1652ms
+2026-04-01 17:50:41.330 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Blog/Index - null null
+2026-04-01 17:50:41.331 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI)'
+2026-04-01 17:50:41.333 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Blog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(System.String, Int32, System.String, Int32) on controller BlogProject.Areas.Admin.Controllers.BlogController (Gazetary_UI).
+2026-04-01 17:50:41.334 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:50:41.334 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.1962ms.
+2026-04-01 17:50:41.334 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-01 17:50:41.342 +03:00 [INF] Executed ViewResult - view Index executed in 8.5286ms.
+2026-04-01 17:50:41.343 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI) in 10.248ms
+2026-04-01 17:50:41.343 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI)'
+2026-04-01 17:50:41.343 +03:00 [INF] HTTP GET /Admin/Blog/Index responded 200 in 12.7453 ms
+2026-04-01 17:50:41.344 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Blog/Index - 200 null text/html; charset=utf-8 13.2612ms
+2026-04-01 17:50:43.485 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Blog/EditBlog/1067 - null null
+2026-04-01 17:50:43.488 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI)'
+2026-04-01 17:50:43.491 +03:00 [INF] Route matched with {area = "Admin", action = "EditBlog", controller = "Blog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult EditBlog(Int32) on controller BlogProject.Areas.Admin.Controllers.BlogController (Gazetary_UI).
+2026-04-01 17:50:43.492 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:50:43.557 +03:00 [INF] Executed DbCommand (47ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+WHERE [b].[BlogPostId] = @__p_0
+2026-04-01 17:50:43.563 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[ImageId], [i].[CreatedDate], [i].[ImageUrl]
+FROM [Images] AS [i]
+2026-04-01 17:50:43.565 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 73.7989ms.
+2026-04-01 17:50:43.567 +03:00 [INF] Executing ViewResult, running view EditBlog.
+2026-04-01 17:50:43.607 +03:00 [INF] Executed ViewResult - view EditBlog executed in 41.2236ms.
+2026-04-01 17:50:43.607 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI) in 116.4061ms
+2026-04-01 17:50:43.607 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI)'
+2026-04-01 17:50:43.607 +03:00 [INF] HTTP GET /Admin/Blog/EditBlog/1067 responded 200 in 122.5448 ms
+2026-04-01 17:50:43.607 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Blog/EditBlog/1067 - 200 null text/html; charset=utf-8 122.916ms
+2026-04-01 17:50:43.621 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp - null null
+2026-04-01 17:50:43.622 +03:00 [INF] The file /images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp was not modified
+2026-04-01 17:50:43.622 +03:00 [INF] HTTP GET /images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp responded 304 in 0.6979 ms
+2026-04-01 17:50:43.622 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp - 304 null image/webp 1.1504ms
+2026-04-01 17:51:35.365 +03:00 [INF] Application is shutting down...
+2026-04-01 17:51:38.695 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:51:38.720 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:51:38.723 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:51:38.728 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:51:38.750 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 17:51:38.757 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 17:51:38.757 +03:00 [INF] Database migration başarılı
+2026-04-01 17:51:38.791 +03:00 [INF] User profile is available. Using '/Users/furkanturker/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-04-01 17:51:38.808 +03:00 [INF] Now listening on: http://localhost:5171
+2026-04-01 17:51:38.809 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-01 17:51:38.809 +03:00 [INF] Hosting environment: Development
+2026-04-01 17:51:38.809 +03:00 [INF] Content root path: /Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI
+2026-04-01 17:51:39.167 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/ - null null
+2026-04-01 17:51:39.175 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-04-01 17:51:39.214 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:51:39.221 +03:00 [INF] Route matched with {action = "Anasayfa", controller = "Default", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Anasayfa() on controller BlogProject.Controllers.DefaultController (Gazetary_UI).
+2026-04-01 17:51:39.225 +03:00 [INF] Executing action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:51:39.227 +03:00 [INF] Executed action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.173ms.
+2026-04-01 17:51:39.231 +03:00 [INF] Executing ViewResult, running view Anasayfa.
+2026-04-01 17:51:39.525 +03:00 [INF] Executed DbCommand (29ms) [Parameters=[@__today_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE CONVERT(date, [b].[CreatedDate]) = @__today_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:39.545 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+2026-04-01 17:51:39.638 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:39.642 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:39.644 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:39.645 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:39.661 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:39.669 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:39.694 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__p_1='?' (DbType = Int32), @__weekAgo_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[BlogPostId], [t].[CategoryId], [t].[Content], [t].[CreatedDate], [t].[Description], [t].[ImageDescription], [t].[ImageUrl], [t].[MetaDescription], [t].[MetaKeywords], [t].[MetaTitle], [t].[Slug], [t].[Status], [t].[Title], [t].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM (
+    SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+    FROM [BlogPosts] AS [b]
+    WHERE [b].[CreatedDate] >= @__weekAgo_0
+    ORDER BY [b].[ViewCount] DESC
+) AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+ORDER BY [t].[ViewCount] DESC
+2026-04-01 17:51:39.700 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+2026-04-01 17:51:39.715 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [Categories] AS [c]
+2026-04-01 17:51:39.723 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:40.772 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:40.790 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:40.799 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:51:40.864 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:51:40.893 +03:00 [INF] Start processing HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:51:40.893 +03:00 [INF] Sending HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:51:41.072 +03:00 [INF] Received HTTP response headers after 176.6291ms - 200
+2026-04-01 17:51:41.072 +03:00 [INF] End processing HTTP request after 180.8368ms - 200
+2026-04-01 17:51:41.080 +03:00 [INF] Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:51:41.080 +03:00 [INF] Sending HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:51:41.367 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Blog/EditBlog/1067 - null null
+2026-04-01 17:51:41.372 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI)'
+2026-04-01 17:51:41.375 +03:00 [INF] Route matched with {area = "Admin", action = "EditBlog", controller = "Blog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult EditBlog(Int32) on controller BlogProject.Areas.Admin.Controllers.BlogController (Gazetary_UI).
+2026-04-01 17:51:41.379 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:51:41.412 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+WHERE [b].[BlogPostId] = @__p_0
+2026-04-01 17:51:41.419 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[ImageId], [i].[CreatedDate], [i].[ImageUrl]
+FROM [Images] AS [i]
+2026-04-01 17:51:41.422 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 42.4368ms.
+2026-04-01 17:51:41.422 +03:00 [INF] Executing ViewResult, running view EditBlog.
+2026-04-01 17:51:41.480 +03:00 [INF] Executed ViewResult - view EditBlog executed in 57.0094ms.
+2026-04-01 17:51:41.480 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI) in 104.9359ms
+2026-04-01 17:51:41.480 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI)'
+2026-04-01 17:51:41.481 +03:00 [INF] HTTP GET /Admin/Blog/EditBlog/1067 responded 200 in 113.2636 ms
+2026-04-01 17:51:41.483 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Blog/EditBlog/1067 - 200 null text/html; charset=utf-8 116.3056ms
+2026-04-01 17:51:41.520 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp - null null
+2026-04-01 17:51:41.524 +03:00 [INF] The file /images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp was not modified
+2026-04-01 17:51:41.524 +03:00 [INF] HTTP GET /images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp responded 304 in 3.6866 ms
+2026-04-01 17:51:41.525 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp - 304 null image/webp 4.3431ms
+2026-04-01 17:51:41.589 +03:00 [INF] Received HTTP response headers after 509.2681ms - 200
+2026-04-01 17:51:41.590 +03:00 [INF] End processing HTTP request after 509.6071ms - 200
+2026-04-01 17:51:41.609 +03:00 [INF] Executed ViewResult - view Anasayfa executed in 2379.7951ms.
+2026-04-01 17:51:41.613 +03:00 [INF] Executed action BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) in 2391.4624ms
+2026-04-01 17:51:41.614 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:51:41.616 +03:00 [INF] HTTP GET / responded 200 in 2443.9676 ms
+2026-04-01 17:51:41.617 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 2451.7168ms
+2026-04-01 17:51:45.081 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Blog/Index - null null
+2026-04-01 17:51:45.098 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI)'
+2026-04-01 17:51:45.101 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Blog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(System.String, Int32, System.String, Int32) on controller BlogProject.Areas.Admin.Controllers.BlogController (Gazetary_UI).
+2026-04-01 17:51:45.103 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:51:45.106 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 3.1585ms.
+2026-04-01 17:51:45.107 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-01 17:51:45.122 +03:00 [INF] Executed ViewResult - view Index executed in 15.8731ms.
+2026-04-01 17:51:45.122 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI) in 21.2134ms
+2026-04-01 17:51:45.122 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI)'
+2026-04-01 17:51:45.123 +03:00 [INF] HTTP GET /Admin/Blog/Index responded 200 in 40.9123 ms
+2026-04-01 17:51:45.123 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Blog/Index - 200 null text/html; charset=utf-8 41.922ms
+2026-04-01 17:51:46.319 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Blog/EditBlog/1066 - null null
+2026-04-01 17:51:46.322 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI)'
+2026-04-01 17:51:46.323 +03:00 [INF] Route matched with {area = "Admin", action = "EditBlog", controller = "Blog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult EditBlog(Int32) on controller BlogProject.Areas.Admin.Controllers.BlogController (Gazetary_UI).
+2026-04-01 17:51:46.325 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:51:46.346 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+WHERE [b].[BlogPostId] = @__p_0
+2026-04-01 17:51:46.353 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[ImageId], [i].[CreatedDate], [i].[ImageUrl]
+FROM [Images] AS [i]
+2026-04-01 17:51:46.354 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 29.396ms.
+2026-04-01 17:51:46.355 +03:00 [INF] Executing ViewResult, running view EditBlog.
+2026-04-01 17:51:46.361 +03:00 [INF] Executed ViewResult - view EditBlog executed in 6.5638ms.
+2026-04-01 17:51:46.361 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI) in 38.3131ms
+2026-04-01 17:51:46.361 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI)'
+2026-04-01 17:51:46.361 +03:00 [INF] HTTP GET /Admin/Blog/EditBlog/1066 responded 200 in 42.4979 ms
+2026-04-01 17:51:46.362 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Blog/EditBlog/1066 - 200 null text/html; charset=utf-8 43.1907ms
+2026-04-01 17:51:46.378 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp - null null
+2026-04-01 17:51:46.378 +03:00 [INF] The file /images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp was not modified
+2026-04-01 17:51:46.378 +03:00 [INF] HTTP GET /images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp responded 304 in 0.6047 ms
+2026-04-01 17:51:46.379 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp - 304 null image/webp 0.9268ms
+2026-04-01 17:51:51.336 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Blog/CreateBlog - null null
+2026-04-01 17:51:51.338 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.CreateBlog (Gazetary_UI)'
+2026-04-01 17:51:51.340 +03:00 [INF] Route matched with {area = "Admin", action = "CreateBlog", controller = "Blog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateBlog() on controller BlogProject.Areas.Admin.Controllers.BlogController (Gazetary_UI).
+2026-04-01 17:51:51.340 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.BlogController.CreateBlog (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:51:51.347 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[ImageId], [i].[CreatedDate], [i].[ImageUrl]
+FROM [Images] AS [i]
+2026-04-01 17:51:51.348 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.BlogController.CreateBlog (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 7.8704ms.
+2026-04-01 17:51:51.350 +03:00 [INF] Executing ViewResult, running view CreateBlog.
+2026-04-01 17:51:51.379 +03:00 [INF] Executed ViewResult - view CreateBlog executed in 30.1584ms.
+2026-04-01 17:51:51.379 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.BlogController.CreateBlog (Gazetary_UI) in 38.7649ms
+2026-04-01 17:51:51.379 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.CreateBlog (Gazetary_UI)'
+2026-04-01 17:51:51.379 +03:00 [INF] HTTP GET /Admin/Blog/CreateBlog responded 200 in 42.4728 ms
+2026-04-01 17:51:51.379 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Blog/CreateBlog - 200 null text/html; charset=utf-8 43.1058ms
+2026-04-01 17:52:27.434 +03:00 [INF] Application is shutting down...
+2026-04-01 17:52:30.808 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:52:30.833 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:52:30.836 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:52:30.838 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:52:30.846 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 17:52:30.852 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 17:52:30.852 +03:00 [INF] Database migration başarılı
+2026-04-01 17:52:30.886 +03:00 [INF] User profile is available. Using '/Users/furkanturker/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-04-01 17:52:30.903 +03:00 [INF] Now listening on: http://localhost:5171
+2026-04-01 17:52:30.903 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-01 17:52:30.903 +03:00 [INF] Hosting environment: Development
+2026-04-01 17:52:30.903 +03:00 [INF] Content root path: /Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI
+2026-04-01 17:52:31.260 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/ - null null
+2026-04-01 17:52:31.266 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-04-01 17:52:31.307 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:52:31.330 +03:00 [INF] Route matched with {action = "Anasayfa", controller = "Default", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Anasayfa() on controller BlogProject.Controllers.DefaultController (Gazetary_UI).
+2026-04-01 17:52:31.343 +03:00 [INF] Executing action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:52:31.347 +03:00 [INF] Executed action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.246ms.
+2026-04-01 17:52:31.353 +03:00 [INF] Executing ViewResult, running view Anasayfa.
+2026-04-01 17:52:31.687 +03:00 [INF] Executed DbCommand (34ms) [Parameters=[@__today_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE CONVERT(date, [b].[CreatedDate]) = @__today_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:31.706 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+2026-04-01 17:52:31.806 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:31.812 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:31.816 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:31.819 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:31.843 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:31.856 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:31.878 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__weekAgo_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[BlogPostId], [t].[CategoryId], [t].[Content], [t].[CreatedDate], [t].[Description], [t].[ImageDescription], [t].[ImageUrl], [t].[MetaDescription], [t].[MetaKeywords], [t].[MetaTitle], [t].[Slug], [t].[Status], [t].[Title], [t].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM (
+    SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+    FROM [BlogPosts] AS [b]
+    WHERE [b].[CreatedDate] >= @__weekAgo_0
+    ORDER BY [b].[ViewCount] DESC
+) AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+ORDER BY [t].[ViewCount] DESC
+2026-04-01 17:52:31.883 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+2026-04-01 17:52:31.901 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [Categories] AS [c]
+2026-04-01 17:52:31.908 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:32.520 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Blog/Index - null null
+2026-04-01 17:52:32.524 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI)'
+2026-04-01 17:52:32.527 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Blog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(System.String, Int32, System.String, Int32) on controller BlogProject.Areas.Admin.Controllers.BlogController (Gazetary_UI).
+2026-04-01 17:52:32.530 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:52:32.532 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 1.6232ms.
+2026-04-01 17:52:32.533 +03:00 [INF] Executing ViewResult, running view Index.
+2026-04-01 17:52:32.629 +03:00 [INF] Executed ViewResult - view Index executed in 93.33ms.
+2026-04-01 17:52:32.655 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI) in 127.9193ms
+2026-04-01 17:52:32.655 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.Index (Gazetary_UI)'
+2026-04-01 17:52:32.658 +03:00 [INF] HTTP GET /Admin/Blog/Index responded 200 in 135.2918 ms
+2026-04-01 17:52:32.663 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Blog/Index - 200 null text/html; charset=utf-8 142.0182ms
+2026-04-01 17:52:32.964 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:32.970 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:32.976 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:52:33.024 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:52:33.047 +03:00 [INF] Start processing HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:52:33.047 +03:00 [INF] Sending HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:52:33.234 +03:00 [INF] Received HTTP response headers after 185.3192ms - 200
+2026-04-01 17:52:33.235 +03:00 [INF] End processing HTTP request after 188.9007ms - 200
+2026-04-01 17:52:33.243 +03:00 [INF] Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:52:33.243 +03:00 [INF] Sending HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:52:33.698 +03:00 [INF] Received HTTP response headers after 455.0547ms - 200
+2026-04-01 17:52:33.698 +03:00 [INF] End processing HTTP request after 455.3611ms - 200
+2026-04-01 17:52:33.709 +03:00 [INF] Executed ViewResult - view Anasayfa executed in 2358.5572ms.
+2026-04-01 17:52:33.713 +03:00 [INF] Executed action BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) in 2382.6466ms
+2026-04-01 17:52:33.714 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:52:33.716 +03:00 [INF] HTTP GET / responded 200 in 2452.1884 ms
+2026-04-01 17:52:33.720 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 2465.13ms
+2026-04-01 17:52:34.015 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/Admin/Blog/EditBlog/1067 - null null
+2026-04-01 17:52:34.022 +03:00 [INF] Executing endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI)'
+2026-04-01 17:52:34.023 +03:00 [INF] Route matched with {area = "Admin", action = "EditBlog", controller = "Blog"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult EditBlog(Int32) on controller BlogProject.Areas.Admin.Controllers.BlogController (Gazetary_UI).
+2026-04-01 17:52:34.024 +03:00 [INF] Executing action method BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:52:34.049 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+WHERE [b].[BlogPostId] = @__p_0
+2026-04-01 17:52:34.055 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[ImageId], [i].[CreatedDate], [i].[ImageUrl]
+FROM [Images] AS [i]
+2026-04-01 17:52:34.058 +03:00 [INF] Executed action method BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 33.1651ms.
+2026-04-01 17:52:34.058 +03:00 [INF] Executing ViewResult, running view EditBlog.
+2026-04-01 17:52:34.083 +03:00 [INF] Executed ViewResult - view EditBlog executed in 24.7771ms.
+2026-04-01 17:52:34.083 +03:00 [INF] Executed action BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI) in 59.1516ms
+2026-04-01 17:52:34.083 +03:00 [INF] Executed endpoint 'BlogProject.Areas.Admin.Controllers.BlogController.EditBlog (Gazetary_UI)'
+2026-04-01 17:52:34.083 +03:00 [INF] HTTP GET /Admin/Blog/EditBlog/1067 responded 200 in 67.9325 ms
+2026-04-01 17:52:34.083 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/Admin/Blog/EditBlog/1067 - 200 null text/html; charset=utf-8 68.1974ms
+2026-04-01 17:52:34.098 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp - null null
+2026-04-01 17:52:34.103 +03:00 [INF] The file /images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp was not modified
+2026-04-01 17:52:34.103 +03:00 [INF] HTTP GET /images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp responded 304 in 5.1945 ms
+2026-04-01 17:52:34.103 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/68b2dbda-3823-4648-bb95-3b07e8ba1754.webp - 304 null image/webp 5.5302ms
+2026-04-01 17:53:28.036 +03:00 [INF] Application is shutting down...
+2026-04-01 17:53:31.311 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:53:31.336 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:53:31.342 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:53:31.347 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:53:31.355 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 17:53:31.361 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 17:53:31.361 +03:00 [INF] Database migration başarılı
+2026-04-01 17:53:31.394 +03:00 [INF] User profile is available. Using '/Users/furkanturker/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-04-01 17:53:31.411 +03:00 [INF] Now listening on: http://localhost:5171
+2026-04-01 17:53:31.411 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-01 17:53:31.411 +03:00 [INF] Hosting environment: Development
+2026-04-01 17:53:31.411 +03:00 [INF] Content root path: /Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI
+2026-04-01 17:53:31.734 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/ - null null
+2026-04-01 17:53:31.740 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-04-01 17:53:31.810 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:53:31.820 +03:00 [INF] Route matched with {action = "Anasayfa", controller = "Default", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Anasayfa() on controller BlogProject.Controllers.DefaultController (Gazetary_UI).
+2026-04-01 17:53:31.827 +03:00 [INF] Executing action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:53:31.832 +03:00 [INF] Executed action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.7136ms.
+2026-04-01 17:53:31.839 +03:00 [INF] Executing ViewResult, running view Anasayfa.
+2026-04-01 17:53:32.177 +03:00 [INF] Executed DbCommand (31ms) [Parameters=[@__today_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE CONVERT(date, [b].[CreatedDate]) = @__today_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:32.193 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+2026-04-01 17:53:32.289 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:32.298 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:32.301 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:32.303 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:32.320 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:32.329 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:32.350 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_1='?' (DbType = Int32), @__weekAgo_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[BlogPostId], [t].[CategoryId], [t].[Content], [t].[CreatedDate], [t].[Description], [t].[ImageDescription], [t].[ImageUrl], [t].[MetaDescription], [t].[MetaKeywords], [t].[MetaTitle], [t].[Slug], [t].[Status], [t].[Title], [t].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM (
+    SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+    FROM [BlogPosts] AS [b]
+    WHERE [b].[CreatedDate] >= @__weekAgo_0
+    ORDER BY [b].[ViewCount] DESC
+) AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+ORDER BY [t].[ViewCount] DESC
+2026-04-01 17:53:32.355 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+2026-04-01 17:53:32.372 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [Categories] AS [c]
+2026-04-01 17:53:32.381 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:33.597 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:33.602 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:33.609 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:53:33.658 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:53:33.681 +03:00 [INF] Start processing HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:53:33.681 +03:00 [INF] Sending HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:53:33.877 +03:00 [INF] Received HTTP response headers after 194.9828ms - 200
+2026-04-01 17:53:33.878 +03:00 [INF] End processing HTTP request after 198.2628ms - 200
+2026-04-01 17:53:33.885 +03:00 [INF] Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:53:33.885 +03:00 [INF] Sending HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:53:34.303 +03:00 [INF] Received HTTP response headers after 418.1867ms - 200
+2026-04-01 17:53:34.303 +03:00 [INF] End processing HTTP request after 418.5537ms - 200
+2026-04-01 17:53:34.330 +03:00 [INF] Executed ViewResult - view Anasayfa executed in 2489.1148ms.
+2026-04-01 17:53:34.339 +03:00 [INF] Executed action BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) in 2518.4948ms
+2026-04-01 17:53:34.340 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:53:34.350 +03:00 [INF] HTTP GET / responded 200 in 2608.6644 ms
+2026-04-01 17:53:34.363 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 2631.543ms
+2026-04-01 17:54:48.069 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/ - null null
+2026-04-01 17:54:48.073 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:54:48.074 +03:00 [INF] Route matched with {action = "Anasayfa", controller = "Default", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Anasayfa() on controller BlogProject.Controllers.DefaultController (Gazetary_UI).
+2026-04-01 17:54:48.075 +03:00 [INF] Executing action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:54:48.075 +03:00 [INF] Executed action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0109ms.
+2026-04-01 17:54:48.076 +03:00 [INF] Executing ViewResult, running view Anasayfa.
+2026-04-01 17:54:48.116 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:54:48.127 +03:00 [INF] Executed ViewResult - view Anasayfa executed in 51.7365ms.
+2026-04-01 17:54:48.127 +03:00 [INF] Executed action BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) in 52.8854ms
+2026-04-01 17:54:48.127 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:54:48.127 +03:00 [INF] HTTP GET / responded 200 in 57.4692 ms
+2026-04-01 17:54:48.128 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 58.8187ms
+2026-04-01 17:55:53.389 +03:00 [INF] Application is shutting down...
+2026-04-01 17:55:57.153 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:55:57.185 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:55:57.188 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 17:55:57.190 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 17:55:57.199 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 17:55:57.207 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 17:55:57.207 +03:00 [INF] Database migration başarılı
+2026-04-01 17:55:57.250 +03:00 [INF] User profile is available. Using '/Users/furkanturker/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-04-01 17:55:57.272 +03:00 [INF] Now listening on: http://localhost:5171
+2026-04-01 17:55:57.273 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-01 17:55:57.273 +03:00 [INF] Hosting environment: Development
+2026-04-01 17:55:57.273 +03:00 [INF] Content root path: /Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI
+2026-04-01 17:55:57.495 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/ - null null
+2026-04-01 17:55:57.499 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-04-01 17:55:57.522 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:55:57.527 +03:00 [INF] Route matched with {action = "Anasayfa", controller = "Default", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Anasayfa() on controller BlogProject.Controllers.DefaultController (Gazetary_UI).
+2026-04-01 17:55:57.530 +03:00 [INF] Executing action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:55:57.531 +03:00 [INF] Executed action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.1519ms.
+2026-04-01 17:55:57.535 +03:00 [INF] Executing ViewResult, running view Anasayfa.
+2026-04-01 17:55:57.791 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[@__today_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE CONVERT(date, [b].[CreatedDate]) = @__today_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:57.807 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+2026-04-01 17:55:57.885 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:57.888 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:57.889 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:57.890 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:57.904 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:57.909 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:57.927 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_1='?' (DbType = Int32), @__weekAgo_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[BlogPostId], [t].[CategoryId], [t].[Content], [t].[CreatedDate], [t].[Description], [t].[ImageDescription], [t].[ImageUrl], [t].[MetaDescription], [t].[MetaKeywords], [t].[MetaTitle], [t].[Slug], [t].[Status], [t].[Title], [t].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM (
+    SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+    FROM [BlogPosts] AS [b]
+    WHERE [b].[CreatedDate] >= @__weekAgo_0
+    ORDER BY [b].[ViewCount] DESC
+) AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+ORDER BY [t].[ViewCount] DESC
+2026-04-01 17:55:57.930 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+2026-04-01 17:55:57.944 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [Categories] AS [c]
+2026-04-01 17:55:57.950 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:58.916 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:58.923 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:58.929 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 17:55:58.981 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:55:59.004 +03:00 [INF] Start processing HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:55:59.004 +03:00 [INF] Sending HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 17:55:59.173 +03:00 [INF] Received HTTP response headers after 167.6931ms - 200
+2026-04-01 17:55:59.174 +03:00 [INF] End processing HTTP request after 170.819ms - 200
+2026-04-01 17:55:59.180 +03:00 [INF] Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:55:59.181 +03:00 [INF] Sending HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 17:55:59.600 +03:00 [INF] Received HTTP response headers after 419.3923ms - 200
+2026-04-01 17:55:59.600 +03:00 [INF] End processing HTTP request after 419.7616ms - 200
+2026-04-01 17:55:59.624 +03:00 [INF] Executed ViewResult - view Anasayfa executed in 2088.8369ms.
+2026-04-01 17:55:59.627 +03:00 [INF] Executed action BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) in 2100.4086ms
+2026-04-01 17:55:59.628 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:55:59.632 +03:00 [INF] HTTP GET / responded 200 in 2132.6012 ms
+2026-04-01 17:55:59.644 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 2150.171ms
+2026-04-01 17:59:01.045 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/ - null null
+2026-04-01 17:59:01.057 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:59:01.058 +03:00 [INF] Route matched with {action = "Anasayfa", controller = "Default", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Anasayfa() on controller BlogProject.Controllers.DefaultController (Gazetary_UI).
+2026-04-01 17:59:01.060 +03:00 [INF] Executing action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 17:59:01.060 +03:00 [INF] Executed action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.0371ms.
+2026-04-01 17:59:01.061 +03:00 [INF] Executing ViewResult, running view Anasayfa.
+2026-04-01 17:59:01.105 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 17:59:01.108 +03:00 [INF] Executed ViewResult - view Anasayfa executed in 47.8875ms.
+2026-04-01 17:59:01.108 +03:00 [INF] Executed action BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) in 50.1753ms
+2026-04-01 17:59:01.109 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 17:59:01.109 +03:00 [INF] HTTP GET / responded 200 in 62.3277 ms
+2026-04-01 17:59:01.109 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 63.8617ms
+2026-04-01 17:59:01.133 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/css/home-categories.css - null null
+2026-04-01 17:59:01.133 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/css/home-editorPick.css - null null
+2026-04-01 17:59:01.133 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/logo.png - null null
+2026-04-01 17:59:01.133 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/ataturk.jpeg - null null
+2026-04-01 17:59:01.143 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/favicon/site.webmanifest - null null
+2026-04-01 17:59:01.143 +03:00 [INF] Sending file. Request path: '/css/home-editorPick.css'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/css/home-editorPick.css'
+2026-04-01 17:59:01.143 +03:00 [INF] Sending file. Request path: '/css/home-categories.css'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/css/home-categories.css'
+2026-04-01 17:59:01.143 +03:00 [INF] HTTP GET /css/home-editorPick.css responded 200 in 10.1600 ms
+2026-04-01 17:59:01.143 +03:00 [INF] Sending file. Request path: '/images/upload/ataturk.jpeg'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/ataturk.jpeg'
+2026-04-01 17:59:01.143 +03:00 [INF] Sending file. Request path: '/images/upload/logo.png'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/logo.png'
+2026-04-01 17:59:01.143 +03:00 [INF] HTTP GET /css/home-categories.css responded 200 in 10.2503 ms
+2026-04-01 17:59:01.143 +03:00 [INF] HTTP GET /images/upload/logo.png responded 200 in 9.9152 ms
+2026-04-01 17:59:01.143 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/css/home-categories.css - 200 14684 text/css 10.6637ms
+2026-04-01 17:59:01.143 +03:00 [INF] HTTP GET /images/upload/ataturk.jpeg responded 200 in 9.8459 ms
+2026-04-01 17:59:01.143 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/css/home-editorPick.css - 200 6379 text/css 10.5991ms
+2026-04-01 17:59:01.143 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/ataturk.jpeg - 200 7352 image/jpeg 10.2046ms
+2026-04-01 17:59:01.143 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/logo.png - 200 19041 image/png 10.033ms
+2026-04-01 17:59:01.144 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/js/home-editorPick.js - null null
+2026-04-01 17:59:01.144 +03:00 [INF] Sending file. Request path: '/favicon/site.webmanifest'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/favicon/site.webmanifest'
+2026-04-01 17:59:01.144 +03:00 [INF] HTTP GET /favicon/site.webmanifest responded 200 in 0.8390 ms
+2026-04-01 17:59:01.144 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/favicon/site.webmanifest - 200 454 application/manifest+json 1.0482ms
+2026-04-01 17:59:01.144 +03:00 [INF] Sending file. Request path: '/js/home-editorPick.js'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/js/home-editorPick.js'
+2026-04-01 17:59:01.144 +03:00 [INF] HTTP GET /js/home-editorPick.js responded 200 in 0.6530 ms
+2026-04-01 17:59:01.144 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/js/home-editorPick.js - 200 2458 text/javascript 0.7865ms
+2026-04-01 17:59:01.640 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/1493549.jpeg - null null
+2026-04-01 17:59:01.646 +03:00 [INF] Sending file. Request path: '/images/1493549.jpeg'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/1493549.jpeg'
+2026-04-01 17:59:01.646 +03:00 [INF] HTTP GET /images/1493549.jpeg responded 200 in 5.4449 ms
+2026-04-01 17:59:01.646 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/1493549.jpeg - 200 380508 image/jpeg 5.6442ms
+2026-04-01 17:59:02.262 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/images/upload/ataturk.jpeg - null null
+2026-04-01 17:59:02.262 +03:00 [INF] Sending file. Request path: '/images/upload/ataturk.jpeg'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/ataturk.jpeg'
+2026-04-01 17:59:02.262 +03:00 [INF] HTTP GET /images/upload/ataturk.jpeg responded 200 in 0.3771 ms
+2026-04-01 17:59:02.262 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/images/upload/ataturk.jpeg - 200 7352 image/jpeg 0.558ms
+2026-04-01 17:59:04.136 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/favicon.ico - null null
+2026-04-01 17:59:04.137 +03:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: '/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/favicon.ico'
+2026-04-01 17:59:04.137 +03:00 [INF] HTTP GET /favicon.ico responded 200 in 0.8746 ms
+2026-04-01 17:59:04.137 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/favicon.ico - 200 15086 image/x-icon 1.2739ms
+2026-04-01 18:00:28.069 +03:00 [INF] Application is shutting down...
+2026-04-01 18:00:31.551 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 18:00:31.574 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 18:00:31.581 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-01 18:00:31.584 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-01 18:00:31.596 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-01 18:00:31.601 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-04-01 18:00:31.602 +03:00 [INF] Database migration başarılı
+2026-04-01 18:00:31.634 +03:00 [INF] User profile is available. Using '/Users/furkanturker/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-04-01 18:00:31.651 +03:00 [INF] Now listening on: http://localhost:5171
+2026-04-01 18:00:31.651 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-01 18:00:31.651 +03:00 [INF] Hosting environment: Development
+2026-04-01 18:00:31.651 +03:00 [INF] Content root path: /Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI
+2026-04-01 18:00:31.879 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5171/ - null null
+2026-04-01 18:00:31.885 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-04-01 18:00:31.933 +03:00 [INF] Executing endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 18:00:31.950 +03:00 [INF] Route matched with {action = "Anasayfa", controller = "Default", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Anasayfa() on controller BlogProject.Controllers.DefaultController (Gazetary_UI).
+2026-04-01 18:00:31.954 +03:00 [INF] Executing action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) - Validation state: "Valid"
+2026-04-01 18:00:31.959 +03:00 [INF] Executed action method BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI), returned result Microsoft.AspNetCore.Mvc.ViewResult in 0.6757ms.
+2026-04-01 18:00:31.968 +03:00 [INF] Executing ViewResult, running view Anasayfa.
+2026-04-01 18:00:32.296 +03:00 [INF] Executed DbCommand (25ms) [Parameters=[@__today_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE CONVERT(date, [b].[CreatedDate]) = @__today_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:32.313 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+2026-04-01 18:00:32.404 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:32.409 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:32.411 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:32.414 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:32.430 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:32.437 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:32.456 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_1='?' (DbType = Int32), @__weekAgo_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[BlogPostId], [t].[CategoryId], [t].[Content], [t].[CreatedDate], [t].[Description], [t].[ImageDescription], [t].[ImageUrl], [t].[MetaDescription], [t].[MetaKeywords], [t].[MetaTitle], [t].[Slug], [t].[Status], [t].[Title], [t].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM (
+    SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+    FROM [BlogPosts] AS [b]
+    WHERE [b].[CreatedDate] >= @__weekAgo_0
+    ORDER BY [b].[ViewCount] DESC
+) AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+ORDER BY [t].[ViewCount] DESC
+2026-04-01 18:00:32.460 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount]
+FROM [BlogPosts] AS [b]
+2026-04-01 18:00:32.483 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [Categories] AS [c]
+2026-04-01 18:00:32.490 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:33.465 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:33.471 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:33.477 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__categoryName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [b].[BlogPostId], [b].[CategoryId], [b].[Content], [b].[CreatedDate], [b].[Description], [b].[ImageDescription], [b].[ImageUrl], [b].[MetaDescription], [b].[MetaKeywords], [b].[MetaTitle], [b].[Slug], [b].[Status], [b].[Title], [b].[ViewCount], [c].[CategoryId], [c].[CategoryName], [c].[CategorySlug], [c].[IsStatus]
+FROM [BlogPosts] AS [b]
+INNER JOIN [Categories] AS [c] ON [b].[CategoryId] = [c].[CategoryId]
+WHERE [c].[CategoryName] = @__categoryName_0
+ORDER BY [b].[CreatedDate] DESC
+2026-04-01 18:00:33.529 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[ImageUrl], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[MailCode], [a].[NameSurname], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RegisterDate], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2026-04-01 18:00:33.552 +03:00 [INF] Start processing HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 18:00:33.552 +03:00 [INF] Sending HTTP request GET https://www.tcmb.gov.tr/kurlar/today.xml
+2026-04-01 18:00:33.731 +03:00 [INF] Received HTTP response headers after 177.2325ms - 200
+2026-04-01 18:00:33.732 +03:00 [INF] End processing HTTP request after 180.7015ms - 200
+2026-04-01 18:00:33.739 +03:00 [INF] Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 18:00:33.739 +03:00 [INF] Sending HTTP request GET https://api.open-meteo.com/v1/forecast?latitude=41.01&longitude=28.97&current=temperature_2m&timezone=Europe%2FIstanbul
+2026-04-01 18:00:34.221 +03:00 [INF] Received HTTP response headers after 481.4086ms - 200
+2026-04-01 18:00:34.221 +03:00 [INF] End processing HTTP request after 481.6969ms - 200
+2026-04-01 18:00:34.243 +03:00 [INF] Executed ViewResult - view Anasayfa executed in 2275.9587ms.
+2026-04-01 18:00:34.246 +03:00 [INF] Executed action BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI) in 2296.4935ms
+2026-04-01 18:00:34.247 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
+2026-04-01 18:00:34.251 +03:00 [INF] HTTP GET / responded 200 in 2366.0666 ms
+2026-04-01 18:00:34.263 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 2386.7867ms
+2026-04-01 18:03:52.352 +03:00 [INF] Application is shutting down...

@@ -62,10 +62,10 @@ public class _HomeEditorPick : ViewComponent
 
                 Category4 = new CategoryWithLatestBlog
                 {
-                CategoryName = "Son Dakika",
-                CategorySlug = "turkiye",
-                Posts = turkiyePosts
-            }
+                    CategoryName = "Son Dakika",
+                    CategorySlug = "turkiye",
+                    Posts = turkiyePosts
+                }
             };
         });
 

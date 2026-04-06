@@ -98,8 +98,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUm9sZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/Areas/Admin/Views/Rss/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUnNzL0luZGV4LmNzaHRtbA==
+[/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/Areas/Admin/Views/Rss/RssList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUnNzL1Jzc0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/Areas/Admin/Views/_ViewImports.cshtml]
@@ -278,8 +278,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlclJlZ2lzdGVyL0VtYWlsQ29uZmlybWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/Views/UserRegister/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlclJlZ2lzdGVyL0ZvcmdvdFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/Views/UserRegister/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlclJlZ2lzdGVyL1JlZ2lzdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/Views/UserRegister/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlclJlZ2lzdGVyL1Jlc2V0UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/Views/UserRegister/ResetPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlclJlZ2lzdGVyL1Jlc2V0UGFzc3dvcmRDb25maXJtYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/Views/_ViewImports.cshtml]
