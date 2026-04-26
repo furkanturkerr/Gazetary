@@ -93,6 +93,47 @@
     }
 </div>
 
+@if (ViewBag.TotalPages > 1)
+{
+    <div class="d-flex justify-content-center mt-4">
+        <nav>
+            <ul class="pagination">
+
+                <!-- Önceki -->
+                <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                    <a class="page-link"
+                       asp-action="ImageList"
+                       asp-route-page="@(ViewBag.CurrentPage - 1)">
+                        Önceki
+                    </a>
+                </li>
+
+                <!-- Sayfa numaraları -->
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link"
+                           asp-action="ImageList"
+                           asp-route-page="@i">
+                            @i
+                        </a>
+                    </li>
+                }
+
+                <!-- Sonraki -->
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                    <a class="page-link"
+                       asp-action="ImageList"
+                       asp-route-page="@(ViewBag.CurrentPage + 1)">
+                        Sonraki
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+}
+
 <style>
     .image-card {
         border-radius: 18px;

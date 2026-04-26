@@ -61,6 +61,18 @@
       "PackagePath": "staticwebassets/images/upload/80b2ba1f-a23d-4e89-a338-14e4c9877212.png"
     },
     {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/G(1).png",
+      "PackagePath": "staticwebassets/images/upload/G(1).png"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/G(2).png",
+      "PackagePath": "staticwebassets/images/upload/G(2).png"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/G(3).png",
+      "PackagePath": "staticwebassets/images/upload/G(3).png"
+    },
+    {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/G.png",
       "PackagePath": "staticwebassets/images/upload/G.png"
     },
@@ -75,6 +87,10 @@
     {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/logo.png",
       "PackagePath": "staticwebassets/images/upload/logo.png"
+    },
+    {
+      "Id": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/images/upload/net.png",
+      "PackagePath": "staticwebassets/images/upload/net.png"
     },
     {
       "Id": "/Users/furkanturker/RiderProjects/BlogProject/Gazetary_UI/wwwroot/js/home-editorPick.js",

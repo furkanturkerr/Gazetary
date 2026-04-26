@@ -1,0 +1,42 @@
+@model List<Entities.Concrate.BlogPost>
+
+<section class="hc-section">
+    <div class="hc-header">
+        <h2 class="hc-title">Oyun</h2>
+        <a href="/oyun" class="hc-more">Tümünü Görüntüle &rsaquo;</a>
+    </div>
+
+    <div class="hc-tech-grid">
+        @for (int i = 0; i < Model.Count && i < 3; i++)
+        {
+            <a href="/teknoloji/@Model[i].Slug" class="hc-tech-card @(i > 0 ? "hc-tech-card--bordered" : "")">
+                <div class="hc-tech-img-wrap">
+                    <img src="@Model[i].ImageUrl" alt="@Model[i].Title" class="hc-tech-img" />
+                </div>
+                <div class="hc-tech-body">
+                    <span class="hc-kicker">@Model[i].Category.CategoryName</span>
+                    <h3 class="hc-hed-sm">@Model[i].Title</h3>
+                    <p class="hc-summary">@Model[i].Description</p>
+                    <span class="hc-byline">@Model[i].CreatedDate.ToString("dd MMM yyyy")</span>
+                </div>
+            </a>
+        }
+    </div>
+
+    @if (Model.Count > 3)
+    {
+        <div class="hc-tech-feature">
+            <a href="/teknoloji/@Model[3].Slug" class="hc-feature-link">
+                <div class="hc-feature-img-wrap">
+                    <img src="@Model[3].ImageUrl" alt="@Model[3].Title" class="hc-feature-img" />
+                </div>
+                <div class="hc-feature-body">
+                    <span class="hc-kicker">@Model[3].Category.CategoryName</span>
+                    <h3 class="hc-hed-lg">@Model[3].Title</h3>
+                    <p class="hc-summary hc-summary--feature">@Model[3].Description</p>
+                    <span class="hc-byline">@Model[3].CreatedDate.ToString("dd MMM yyyy")</span>
+                </div>
+            </a>
+        </div>
+    }
+</section>

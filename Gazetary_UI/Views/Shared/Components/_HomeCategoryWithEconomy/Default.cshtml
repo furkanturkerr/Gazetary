@@ -6,38 +6,37 @@
         <a href="/ekonomi" class="hc-more">Tümünü Görüntüle &rsaquo;</a>
     </div>
 
-    @if (Model.Any())
-    {
-        <div class="hc-ekonomi-grid">
-
-            <a href="/ekonomi/@Model[0].Slug" class="hc-ekonomi-featured">
-                <div class="hc-ekonomi-featured-img">
-                    <img src="@Model[0].ImageUrl" alt="@Model[0].Title" />
+    <div class="hc-tech-grid">
+        @for (int i = 0; i < Model.Count && i < 3; i++)
+        {
+            <a href="/turkiye/@Model[i].Slug" class="hc-tech-card @(i > 0 ? "hc-tech-card--bordered" : "")">
+                <div class="hc-tech-img-wrap">
+                    <img src="@Model[i].ImageUrl" alt="@Model[i].Title" class="hc-tech-img" />
                 </div>
-                <div class="hc-ekonomi-featured-body">
-                    <span class="hc-kicker">@Model[0].Category.CategoryName</span>
-                    <h3 class="hc-hed-xl">@Model[0].Title</h3>
-                    <p class="hc-summary hc-summary--feature">@Model[0].Description</p>
-                    <span class="hc-byline">@Model[0].CreatedDate.ToString("dd MMM yyyy")</span>
+                <div class="hc-tech-body">
+                    <span class="hc-kicker">@Model[i].Category.CategoryName</span>
+                    <h3 class="hc-hed-sm">@Model[i].Title</h3>
+                    <p class="hc-summary">@Model[i].Description</p>
+                    <span class="hc-byline">@Model[i].CreatedDate.ToString("dd MMM yyyy")</span>
                 </div>
             </a>
+        }
+    </div>
 
-            <div class="hc-ekonomi-sidebar">
-                @for (int i = 1; i < Model.Count && i < 5; i++)
-                {
-                    <a href="/ekonomi/@Model[i].Slug" class="hc-ekonomi-card @(i == 4 ? "hc-ekonomi-card--last" : "")">
-                        <div class="hc-ekonomi-card-img">
-                            <img src="@Model[i].ImageUrl" alt="@Model[i].Title" />
-                        </div>
-                        <div class="hc-ekonomi-card-body">
-                            <span class="hc-kicker">@Model[i].Category.CategoryName</span>
-                            <h4 class="hc-hed-sm">@Model[i].Title</h4>
-                            <span class="hc-byline">@Model[i].CreatedDate.ToString("dd MMM yyyy")</span>
-                        </div>
-                    </a>
-                }
-            </div>
-
+    @if (Model.Count > 3)
+    {
+        <div class="hc-tech-feature">
+            <a href="/teknoloji/@Model[3].Slug" class="hc-feature-link">
+                <div class="hc-feature-img-wrap">
+                    <img src="@Model[3].ImageUrl" alt="@Model[3].Title" class="hc-feature-img" />
+                </div>
+                <div class="hc-feature-body">
+                    <span class="hc-kicker">@Model[3].Category.CategoryName</span>
+                    <h3 class="hc-hed-lg">@Model[3].Title</h3>
+                    <p class="hc-summary hc-summary--feature">@Model[3].Description</p>
+                    <span class="hc-byline">@Model[3].CreatedDate.ToString("dd MMM yyyy")</span>
+                </div>
+            </a>
         </div>
     }
 </section>
