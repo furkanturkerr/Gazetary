@@ -1,0 +1,6 @@
+Gazetary_UI/appsettings.json
+Gazetary_UI/appsettings.Development.json
+
+bin/
+obj/
+.DS_Store

@@ -1292,3 +1292,4 @@ WHERE [a].[Id] = @__p_0
 2026-04-26 23:03:54.701 +03:00 [INF] Executed endpoint 'BlogProject.Controllers.DefaultController.Anasayfa (Gazetary_UI)'
 2026-04-26 23:03:54.704 +03:00 [INF] HTTP GET / responded 200 in 3095.2401 ms
 2026-04-26 23:03:54.710 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5171/ - 200 null text/html; charset=utf-8 3107.156ms
+2026-04-26 23:11:11.433 +03:00 [INF] Application is shutting down...
