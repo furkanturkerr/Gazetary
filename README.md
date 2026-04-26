@@ -34,12 +34,14 @@ Amaç yalnızca statik bir haber sitesi yapmak değil; kullanıcı yönetimi, ad
 ## ⚙️ Öne Çıkan Özellikler
 
 ### 🔐 ASP.NET Core Identity ile Kullanıcı Yönetimi
-- Kullanıcı kayıt sistemi
-- Kullanıcı giriş sistemi
-- Email doğrulama sistemi
-- Doğrulama kodu ile hesap aktivasyonu
-- Profil sayfası
-- Güvenli oturum yönetimi
+- Kullanıcı kayıt sistemi  
+- Kullanıcı giriş sistemi  
+- Email doğrulama sistemi  
+- Doğrulama kodu ile hesap aktivasyonu  
+- Şifre sıfırlama (Forgot Password) sistemi  
+- Email üzerinden güvenli şifre yenileme  
+- Profil sayfası  
+- Güvenli oturum yönetimi  
 
 ---
 
@@ -153,13 +155,14 @@ Bu mimari sayesinde proje daha okunabilir, sürdürülebilir ve genişletilebili
 
 ---
 
-## 🔐 Kullanıcı Giriş, Kayıt ve Email Doğrulama
+## 🔐 Kullanıcı Giriş, Kayıt ve Email Doğrulama, Şifre Sıfırlama
 
 <p align="center">
   <img src="https://github.com/furkanturkerr/Gazetary/blob/main/Gazetary_UI/wwwroot/images/l1.png" width="800"/>
   <img src="https://github.com/furkanturkerr/Gazetary/blob/main/Gazetary_UI/wwwroot/images/r1.png" width="800"/>
   <img src="https://github.com/furkanturkerr/Gazetary/blob/main/Gazetary_UI/wwwroot/images/dogrulama.png" width="800"/>
   <img src="https://github.com/furkanturkerr/Gazetary/blob/main/Gazetary_UI/wwwroot/images/emailkod.png" width="800"/>
+  <img src="https://github.com/furkanturkerr/Gazetary/blob/main/Gazetary_UI/wwwroot/images/sifres.png" width="800"/>
 </p>
 
 ---
@@ -191,7 +194,7 @@ Bu mimari sayesinde proje daha okunabilir, sürdürülebilir ve genişletilebili
   <img src="https://github.com/furkanturkerr/Gazetary/blob/main/Gazetary_UI/wwwroot/images/contactlist.png" width="800"/>
   <img src="https://github.com/furkanturkerr/Gazetary/blob/main/Gazetary_UI/wwwroot/images/imageslist.png" width="800"/>
   <img src="https://github.com/furkanturkerr/Gazetary/blob/main/Gazetary_UI/wwwroot/images/rsslist.png" width="800"/>
-  <img src="https://github.com/furkanturkerr/Gazetary/blob/main/Gazetary_UI/wwwroot/images/userlist.png" width="800"/>
+  <img src="https://github.com/furkanturkerr/Gazetary/blob/main/Gazetary_UI/wwwroot/images/userlistnew.png" width="800"/>
 </p>
 
 ---
