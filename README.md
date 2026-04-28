@@ -128,7 +128,6 @@ Bu mimari sayesinde proje daha okunabilir, sürdürülebilir ve genişletilebili
 - FluentValidation
 - MailKit
 - IMemoryCache
-- HttpClient
 - RSS Feed
 - TCMB XML Servisi
 - OpenAI API
