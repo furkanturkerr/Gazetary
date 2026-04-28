@@ -30,79 +30,185 @@
 
     <section class="mt-12 mb-20 font-sans">
 
-        <div class="flex items-center gap-4 mb-8">
-            <h3 class="text-2xl font-black uppercase tracking-tight text-[#111318] dark:text-white">Yorumlar</h3>
-            <span class="text-neutral-400 text-lg font-medium" id="commentCount">(@Model.Comments.Count)</span>
+        <div class="flex items-center gap-4 mb-8 border-t border-neutral-200 dark:border-neutral-800 pt-10">
+            <h3 class="text-xl font-black uppercase tracking-widest text-[#111318] dark:text-white">Yorumlar</h3>
+            <span class="text-neutral-400 text-base font-medium" id="commentCount">(@Model.Comments.Count)</span>
         </div>
 
-        <div class="bg-neutral-50 dark:bg-neutral-800 p-6 rounded-sm mb-12">
-            <h4 class="text-sm font-bold uppercase mb-4 text-[#111318] dark:text-white">Yorum Yap</h4>
-            <form asp-controller="Comment" asp-action="AddComment" method="post" id="commentForm">
-                <input type="hidden" name="BlogPostId" value="@Model.BlogPost.BlogPostId"/>
-                <textarea name="Content"
-                          class="w-full h-24 p-4 border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm focus:outline-none focus:border-primary mb-4"
+        <div class="bg-neutral-50 dark:bg-neutral-800/60 rounded-xl p-6 mb-12">
+            <h4 class="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-4">Yorum Yap</h4>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form id="commentForm" asp-controller="Comment" asp-action="AddComment" method="post" novalidate>
+                    <input type="hidden" name="BlogPostId" value="@Model.BlogPost.BlogPostId"/>
+
+                    <textarea id="commentTextarea"
+                          name="Content"
+                          maxlength="1000"
+                          class="w-full h-24 p-3.5 text-sm border border-neutral-200 dark:border-neutral-700
+                                 bg-white dark:bg-neutral-900 rounded-lg resize-none
+                                 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-500
+                                 transition-colors"
                           placeholder="Düşüncelerinizi paylaşın..."></textarea>
-                <div class="flex justify-end">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <button type="submit"
-                                class="bg-[#111318] dark:bg-white text-white dark:text-[#111318] px-6 py-2 text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
-                            Gönder
+
+                    <div class="flex items-center justify-between mt-2">
+                        <div class="flex items-center gap-3">
+                            <span id="charCount" class="text-xs text-neutral-400">0 / 1000</span>
+                            <span id="formError" class="text-xs text-red-400 hidden"></span>
+                        </div>
+                        <button type="submit" id="submitBtn"
+                                class="flex items-center gap-2 bg-[#111318] dark:bg-white
+                                   text-white dark:text-[#111318]
+                                   px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-widest
+                                   hover:opacity-85 disabled:opacity-40 disabled:cursor-not-allowed
+                                   transition-opacity">
+                            <svg id="submitSpinner" class="hidden w-3.5 h-3.5 animate-spin" viewBox="0 0 24 24" fill="none">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                            </svg>
+                            <span id="submitLabel">Gönder</span>
                         </button>
-                    }
-                    else
-                    {
-                        <button type="button"
-                                onclick="window.location.href='/UserLogin/Login'"
-                                class="bg-[#111318] dark:bg-white text-white dark:text-[#111318] px-6 py-2 text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
-                            Yorum yapmak için giriş yapın
-                        </button>
-                    }
+                    </div>
+                </form>
+            }
+            else
+            {
+                <div class="flex items-center justify-between">
+                    <p class="text-sm text-neutral-400">Yorum yapabilmek için giriş yapmalısınız.</p>
+                    <a href="/UserLogin/Login"
+                       class="bg-[#111318] dark:bg-white text-white dark:text-[#111318]
+                          px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-widest
+                          hover:opacity-85 transition-opacity">
+                        Giriş Yap
+                    </a>
                 </div>
-            </form>
+            }
         </div>
 
-        <div class="flex flex-col gap-8" id="commentList">
+        <div class="flex flex-col gap-7" id="commentList">
             @foreach (var comment in Model.Comments.OrderByDescending(x => x.CreatedDate))
             {
                 var likeCount = Model.LikeCounts.GetValueOrDefault(comment.CommentId, 0);
-                var isLiked   = Model.LikedCommentIds.Contains(comment.CommentId);
+                var isLiked = Model.LikedCommentIds.Contains(comment.CommentId);
 
-                <div class="pb-8 border-b border-neutral-200 dark:border-neutral-800" id="comment-@comment.CommentId">
+                <div class="pb-7 border-b border-neutral-100 dark:border-neutral-800" id="comment-@comment.CommentId">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="font-bold text-sm text-[#111318] dark:text-white uppercase">@comment.Name</span>
+                        <span class="font-bold text-xs uppercase tracking-widest text-[#111318] dark:text-white">
+                            @comment.Name
+                        </span>
                         <div class="flex items-center gap-3">
                             <span class="text-xs text-neutral-400">@comment.CreatedDate.ToString("dd.MM.yyyy HH:mm")</span>
                             @if (User.Identity.IsAuthenticated && comment.AppUserId == currentUserId)
                             {
                                 <button onclick="deleteComment(@comment.CommentId)"
-                                        class="text-xs text-red-400 hover:text-red-600 uppercase font-bold transition-colors">
+                                        class="text-[11px] text-red-400 hover:text-red-500 uppercase font-bold tracking-wide transition-colors">
                                     Sil
                                 </button>
                             }
                         </div>
                     </div>
 
-                    <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-3">@comment.Content</p>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-3">@comment.Content</p>
 
-                    <div class="flex items-center gap-4 mt-2">
-                        <button onclick="toggleLike(@comment.CommentId, this)"
-                                class="flex items-center gap-1 text-xs font-bold uppercase transition-colors @(isLiked ? "text-primary" : "text-neutral-400 hover:text-primary")"
-                                data-liked="@isLiked.ToString().ToLower()">
-                            <span class="material-symbols-outlined text-base">thumb_up</span>
-                            <span class="like-count">@likeCount</span>
-                        </button>
-                    </div>
+                    <button onclick="toggleLike(@comment.CommentId, this)"
+                            class="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide
+                               transition-colors rounded-md px-2 py-1 -ml-2
+                               hover:bg-neutral-100 dark:hover:bg-neutral-800
+                               @(isLiked ? "text-emerald-500" : "text-neutral-400")"
+                            data-liked="@isLiked.ToString().ToLower()">
+                        <span class="material-symbols-outlined text-sm">thumb_up</span>
+                        <span class="like-count">@likeCount</span>
+                    </button>
                 </div>
             }
         </div>
+
+        @if (Model.RelatedPosts != null && Model.RelatedPosts.Count > 0)
+        {
+            <div class="mt-16 pt-10 border-t border-neutral-200 dark:border-neutral-800">
+                <div class="flex items-center gap-3 mb-8">
+                    <h3 class="text-xl font-black uppercase tracking-widest text-[#111318] dark:text-white">Diğer Yazılar</h3>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/40 px-2 py-1 rounded">
+                        @Model.BlogPost.Category.CategoryName
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    @foreach (var post in Model.RelatedPosts)
+                    {
+                        <a href="/@post.Category?.CategorySlug/@post.Slug" class="group flex flex-col gap-3">
+                            <div class="w-full aspect-video overflow-hidden rounded-lg bg-neutral-100">
+                                <img src="@post.ImageUrl" alt="@post.Title"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-primary">
+                                    @post.Category?.CategoryName
+                                </span>
+                                <h4 class="text-sm font-black text-[#111318] dark:text-white leading-snug
+                                       group-hover:text-primary transition-colors line-clamp-2">
+                                    @post.Title
+                                </h4>
+                                <span class="text-xs text-neutral-400">@post.CreatedDate.ToString("dd.MM.yyyy")</span>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+        }
 
     </section>
 </div>
 
 <script>
     const currentUserId = '@currentUserId';
-    const blogPostId    = '@Model.BlogPost.BlogPostId';
+
+    const textarea  = document.getElementById('commentTextarea');
+    const charCount = document.getElementById('charCount');
+
+    textarea?.addEventListener('input', () => {
+        const len = textarea.value.length;
+        charCount.textContent = `${len} / 1000`;
+        charCount.className = len > 900
+            ? 'text-xs text-amber-400'
+            : 'text-xs text-neutral-400';
+        clearError();
+    });
+
+    function showError(msg) {
+        const el = document.getElementById('formError');
+        el.textContent = msg;
+        el.classList.remove('hidden');
+        textarea?.classList.add('border-red-300');
+    }
+
+    function clearError() {
+        const el = document.getElementById('formError');
+        el?.classList.add('hidden');
+        textarea?.classList.remove('border-red-300');
+    }
+
+    function showToast(msg, type = 'success') {
+        document.getElementById('_toast')?.remove();
+        const t = document.createElement('div');
+        t.id = '_toast';
+        const colors = type === 'success'
+            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+            : 'bg-red-50 text-red-600 border border-red-200';
+        t.className = `fixed bottom-6 right-6 z-50 px-4 py-3 rounded-lg text-sm font-medium shadow-lg ${colors}`;
+        t.textContent = msg;
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 3500);
+    }
+
+    function setLoading(on) {
+        const btn     = document.getElementById('submitBtn');
+        const spinner = document.getElementById('submitSpinner');
+        const label   = document.getElementById('submitLabel');
+        btn.disabled          = on;
+        spinner.classList.toggle('hidden', !on);
+        label.textContent     = on ? 'Gönderiliyor…' : 'Gönder';
+    }
 
     function toggleLike(commentId, btn) {
         fetch('/Comment/ToggleLike', {
@@ -110,99 +216,96 @@
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `commentId=${commentId}`
         })
-        .then(res => res.json())
+        .then(r => r.json())
         .then(data => {
-            if (data.success) {
-                btn.querySelector('.like-count').textContent = data.count;
-                if (data.liked) {
-                    btn.classList.add('text-primary');
-                    btn.classList.remove('text-neutral-400');
-                } else {
-                    btn.classList.remove('text-primary');
-                    btn.classList.add('text-neutral-400');
-                }
-                btn.dataset.liked = data.liked;
-            }
-        });
+            if (!data.success) return;
+            btn.querySelector('.like-count').textContent = data.count;
+            btn.classList.toggle('text-emerald-500', data.liked);
+            btn.classList.toggle('text-neutral-400', !data.liked);
+            btn.dataset.liked = data.liked;
+        })
+        .catch(() => showToast('Bir hata oluştu.', 'error'));
     }
 
     function deleteComment(commentId) {
         if (!confirm('Yorumu silmek istediğinize emin misiniz?')) return;
-
         fetch('/Comment/DeleteComment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `commentId=${commentId}`
         })
-        .then(res => res.json())
+        .then(r => r.json())
         .then(data => {
             if (data.success) {
                 document.getElementById(`comment-${commentId}`)?.remove();
                 updateCommentCount(-1);
+                showToast('Yorum silindi.');
             } else {
-                alert(data.message || 'Silme işlemi başarısız.');
+                showToast(data.message || 'Silme başarısız.', 'error');
             }
         })
-        .catch(() => alert('Bir hata oluştu.'));
+        .catch(() => showToast('Bir hata oluştu.', 'error'));
     }
 
     function updateCommentCount(delta) {
-        const el      = document.getElementById('commentCount');
-        const current = parseInt(el.textContent.replace(/\D/g, '')) || 0;
-        el.textContent = `(${current + delta})`;
+        const el  = document.getElementById('commentCount');
+        const cur = parseInt(el.textContent.replace(/\D/g, '')) || 0;
+        el.textContent = `(${Math.max(0, cur + delta)})`;
     }
 
-    document.getElementById("commentForm").addEventListener("submit", function (e) {
+    document.getElementById('commentForm')?.addEventListener('submit', function (e) {
         e.preventDefault();
-        const form      = this;
-        const textarea  = form.querySelector('textarea[name="Content"]');
-        if (!textarea.value.trim()) { textarea.focus(); return; }
+        clearError();
 
-        const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.disabled    = true;
-        submitBtn.textContent = 'Gönderiliyor...';
+        if (!textarea.value.trim()) {
+            showError('Yorum boş bırakılamaz.');
+            textarea.focus();
+            return;
+        }
+        if (textarea.value.length > 1000) {
+            showError('En fazla 1000 karakter girebilirsiniz.');
+            return;
+        }
 
-        fetch(form.action, { method: "POST", body: new FormData(form) })
-        .then(res => res.json())
+        setLoading(true);
+
+        fetch(this.action, { method: 'POST', body: new FormData(this) })
+        .then(r => r.json())
         .then(data => {
             if (data.success) {
-                const deleteBtn = `
-                    <button onclick="deleteComment(${data.commentId})"
-                            class="text-xs text-red-400 hover:text-red-600 uppercase font-bold transition-colors">
-                        Sil
-                    </button>`;
-
                 const newComment = `
-                    <div class="pb-8 border-b border-neutral-200 dark:border-neutral-800" id="comment-${data.commentId}">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-bold text-sm text-[#111318] dark:text-white uppercase">${data.name}</span>
-                            <div class="flex items-center gap-3">
-                                <span class="text-xs text-neutral-400">${data.date}</span>
-                                ${deleteBtn}
-                            </div>
-                        </div>
-                        <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-3">${data.content}</p>
-                        <div class="flex items-center gap-4 mt-2">
-                            <button onclick="toggleLike(${data.commentId}, this)"
-                                    class="flex items-center gap-1 text-xs font-bold uppercase text-neutral-400 hover:text-primary transition-colors"
-                                    data-liked="false">
-                                <span class="material-symbols-outlined text-base">thumb_up</span>
-                                <span class="like-count">0</span>
+                <div class="pb-7 border-b border-neutral-100 dark:border-neutral-800" id="comment-${data.commentId}">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-bold text-xs uppercase tracking-widest text-[#111318] dark:text-white">${data.name}</span>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs text-neutral-400">${data.date}</span>
+                            <button onclick="deleteComment(${data.commentId})"
+                                    class="text-[11px] text-red-400 hover:text-red-500 uppercase font-bold tracking-wide transition-colors">
+                                Sil
                             </button>
                         </div>
-                    </div>`;
+                    </div>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-3">${data.content}</p>
+                    <button onclick="toggleLike(${data.commentId}, this)"
+                            class="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide
+                                   text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800
+                                   transition-colors rounded-md px-2 py-1 -ml-2"
+                            data-liked="false">
+                        <span class="material-symbols-outlined text-sm">thumb_up</span>
+                        <span class="like-count">0</span>
+                    </button>
+                </div>`;
 
-                document.getElementById("commentList").insertAdjacentHTML("afterbegin", newComment);
+                document.getElementById('commentList').insertAdjacentHTML('afterbegin', newComment);
                 updateCommentCount(1);
-                form.reset();
+                this.reset();
+                charCount.textContent = '0 / 1000';
+                showToast('Yorumunuz yayınlandı.');
             } else {
-                alert(data.message || 'Yorum gönderilemedi.');
+                showToast(data.message || 'Yorum gönderilemedi.', 'error');
             }
         })
-        .catch(() => alert('Bir hata oluştu.'))
-        .finally(() => {
-            submitBtn.disabled    = false;
-            submitBtn.textContent = 'Gönder';
-        });
+        .catch(() => showToast('Bir hata oluştu.', 'error'))
+        .finally(() => setLoading(false));
     });
 </script>
